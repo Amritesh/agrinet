@@ -94,9 +94,11 @@ def match_district(districts, state_n, dist_n):
     return best
 
 
-def nominatim(client, q, cache):
+def nominatim(client, q, cache, cache_only=False):
     if q in cache:
         return cache[q]
+    if cache_only:
+        return []
     for attempt in range(3):
         try:
             r = client.get(
@@ -116,7 +118,7 @@ def nominatim(client, q, cache):
     return None
 
 
-def main(limit: int | None = None):
+def main(limit: int | None = None, cache_only: bool = False):
     districts, states = load_polys()
     cache = json.loads(CACHE.read_text()) if CACHE.exists() else {}
     con = duckdb.connect()
@@ -136,7 +138,7 @@ def main(limit: int | None = None):
         src, conf, used_q = "none", 0, None
         queries = [f"{market}, {district}, {state}, India", f"{market} mandi, {state}, India"]
         for q in queries:
-            res = nominatim(client, q, cache)
+            res = nominatim(client, q, cache, cache_only=cache_only)
             if not res:
                 continue
             for hit in res:
@@ -177,4 +179,9 @@ def main(limit: int | None = None):
 
 
 if __name__ == "__main__":
-    main(int(sys.argv[1]) if len(sys.argv) > 1 else None)
+    import argparse
+    parser = argparse.ArgumentParser()
+    parser.add_argument("limit", nargs="?", type=int)
+    parser.add_argument("--cache-only", action="store_true", help="Use retained hits and labelled polygon fallbacks; never query Nominatim")
+    args = parser.parse_args()
+    main(args.limit, cache_only=args.cache_only)

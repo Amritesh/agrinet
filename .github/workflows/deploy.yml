@@ -1,0 +1,53 @@
+name: Deploy AGRINET
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: pages
+  cancel-in-progress: false
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+      - name: Restore immutable public data snapshot
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release download data-2026-11-07 --pattern 'agrinet-data.tar.gz' --dir "$RUNNER_TEMP"
+          tar -xzf "$RUNNER_TEMP/agrinet-data.tar.gz" -C web/public
+      - name: Install and test
+        working-directory: web
+        run: |
+          npm ci
+          npx vitest run --passWithNoTests
+      - name: Build
+        working-directory: web
+        env:
+          VITE_SUPABASE_URL: https://fltrrikxuvsgnmoulqjd.supabase.co
+          VITE_SUPABASE_KEY: sb_publishable_bjH4is7RfBhJUZB9U9YiPA_t7MWSiMK
+        run: npm run build -- --base=/agrinet/
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: web/dist
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4

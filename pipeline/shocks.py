@@ -60,10 +60,18 @@ def rolling_mean(x: np.ndarray, win: int) -> np.ndarray:
 
 
 def rolling_median_mad(x: np.ndarray, win: int):
-    s = pd.Series(x)
-    med = s.rolling(win, min_periods=30).median().shift(1)
-    mad = (s - med).abs().rolling(win, min_periods=30).median().shift(1)
-    return med.to_numpy(), mad.to_numpy()
+    # Both statistics use exactly the same previous observations. Taking a
+    # rolling median of historical residuals is not the window's MAD.
+    med = np.full(len(x), np.nan)
+    mad = np.full(len(x), np.nan)
+    if len(x) <= 30:
+        return med, mad
+    windows = np.lib.stride_tricks.sliding_window_view(
+        np.concatenate((np.full(win, np.nan), x)), win
+    )[30:len(x)]
+    med[30:] = np.nanmedian(windows, axis=1)
+    mad[30:] = np.nanmedian(np.abs(windows - med[30:, None]), axis=1)
+    return med, mad
 
 
 def detect_series(dates: np.ndarray, modal: np.ndarray, thr: float, state_med: np.ndarray | None):
@@ -71,14 +79,14 @@ def detect_series(dates: np.ndarray, modal: np.ndarray, thr: float, state_med: n
     n = len(modal)
     if n < MIN_OBS:
         return []
-    lp = np.log(modal)
+    lp = np.log(np.maximum(modal, 1))
     day = dates.astype("datetime64[D]").astype(np.int64)
     gap = np.diff(day, prepend=day[0])
     r1 = np.diff(lp, prepend=lp[0])
     r1[(gap > 7) | (gap == 0)] = np.nan
     r1[0] = np.nan
     sd1 = rolling_std(np.nan_to_num(r1), WIN)
-    z1 = r1 / np.where(sd1 > 0.005, sd1, np.nan)  # floor: 0.5% daily std
+    z1 = r1 / np.maximum(np.nan_to_num(sd1, nan=np.inf), 0.04)  # floor: 4% daily std
 
     # 7-day return: find nearest previous obs 5-10 days back
     r7 = np.full(n, np.nan)
@@ -94,10 +102,10 @@ def detect_series(dates: np.ndarray, modal: np.ndarray, thr: float, state_med: n
         if best is not None:
             r7[i] = lp[i] - lp[best]
     sd7 = rolling_std(np.nan_to_num(r7), WIN)
-    z7 = r7 / np.where(sd7 > 0.01, sd7, np.nan)
+    z7 = r7 / np.maximum(np.nan_to_num(sd7, nan=np.inf), 0.08)
 
     med, mad = rolling_median_mad(lp, MAD_WIN)
-    zm = (lp - med) / np.where(mad > 0.01, 1.4826 * mad, np.nan)
+    zm = (lp - med) / np.maximum(1.4826 * np.nan_to_num(mad, nan=np.inf), 0.10)
 
     # seasonal: iso-week baseline from prior years
     isoweek = (dates.astype("datetime64[W]").astype(np.int64)) % 52
@@ -108,13 +116,12 @@ def detect_series(dates: np.ndarray, modal: np.ndarray, thr: float, state_med: n
     for i in range(n):
         wk = int(isoweek[i])
         prior = [v for (y, v) in by_wk.get(wk, []) if y < years[i]]
-        if len({y for (y, v) in by_wk.get(wk, []) if y < years[i]}) >= 3:
+        if len({y for (y, v) in by_wk.get(wk, []) if y < years[i]}) >= 5:
             arr = np.array(prior)
             m = np.median(arr)
             md = np.median(np.abs(arr - m))
             base[i] = m
-            if md > 0.02:
-                zs[i] = (lp[i] - m) / (1.4826 * md)
+            zs[i] = (lp[i] - m) / max(1.4826 * md, 0.25)
         by_wk.setdefault(wk, []).append((int(years[i]), float(lp[i])))
 
     zr = None
@@ -122,7 +129,7 @@ def detect_series(dates: np.ndarray, modal: np.ndarray, thr: float, state_med: n
         d = lp - state_med  # nan where no state median
         dev = d - rolling_mean(d, 30)
         sdr = rolling_std(dev, WIN)
-        zr = dev / np.where(sdr > 0.02, sdr, np.nan)
+        zr = dev / np.maximum(np.nan_to_num(sdr, nan=np.inf), 0.08)
 
     out = []
     for i in range(n):
@@ -151,6 +158,34 @@ def detect_series(dates: np.ndarray, modal: np.ndarray, thr: float, state_med: n
                     "window_end": dates[i],
                 }
             )
+    return collapse_episodes(out)
+
+
+def collapse_episodes(shocks: list[dict], gap_days: int = 10) -> list[dict]:
+    """Keep one record per method per episode: consecutive flagged obs within gap_days
+    collapse into the one with the largest |score|; its window spans the episode."""
+    by_m: dict[str, list[dict]] = {}
+    for s in shocks:
+        by_m.setdefault(s["method"], []).append(s)
+    out = []
+    for method, lst in by_m.items():
+        lst.sort(key=lambda s: s["obs_date"])
+        ep: list[dict] = []
+        def flush():
+            if not ep:
+                return
+            best = max(ep, key=lambda s: abs(s["score"]))
+            best = dict(best)
+            best["window_start"] = ep[0]["obs_date"]
+            best["window_end"] = ep[-1]["obs_date"]
+            best["episode_days"] = len(ep)
+            out.append(best)
+        for s in lst:
+            if ep and (s["obs_date"] - ep[-1]["obs_date"]).astype(int) > gap_days:
+                flush()
+                ep = []
+            ep.append(s)
+        flush()
     return out
 
 
