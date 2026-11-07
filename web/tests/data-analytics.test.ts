@@ -1,4 +1,6 @@
-import { describe, it, expect } from 'vitest'
+import { describe, it, expect, vi } from 'vitest'
+// Decoder/math tests must not require deployment credentials or create a client.
+vi.mock('@supabase/supabase-js', () => ({ createClient: vi.fn() }))
 import { decodeSnapshot, decodeSeries, isoToOrd, ordToIso } from '../src/lib/data'
 import { median, quantile, logReturns, stdev, volatility } from '../src/lib/analytics'
 
