@@ -4,6 +4,7 @@
 node_modules/
 dist/
 data/raw/
+data/backups/
 *.log
 .DS_Store
 web/node_modules/

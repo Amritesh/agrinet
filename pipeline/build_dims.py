@@ -65,6 +65,9 @@ def main() -> None:
                  WHEN Modal_Price > 100000 THEN 'implausible_high'
                  WHEN Modal_Price < Min_Price*0.99 OR Modal_Price > Max_Price*1.01 THEN 'modal_out_of_range'
                  WHEN Max_Price < Min_Price THEN 'max_lt_min'
+                 WHEN Min_Price::INTEGER<1 OR Max_Price::INTEGER<1 OR round(Modal_Price)::INTEGER<1
+                   OR round(Modal_Price)::INTEGER<Min_Price::INTEGER*0.99
+                   OR round(Modal_Price)::INTEGER>Max_Price::INTEGER*1.01 THEN 'invalid_after_integer_rounding'
                  ELSE NULL END AS reject_reason
         FROM raw"""
     )

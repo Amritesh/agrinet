@@ -1,27 +1,26 @@
-# AGRINET — Execution State (read this first after any interruption)
+# AGRINET — execution state
 
-Project root: `~/Projects/agrinet`. Python via `uv run` (3.12). Node for frontend.
+Project root: `~/Projects/agrinet`. Python: `uv run`; frontend: `web/`, npm.
 
-## Infrastructure (live)
-- **Database**: Supabase project `agrinet` ref `fltrrikxuvsgnmoulqjd`, region ap-south-1 (Mumbai), Postgres 17 + PostGIS, free tier (₹0). URL `https://fltrrikxuvsgnmoulqjd.supabase.co`. Schema `agri` (migration 0001 applied via MCP). Separate from the heritage project — never touch `rwdjasxvkupweowgrrwl`.
-- Publishable (anon, read-only via RLS) key: `sb_publishable_bjH4is7RfBhJUZB9U9YiPA_t7MWSiMK`.
-- DB writes: via Supabase MCP `execute_sql` or psycopg with the service connection (password in `.env`, not committed).
-- **Frontend host**: Cloudflare Pages (free) — TODO; fallback GitHub Pages.
-- **Repo**: GitHub `amriteshanand/agrinet` — TODO create via `gh`.
+## Authorized infrastructure
+- Dedicated AGRINET Supabase project: `fltrrikxuvsgnmoulqjd` (Mumbai). **Never touch heritage `rwdjasxvkupweowgrrwl`.** Writer credentials remain in untracked `.env`; browser uses a public read-only publishable key.
+- Repository: https://github.com/Amritesh/agrinet
+- HTTPS app: https://amritesh.github.io/agrinet/
+- GitHub Pages workflow restores checksum-pinned release `data-2026-11-07-v2`, tests and builds. No billable GCP/Cloudflare infrastructure was activated.
 
-## Data
-- History source: HF mirror `DHIVAKARNAIDUSUNKARI/mandi-india-daily-prices-2001-2026` (GODL-India, AGMARKNET via data.gov.in; refreshed 2026-11-04). Per-year parquet. Pilot extraction → `data/raw/mandi_daily/pilot_<year>.parquet` (+ `_manifest.json` etag ledger). ~5.7M pilot rows.
-- Live/current: data.gov.in resource `9ef84268-d588-465a-a308-a864a43d0070` (sample key works, needs own key for prod — TODO register, free).
-- Weather: Open-Meteo (free, no key). Boundaries: datameet/maps india states+districts GeoJSON (ODbL-ish, attribution).
+## Actual data
+- 8,460,842 normalized daily market/commodity observations; Onion, Potato, Tomato; history begins 2001, ends **2026-04-20**. Do not claim today's prices.
+- 3,389 market identities. Geographic source/confidence labels distinguish OSM matches from approximate district/state centroids. See BLOCKERS.md.
+- Static AGR2/AGS3 files preserve uint32 prices; original uint16 clipping fixed with regression tests. Release archive restore checksum verified across all 3,469 files.
+- Raw and derived Parquet remain local and untracked. Public history binary files are in the release, not Git.
+- News uses actual RSS feeds; PIB403 is recorded as partial source failure. Official current-price probes timed out; no synthetic replacement.
 
-## Pipeline steps (pipeline/)
-1. `extract_history.py` — DONE/RUNNING (log: logs/extract_history.log)
-2. `build_dims.py` — markets+daily aggregate parquet → TODO
-3. `geocode.py` — Nominatim (1 req/s, cache) + district-centroid fallback → TODO
-4. `load_db.py` — markets, price_daily (2015+ hot), stats, coverage → TODO
-5. `shocks.py` — detection methods → TODO
-6. `news.py` — RSS (PIB, Google News agri queries) → TODO
-7. `export_tiles.py` — static per-commodity daily snapshots for time machine → TODO
+## Final verification
+- Backend: 47 passing tests with live API checks enabled. Frontend: 6 unit checks and production build passed.
+- Deployed desktop/mobile acceptance: 52 passed (18 real deployment checks; 34 mocked initialization/date-order regressions).
+- Corrected shock load verified: 375,849 current signals; 76,800 superseded rows excluded, IDs retained.
+- Database backup: 9 tables / 1,207,097 rows; SHA-256, gzip, sizes and isolated-schema restoration checked. Local data-only, not PITR/off-device recovery.
+- Final code/monitor promotion and requested WhatsApp completion message in progress.
 
-## Next action
-See TASKS.md top unchecked item.
+## Detailed evidence / limitations
+See DEPLOYMENT.md, TEST_RESULTS.md, BLOCKERS.md, logs/backend-verification.md and logs/frontend-verification.md. Original production scope is not fully satisfied: current-price gap, research validation, privileged scheduled ingestion, managed recovery and satellite pipeline remain explicit limitations. Do not describe a verified historical pilot as a complete production service.

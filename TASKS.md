@@ -1,15 +1,20 @@
-# TASKS (dependency-ordered)
-- [x] T1 Environment inspection, Supabase project, schema 0001
-- [x] T2 Historical extraction 2001–2026 (pilot commodities)
-- [ ] T3 build_dims: markets table + daily aggregate parquet + coverage
-- [ ] T4 geocode markets (Nominatim + fallback), validate
-- [ ] T5 load_db: markets, price_daily 2015+, stats, coverage
-- [ ] T6 shock detection + backtest report
-- [ ] T7 export static history tiles (2001+) for time machine
-- [ ] T8 news pipeline (RSS) + market linking
-- [ ] T9 frontend: map, panel, time machine, shocks, news, dashboards
-- [ ] T10 tests (pipeline, analytics, frontend, e2e)
-- [ ] T11 GitHub repo + CI + Cloudflare Pages deploy + daily cron
-- [ ] T12 deployed acceptance run + completion report
-- [ ] T13 Gap fill 2026-04-21 → today: AGMARKNET report scrape (official) + data.gov.in daily top-up job
-- [ ] T14 varieties per market (investigation panel) + weather (Open-Meteo) per selected market
+# Tasks — verified historical pilot versus remaining production scope
+
+- [x] T1 Dedicated free-tier AGRINET infrastructure and schema; heritage untouched
+- [x] T2 Retain actual historical pilot commodities and source provenance
+- [x] T3 Normalize 8,460,842 daily observations, quality ledger and coverage
+- [x] T4 Geocode 3,389 identities with explicit precision/source labels
+- [x] T5 Non-destructive database upsert, hot prices, stats and coverage
+- [x] T6 Corrected shock refresh/readback; 375,849 current signals; economic-event ground truth/backtest remains research
+- [x] T7 Lossless static historical snapshots and per-market histories; release restore verified
+- [x] T8 Actual RSS news ingestion and source/link provenance; PIB blocked, partial status recorded
+- [x] T9 Map, time machine, shock investigation, news and analytics frontend; local browser acceptance passed
+- [x] T10 Final combined backend/live suites (47 passed) and independent review
+- [ ] T11 Final GitHub Pages promotion and hourly public health monitor verification
+- [ ] T12 Actual deployed desktop/mobile acceptance, completion report and WhatsApp link
+- [ ] T13 Current-price gap from 2026-04-21; official API probes timed out, own registration not authorized
+- [ ] T14 Per-variety/grade investigation histories; original records retained, public aggregate only
+- [ ] T15 Managed PITR/off-device DB recovery, privileged scheduled ingestion and formal incident paging
+- [ ] T16 Validated satellite crop data and calibrated forecasting; not simulated
+
+Detailed constraints: BLOCKERS.md. User authorization covers this dedicated build/deployment and completion message, not paid services, source registration/terms acceptance or unrelated production systems.

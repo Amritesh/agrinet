@@ -1,0 +1,32 @@
+name: Public availability monitor
+on:
+  schedule:
+    - cron: '23 * * * *'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  health:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Verify deployed HTML, data and read-only API
+        env:
+          SUPABASE_PUBLIC_KEY: sb_publishable_bjH4is7RfBhJUZB9U9YiPA_t7MWSiMK
+        run: |
+          python3 - <<'PY'
+          import json, os, urllib.request
+          base = 'https://amritesh.github.io/agrinet/'
+          with urllib.request.urlopen(base, timeout=30) as r:
+              assert r.status == 200
+              assert 'AGRINET' in r.read().decode()
+          with urllib.request.urlopen(base+'data/markets.json', timeout=30) as r:
+              markets = json.load(r)
+              assert len(markets) > 3000
+          req = urllib.request.Request('https://fltrrikxuvsgnmoulqjd.supabase.co/rest/v1/rpc/health', data=b'{}', headers={'apikey':os.environ['SUPABASE_PUBLIC_KEY'],'Content-Type':'application/json'})
+          with urllib.request.urlopen(req, timeout=30) as r:
+              health = json.load(r)
+              assert health['markets'] > 3000, health
+              assert health['shocks'] > 0, health
+              assert health['latest_price_date'], health
+          print(json.dumps({'markets':len(markets),'health':health}))
+          PY

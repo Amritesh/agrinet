@@ -4,12 +4,12 @@ web/public/data/
   markets.json                 [{id,n,d,s,lat,lon,c,src}]  (c = geocode confidence)
   coverage.json                commodity-year coverage (copied)
   snap/{slug}/{year}.bin       daily snapshots for the time machine:
-        header  u32 magic 0x41475231 ('AGR1'), u32 n_days
-        per day u32 day_ordinal (days since 2001-01-01), u32 n, then n × (u16 market_id, u16 modal)
-        modal clamped to 65535 (INR/quintal)
+        header  u32 magic 0x41475232 ('AGR2'), u32 n_days
+        per day u32 day_ordinal (days since 2001-01-01), u32 n, then n × (u16 market_id, u32 modal)
+        Prices retained without silent 16-bit clipping (INR/quintal).
   series/{market_id}.bin       full history per market, all pilot commodities:
-        header  u32 magic 0x41475332 ('AGS2'), u8 n_comm
-        per commodity: u8 commodity_id, u32 n, then n × (u16 day_ordinal, u16 min, u16 max, u16 modal, u8 n_variety)
+        header  u32 magic 0x41475333 ('AGS3'), u8 n_comm
+        per commodity: u8 commodity_id, u32 n, then n × (u16 day_ordinal, u32 min, u32 max, u32 modal, u8 n_variety)
 Market ids are deterministic: row number of markets.parquet ordered by normalized key.
 """
 from __future__ import annotations
@@ -28,6 +28,8 @@ DERIVED = ROOT / "data" / "derived"
 OUT = ROOT / "web" / "public" / "data"
 EPOCH = date(2001, 1, 1)
 SLUG = {23: "onion", 24: "potato", 78: "tomato"}
+SNAPSHOT_DTYPE = np.dtype([("id", "<u2"), ("modal", "<u4")])
+SERIES_DTYPE = np.dtype([("d", "<u2"), ("mn", "<u4"), ("mx", "<u4"), ("md", "<u4"), ("nv", "u1")])
 
 
 def main() -> None:
@@ -63,8 +65,8 @@ def main() -> None:
         f"""CREATE TABLE p AS
             SELECT m.id AS market_id, p.commodity_id,
                    (p.obs_date - DATE '2001-01-01')::INTEGER AS d,
-                   least(p.min_price,65535) AS mn, least(p.max_price,65535) AS mx,
-                   least(p.modal_price,65535) AS md, least(p.n_variety,255) AS nv,
+                   p.min_price AS mn, p.max_price AS mx,
+                   p.modal_price AS md, least(p.n_variety,255) AS nv,
                    year(p.obs_date) AS yr
             FROM '{DERIVED}/price_daily.parquet' p JOIN m USING (state_norm, district_norm, market_norm)"""
     )
@@ -78,12 +80,12 @@ def main() -> None:
                    FROM p WHERE commodity_id=? AND yr=? GROUP BY d ORDER BY d""",
                 [cid, yr],
             ).fetchall()
-            buf = bytearray(struct.pack("<II", 0x41475231, len(days)))
+            buf = bytearray(struct.pack("<II", 0x41475232, len(days)))
             for d, ids, mds in days:
                 buf += struct.pack("<II", d, len(ids))
-                arr = np.empty(len(ids) * 2, dtype="<u2")
-                arr[0::2] = ids
-                arr[1::2] = mds
+                arr = np.empty(len(ids), dtype=SNAPSHOT_DTYPE)
+                arr["id"] = ids
+                arr["modal"] = mds
                 buf += arr.tobytes()
             (OUT / "snap" / slug / f"{yr}.bin").write_bytes(buf)
     # series
@@ -97,11 +99,11 @@ def main() -> None:
     for r in series:
         by_market.setdefault(r[0], []).append(r[1:])
     for mid, comms in by_market.items():
-        buf = bytearray(struct.pack("<IB", 0x41475332, len(comms)))
+        buf = bytearray(struct.pack("<IB", 0x41475333, len(comms)))
         for cid, ds, mns, mxs, mds, nvs in comms:
             n = len(ds)
             buf += struct.pack("<BI", cid, n)
-            rec = np.zeros(n, dtype=[("d", "<u2"), ("mn", "<u2"), ("mx", "<u2"), ("md", "<u2"), ("nv", "u1")])
+            rec = np.zeros(n, dtype=SERIES_DTYPE)
             rec["d"], rec["mn"], rec["mx"], rec["md"], rec["nv"] = ds, mns, mxs, mds, nvs
             buf += rec.tobytes()
         (OUT / "series" / f"{mid}.bin").write_bytes(buf)

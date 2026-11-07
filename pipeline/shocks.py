@@ -5,11 +5,10 @@ Methods (all per market×commodity series, on observed days only — no interpol
   return_7d     log return vs observation ~7 days earlier (nearest within 5-10 days)
   mad_z         robust z: (x - rolling median_60) / (1.4826 * MAD_60)
   seasonal_dev  deviation of log price from the market's day-of-year seasonal baseline
-                (median of same ISO-week in prior years, >=3 prior years) in units of
+                (median of same ISO-week in prior years, >=5 prior years) in units of
                 that week's historical MAD
   regional_div  market's log price minus state-level daily median, z vs 90-obs std
-  sync          cross-market: fraction of state markets with |return_1d z| > 2 same day
-                (recorded at state level into details of the triggering shocks)
+
 
 Commodity-specific thresholds (z-like scores) — vegetables are volatile, so thresholds
 are higher than for grains:
@@ -74,6 +73,11 @@ def rolling_median_mad(x: np.ndarray, win: int):
     return med, mad
 
 
+def iso_seasonal_keys(dates: np.ndarray):
+    calendar = pd.DatetimeIndex(dates).isocalendar()
+    return calendar.year.to_numpy(dtype=int), calendar.week.to_numpy(dtype=int)
+
+
 def detect_series(dates: np.ndarray, modal: np.ndarray, thr: float, state_med: np.ndarray | None):
     """dates: datetime64[D] sorted; modal: float. Returns list of shock dicts."""
     n = len(modal)
@@ -85,11 +89,12 @@ def detect_series(dates: np.ndarray, modal: np.ndarray, thr: float, state_med: n
     r1 = np.diff(lp, prepend=lp[0])
     r1[(gap > 7) | (gap == 0)] = np.nan
     r1[0] = np.nan
-    sd1 = rolling_std(np.nan_to_num(r1), WIN)
+    sd1 = rolling_std(r1, WIN)
     z1 = r1 / np.maximum(np.nan_to_num(sd1, nan=np.inf), 0.04)  # floor: 4% daily std
 
     # 7-day return: find nearest previous obs 5-10 days back
     r7 = np.full(n, np.nan)
+    baseline7 = np.full(n, np.nan)
     j = 0
     for i in range(n):
         while j < i and day[i] - day[j] > 10:
@@ -97,19 +102,20 @@ def detect_series(dates: np.ndarray, modal: np.ndarray, thr: float, state_med: n
         k = j
         best = None
         while k < i and day[i] - day[k] >= 5:
-            best = k
+            if best is None or abs(day[i] - day[k] - 7) < abs(day[i] - day[best] - 7):
+                best = k
             k += 1
         if best is not None:
             r7[i] = lp[i] - lp[best]
-    sd7 = rolling_std(np.nan_to_num(r7), WIN)
+            baseline7[i] = modal[best]
+    sd7 = rolling_std(r7, WIN)
     z7 = r7 / np.maximum(np.nan_to_num(sd7, nan=np.inf), 0.08)
 
     med, mad = rolling_median_mad(lp, MAD_WIN)
     zm = (lp - med) / np.maximum(1.4826 * np.nan_to_num(mad, nan=np.inf), 0.10)
 
     # seasonal: iso-week baseline from prior years
-    isoweek = (dates.astype("datetime64[W]").astype(np.int64)) % 52
-    years = dates.astype("datetime64[Y]").astype(np.int64) + 1970
+    years, isoweek = iso_seasonal_keys(dates)
     zs = np.full(n, np.nan)
     base = np.full(n, np.nan)
     by_wk: dict[int, list[tuple[int, float]]] = {}
@@ -125,6 +131,7 @@ def detect_series(dates: np.ndarray, modal: np.ndarray, thr: float, state_med: n
         by_wk.setdefault(wk, []).append((int(years[i]), float(lp[i])))
 
     zr = None
+    dev = None
     if state_med is not None:
         d = lp - state_med  # nan where no state median
         dev = d - rolling_mean(d, 30)
@@ -135,12 +142,15 @@ def detect_series(dates: np.ndarray, modal: np.ndarray, thr: float, state_med: n
     for i in range(n):
         cands = [
             ("return_1d", z1[i], r1[i], None if i == 0 else modal[i - 1]),
-            ("return_7d", z7[i], r7[i], None),
+            ("return_7d", z7[i], r7[i], None if np.isnan(baseline7[i]) else baseline7[i]),
             ("mad_z", zm[i], None if np.isnan(med[i]) else lp[i] - med[i], None if np.isnan(med[i]) else float(np.exp(med[i]))),
             ("seasonal_dev", zs[i], None if np.isnan(base[i]) else lp[i] - base[i], None if np.isnan(base[i]) else float(np.exp(base[i]))),
         ]
-        if zr is not None:
-            cands.append(("regional_div", zr[i], None if state_med is None else lp[i] - state_med[i], None if state_med is None or np.isnan(state_med[i]) else float(np.exp(state_med[i]))))
+        if zr is not None and dev is not None:
+            # z measures the departure from the prior 30-observation market/state
+            # log-spread, not the absolute gap to today's state median. Use that
+            # same departure for direction, percentage and implied baseline.
+            cands.append(("regional_div", zr[i], dev[i], None if np.isnan(dev[i]) else float(np.exp(lp[i] - dev[i]))))
         for method, z, lr, baseline in cands:
             if z is None or np.isnan(z) or abs(z) < thr:
                 continue
