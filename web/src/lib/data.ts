@@ -31,7 +31,7 @@ export interface Market {
 
 export interface DaySnapshot {
   ids: Uint16Array
-  modal: Uint16Array
+  modal: Uint32Array
 }
 export interface YearSnapshot {
   days: Map<number, DaySnapshot>
@@ -70,7 +70,9 @@ export const loadCoverage = (): Promise<CoverageRow[]> => fetch(`${BASE}/coverag
 
 export function decodeSnapshot(buf: ArrayBuffer): YearSnapshot {
   const dv = new DataView(buf)
-  if (dv.getUint32(0, true) !== 0x41475231) throw new Error('bad snapshot magic')
+  const magic = dv.getUint32(0, true)
+  if (magic !== 0x41475231 && magic !== 0x41475232) throw new Error('bad snapshot magic')
+  const wide = magic === 0x41475232
   const nDays = dv.getUint32(4, true)
   let off = 8
   const days = new Map<number, DaySnapshot>()
@@ -80,13 +82,12 @@ export function decodeSnapshot(buf: ArrayBuffer): YearSnapshot {
     const d = dv.getUint32(off, true)
     const n = dv.getUint32(off + 4, true)
     off += 8
-    const arr = new Uint16Array(buf.slice(off, off + n * 4))
-    off += n * 4
     const ids = new Uint16Array(n)
-    const modal = new Uint16Array(n)
+    const modal = new Uint32Array(n)
     for (let k = 0; k < n; k++) {
-      ids[k] = arr[k * 2]
-      modal[k] = arr[k * 2 + 1]
+      ids[k] = dv.getUint16(off, true)
+      modal[k] = wide ? dv.getUint32(off + 2, true) : dv.getUint16(off + 2, true)
+      off += wide ? 6 : 4
       all.push(modal[k])
     }
     days.set(d, { ids, modal })
@@ -116,7 +117,9 @@ export function loadSnapshot(slug: string, year: number): Promise<YearSnapshot |
 
 export function decodeSeries(buf: ArrayBuffer): MarketSeries {
   const dv = new DataView(buf)
-  if (dv.getUint32(0, true) !== 0x41475332) throw new Error('bad series magic')
+  const magic = dv.getUint32(0, true)
+  if (magic !== 0x41475332 && magic !== 0x41475333) throw new Error('bad series magic')
+  const wide = magic === 0x41475333
   const nComm = dv.getUint8(4)
   let off = 5
   const out: MarketSeries = new Map()
@@ -128,12 +131,12 @@ export function decodeSeries(buf: ArrayBuffer): MarketSeries {
     for (let k = 0; k < n; k++) {
       pts[k] = {
         d: dv.getUint16(off, true),
-        mn: dv.getUint16(off + 2, true),
-        mx: dv.getUint16(off + 4, true),
-        md: dv.getUint16(off + 6, true),
-        nv: dv.getUint8(off + 8),
+        mn: wide ? dv.getUint32(off + 2, true) : dv.getUint16(off + 2, true),
+        mx: wide ? dv.getUint32(off + 6, true) : dv.getUint16(off + 4, true),
+        md: wide ? dv.getUint32(off + 10, true) : dv.getUint16(off + 6, true),
+        nv: dv.getUint8(off + (wide ? 14 : 8)),
       }
-      off += 9
+      off += wide ? 15 : 9
     }
     out.set(cid, pts)
   }

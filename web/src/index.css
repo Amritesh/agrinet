@@ -662,6 +662,29 @@ h3 {
     grid-template-columns: 1fr 1fr;
   }
 }
+@media (max-width: 600px) {
+  :root {
+    --topbar: 110px;
+    --timeline: 168px;
+  }
+  .topbar {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 4px 6px;
+    padding: 5px 8px;
+    overflow: visible;
+  }
+  .brand { font-size: 12px; letter-spacing: 0.04em; }
+  .commodities { justify-content: flex-end; gap: 0; }
+  .commodities .tab { padding: 6px 7px; }
+  .search-box { width: 100%; min-width: 0; }
+  .views { margin-left: 0; gap: 0; }
+  .views .tab { min-width: 36px; padding: 7px 9px; }
+  .health { grid-column: 1 / -1; }
+  .timeline { padding: 8px 8px 4px; }
+  .tl-controls { gap: 6px; }
+  .main, .stage { min-width: 0; }
+}
 @media (prefers-reduced-motion: reduce) {
   * {
     transition: none !important;

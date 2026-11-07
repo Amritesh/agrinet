@@ -24,8 +24,12 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          gh release download data-2026-11-07 --pattern 'agrinet-data.tar.gz' --dir "$RUNNER_TEMP"
-          tar -xzf "$RUNNER_TEMP/agrinet-data.tar.gz" -C web/public
+          gh release download data-2026-11-07-v2 --pattern 'agrinet-data-v2.tar.gz' --dir "$RUNNER_TEMP"
+          printf '%s  %s\n' '7045c5c5dff202de4b3870abf3eb65ea84cf44724f7d294a25e2480d9c54f4b5' "$RUNNER_TEMP/agrinet-data-v2.tar.gz" | sha256sum -c -
+          tar -xzf "$RUNNER_TEMP/agrinet-data-v2.tar.gz" -C web/public
+      - uses: astral-sh/setup-uv@v6
+      - name: Test backend and analytics
+        run: uv run --frozen python -m pytest tests -q
       - name: Install and test
         working-directory: web
         run: |

@@ -32,32 +32,52 @@ export default function App() {
   const [health, setHealth] = useState<Record<string, unknown> | null | 'err'>(null)
   const [loadErr, setLoadErr] = useState<string | null>(null)
   const search = useSearch(markets)
+  // Capture once before URL synchronization; StrictMode replays effects and
+  // asynchronous market loading must not replace the original deep link.
+  const [initialSearch] = useState(() => location.search)
 
   useEffect(() => {
-    loadMarkets().then(setMarkets).catch((e) => setLoadErr(`Market list failed to load: ${e}`))
-    loadCoverage()
-      .then((c) => {
-        const years = c.map((r) => r.year)
-        setRange(isoToOrd(`${Math.min(...years)}-01-01`), isoToOrd(`${Math.max(...years)}-12-31`))
-      })
-      .catch(() => {})
-    fetchHealth()
-      .then((h) => {
-        setHealth(h)
-        if (typeof h.latest_price_date === 'string' && !new URLSearchParams(location.search).get('d')) {
-          const latest = isoToOrd(h.latest_price_date)
-          setRange(isoToOrd('2001-01-01'), latest)
-          useStore.getState().setOrd(latest)
-        } else if (typeof h.latest_price_date === 'string') {
-          setRange(isoToOrd('2001-01-01'), isoToOrd(h.latest_price_date))
-        }
-      })
-      .catch(() => setHealth('err'))
-  }, [setMarkets, setRange])
+    let cancelled = false
+    const initial = useStore.getState()
+    const linkedDate = new URLSearchParams(initialSearch).get('d')
+    const linkedOrd = linkedDate && /^\d{4}-\d{2}-\d{2}$/.test(linkedDate) && Number.isFinite(isoToOrd(linkedDate))
+      ? isoToOrd(linkedDate) : null
+    // The URL effect initially clamps deep links to the store's default range.
+    const initialOrd = linkedOrd == null ? initial.ord : Math.max(initial.minOrd, Math.min(initial.maxOrd, linkedOrd))
+    loadMarkets()
+      .then((m) => { if (!cancelled) setMarkets(m) })
+      .catch((e) => { if (!cancelled) setLoadErr(`Market list failed to load: ${e}`) })
+    // Resolve one range from both sources, never let a late coverage response
+    // extend health's observed last date to the end of its calendar year.
+    Promise.allSettled([loadCoverage(), fetchHealth()]).then(([coverage, healthResult]) => {
+      if (cancelled) return
+      const h = healthResult.status === 'fulfilled' ? healthResult.value : null
+      setHealth(h ?? 'err')
+      const years = coverage.status === 'fulfilled'
+        ? coverage.value.map((r) => r.year).filter((y) => Number.isInteger(y) && y >= 1000 && y <= 9999)
+        : []
+      const min = years.length ? isoToOrd(`${Math.min(...years)}-01-01`) : isoToOrd('2001-01-01')
+      const latest = typeof h?.latest_price_date === 'string' ? isoToOrd(h.latest_price_date) : NaN
+      const hasLatest = Number.isFinite(latest) && ordToIso(latest) === h?.latest_price_date
+      const max = hasLatest ? latest : years.length ? isoToOrd(`${Math.max(...years)}-12-31`) : null
+      // Empty/failed sources must not poison the store with Infinity/NaN.
+      if (max == null) return
+      const selectionUnchanged = useStore.getState().ord === initialOrd
+      setRange(min, max)
+      // Never reset a date the user chose while these requests were pending.
+      if (selectionUnchanged && linkedOrd != null) {
+        useStore.getState().setOrd(linkedOrd)
+      } else if (selectionUnchanged && hasLatest) {
+        useStore.getState().setOrd(latest)
+      }
+    })
+    // StrictMode replays this effect: stale completions must not update state.
+    return () => { cancelled = true }
+  }, [initialSearch, setMarkets, setRange])
 
   // URL state (deep links): ?c=onion&d=2024-01-15&m=123&v=map
   useEffect(() => {
-    const p = new URLSearchParams(location.search)
+    const p = new URLSearchParams(initialSearch)
     const c = p.get('c')
     const d = p.get('d')
     const v = p.get('v') as View | null
@@ -139,7 +159,7 @@ export default function App() {
         </div>
         <nav className="views" aria-label="Views">
           {VIEWS.map((v) => (
-            <button key={v.id} className={`tab ${view === v.id ? 'active' : ''}`} aria-pressed={view === v.id} onClick={() => setView(v.id)}>
+            <button key={v.id} className={`tab ${view === v.id ? 'active' : ''}`} aria-label={v.label} aria-pressed={view === v.id} onClick={() => setView(v.id)}>
               <span aria-hidden="true">{v.icon}</span> <span className="hide-sm">{v.label}</span>
             </button>
           ))}

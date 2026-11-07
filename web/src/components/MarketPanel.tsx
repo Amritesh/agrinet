@@ -352,5 +352,5 @@ export function ShockInvestigation({ shock, pts }: { shock: Shock; pts: { d: num
 }
 
 function baselineLabel(m: string) {
-  return { return_1d: 'previous observation', return_7d: 'observation ~7 days earlier', mad_z: 'rolling 60-obs median', seasonal_dev: 'same-week median of prior years', regional_div: 'state daily median' }[m] ?? m
+  return { return_1d: 'previous observation', return_7d: 'observation ~7 days earlier', mad_z: 'rolling 60-obs median', seasonal_dev: 'same-week median of prior years', regional_div: 'expected price at prior 30-observation market/state spread' }[m] ?? m
 }
