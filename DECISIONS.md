@@ -1,0 +1,10 @@
+# DECISIONS
+
+- **D1 Database = Supabase (managed Postgres 17 + PostGIS), free tier, ap-south-1.** Directive lists "managed PostgreSQL with PostGIS"; Supabase MCP is already authorised in this environment, costs ₹0, has PostgREST (saves writing a CRUD API) and RLS. GCP has no authenticated credentials here, so Cloud SQL would require account/billing setup = human authorisation. Revisit if free-tier limits (500 MB) bind.
+- **D2 Frontend = Vite + React + TypeScript + MapLibre + deck.gl + ECharts, hosted on Cloudflare Pages (free).** Matches Section 3. Fallback: GitHub Pages.
+- **D3 Two-tier data store.** Postgres holds dimensions, 2015+ daily prices, stats, shocks, news. Full 2001+ history is served as static pre-aggregated files (per commodity × month JSON/Arrow) from the CDN — needed for smooth time-machine playback and to stay within free-tier DB size. All derived from the same raw Parquet (reproducible).
+- **D4 History source = HF mirror of AGMARKNET (GODL-India).** data.gov.in only serves the current snapshot; AGMARKNET has no bulk API. Mirror verified: schema, 0 duplicate keys, 365 days/yr, 1,200+ markets/commodity in 2024. Provenance recorded per file (etag, URL). Live top-up from data.gov.in API.
+- **D5 Price aggregation.** One row per market×commodity×day: modal = median of variety modal prices, min/max = min/max across varieties, n_variety kept. Varieties retained in Parquet for the investigation panel.
+- **D6 Geocoding.** Nominatim (OSM) with on-disk cache, 1 req/s, query "<market>, <district>, <state>, India"; validate inside India bbox and within ~150 km of district centroid; otherwise fall back to district centroid with confidence ≤40. Confidence stored and shown in UI.
+- **D7 Authentication.** Public read-only platform; no login required. Writes only via service role from pipeline jobs. Directive step "authenticate if required" → not required.
+- **D8 Scheduled jobs.** Daily refresh runs as GitHub Actions cron (free) rather than Cloud Scheduler/Run Jobs (needs GCP billing).

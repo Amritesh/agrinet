@@ -1,0 +1,15 @@
+# TASKS (dependency-ordered)
+- [x] T1 Environment inspection, Supabase project, schema 0001
+- [x] T2 Historical extraction 2001–2026 (pilot commodities)
+- [ ] T3 build_dims: markets table + daily aggregate parquet + coverage
+- [ ] T4 geocode markets (Nominatim + fallback), validate
+- [ ] T5 load_db: markets, price_daily 2015+, stats, coverage
+- [ ] T6 shock detection + backtest report
+- [ ] T7 export static history tiles (2001+) for time machine
+- [ ] T8 news pipeline (RSS) + market linking
+- [ ] T9 frontend: map, panel, time machine, shocks, news, dashboards
+- [ ] T10 tests (pipeline, analytics, frontend, e2e)
+- [ ] T11 GitHub repo + CI + Cloudflare Pages deploy + daily cron
+- [ ] T12 deployed acceptance run + completion report
+- [ ] T13 Gap fill 2026-04-21 → today: AGMARKNET report scrape (official) + data.gov.in daily top-up job
+- [ ] T14 varieties per market (investigation panel) + weather (Open-Meteo) per selected market
