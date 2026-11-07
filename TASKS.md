@@ -24,3 +24,12 @@ Detailed constraints: BLOCKERS.md. User authorization covers this dedicated buil
 - [ ] Variety/grade comparable price table; evidence-backed APMC identity links.
 - [ ] Surveyed/verified coordinates for top onion markets.
 - [ ] Code-split bundle (3.5 MB main chunk).
+
+## 4.0
+- [x] Phase 1: Stories + Explore structure; workspaces moved behind Research tools; Collaborate link in header/footer
+- [x] Phase 2: featured onion corridor story (Lasalgaon→Azadpur, Feb 2023) with route, costs, stress test, hindsight vs informed, conclusion
+- [x] Phase 3 (first pass): automatic shock/corridor/storage candidates for every month; ranking; 580 validated stories
+- [~] Phase 4: hindsight vs informed per corridor done; time-expanded multi-market MILP not built
+- [~] Phase 5: original tokens/lorry/board styling; terrain texture and richer camera choreography pending
+- [x] Phase 6 (part): static share pages + PNG cards for featured stories; story-level analytics events pending
+- [ ] Tomato corridors; animated export

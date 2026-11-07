@@ -28,3 +28,8 @@ See DEPLOYMENT.md, TEST_RESULTS.md, BLOCKERS.md, logs/backend-verification.md an
 Four workspaces: Market Atlas (unchanged), Opportunity Lab (honest empty state + missing evidence), Network Optimizer (corridor inspector: explicit representative points for centroid markets, OSRM driving geometry, never straight lines; multi-node solver shown as not connected in UI), Simulation Studio (landed-cost scenario, sensitivity, versioned JSON export, `?s=` share link).
 Backend: `analytics/economics.py` (Decimal), `analytics/transport.py` (networkx min-cost flow, independent feasibility check, greedy baseline). Audit: `pipeline/audit_v3.py` -> DATA_QUALITY.md. Research: RESEARCH.md (29 fetched sources, ledger in `evidence/research-sources.json`). Evidence copies in `evidence/`.
 Key data finding: Lasalgaon/Pimpalgaon/Vashi/Azadpur were re-reported under new "APMC" identities from Dec 2025; old identities stop Nov 2025. Not merged.
+
+## 4.0 Stories (2026-11-07, branch `feat/stories-4`)
+- Default home = Stories (`web/src/components/StoryHome.tsx`, `StoryBoard.tsx`); Explore = `?mode=explore`; 3.0 tools = `?mode=research`. Nothing deleted.
+- Offline engine `pipeline/stories.py` -> committed `web/public/stories/`; share pages `web/scripts/share-page.mjs` -> `web/public/s/`. See `docs/STORIES.md`.
+- Resume: regenerate with `uv run python -m pipeline.stories && (cd web && node scripts/share-page.mjs)`, then `npm run build`, `npx playwright test`.

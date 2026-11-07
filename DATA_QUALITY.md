@@ -77,3 +77,9 @@ Gaps that block anything beyond a modeled scenario:
 
 ## 6. Not established
 Shock signals are statistical, not confirmed events. No current price feed (data.gov.in probes timed out; see BLOCKERS.md). No surveyed market locations.
+
+## 4.0 story-engine safeguards
+- Exact (state, district, market) identity join; no sub-yard merging. Panel changes use only markets present in both months (≥5 reports each); seasonal z uses prior years only.
+- Corridor trades match destination reports 1–3 days after transit; every published number is reproducible from the trade table embedded in the story JSON.
+- Location precision is stated per market: `nominatim` = geocoded point; `nominatim_near`, `nominatim_state`, district/state centroids = approximate.
+- The build fails if any caption number does not resolve to a computed fact or labelled assumption.

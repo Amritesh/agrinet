@@ -11,3 +11,5 @@
 
 - 2026-11-07 (3.0): Centroid-located markets are never routed automatically; user supplies a representative point + evidence. Routing = OSRM public demo, driving profile, labelled not truck-certified and not a freight quote. Freight is a manual assumption. Optimizer is integer kg / INR-cents min-cost flow with declared unsupported constraints; not yet wired to UI.
 - 2026-11-07 (3.0): New "APMC" market identities are not merged with old ones without evidence.
+
+- 2026-11-07 (4.0): Stories is the default home; 3.0 workspaces kept intact under `?mode=research`, Explore reuses the Atlas with tabs/layer panel hidden. Story data is precomputed offline and committed (CI has no parquet). Costs only from RBI WPS (DEPR) 08/2024 survey values (2021-01..2026-04) plus labelled assumptions; earlier months show gross gaps only. "Typical day" = an actual median-rank trade so captions, waterfall and verdict agree. Featured ranking weights evidence and educational value, not profit. Share previews = static `/s/<id>/` pages with PNG cards rendered by Playwright (no new Python deps).

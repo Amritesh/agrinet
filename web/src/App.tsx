@@ -30,7 +30,8 @@ const LAYERS: { id: Layer; label: string }[] = [
   { id: 'districts', label: 'District borders' },
 ]
 
-export default function App() {
+export default function App({ mode = 'research' }: { mode?: 'explore' | 'research' }) {
+  const explore = mode === 'explore'
   // A ?s= share link restores a modeled scenario once, before URL sync rewrites the query.
   const [shared] = useState(() => { const t = new URLSearchParams(location.search).get('s'); return t ? decodeShare(t) : null })
   const [workspace, setWorkspace] = useState(shared ? 'Simulation Studio' : location.hash === '#collaborate' ? 'Collaborate' : 'Market Atlas')
@@ -95,6 +96,7 @@ export default function App() {
     if (c) setCommodity(c)
     if (d && /^\d{4}-\d{2}-\d{2}$/.test(d)) useStore.getState().setOrd(isoToOrd(d))
     if (v && VIEWS.some((x) => x.id === v)) setView(v)
+    if (explore) setView('map')
     const m = p.get('m')
     if (m && markets.length) selectMarket(useStore.getState().marketById.get(Number(m)) ?? null)
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -105,14 +107,15 @@ export default function App() {
     p.set('d', ordToIso(ord))
     p.set('v', view)
     if (selectedMarket) p.set('m', String(selectedMarket.id))
-    history.replaceState(null, '', `?${p}`)
-  }, [commodity.slug, ord, view, selectedMarket])
+    p.set('mode', mode)
+    history.replaceState(null, '', `?${p}${location.hash}`)
+  }, [commodity.slug, ord, view, selectedMarket, mode])
 
   const onHover = useCallback((h: HoverInfo | null) => setHover(h), [])
   const onStatus = useCallback((s: string) => setStatus(s), [])
 
   return (
-    <div className="app">
+    <div className={`app ${explore ? 'app-explore' : ''}`}>
       <a href="#main" className="skip">
         Skip to content
       </a>
@@ -121,8 +124,8 @@ export default function App() {
           <span className="logo" aria-hidden="true">
             ◈
           </span>
-          <span>AGRINET</span>
-          <span className="muted small hide-sm">India agricultural market intelligence</span>
+          <a className="brand-home" href={import.meta.env.BASE_URL} title="Back to Stories">AGRINET</a>
+          <span className="muted small hide-sm">{explore ? 'Explore the market map' : 'Research tools'}</span>
         </div>
         <nav className="commodities" aria-label="Commodity">
           {COMMODITIES.map((c) => (
@@ -168,7 +171,8 @@ export default function App() {
           )}
           {search.q && !search.results.length && <div className="search-results muted small">No mandi matches</div>}
         </div>
-        {workspace === 'Market Atlas' && <nav className="views" aria-label="Views">
+        {explore && <nav className="explore-links" aria-label="Modes"><a href={import.meta.env.BASE_URL}>Stories</a><a href={`${import.meta.env.BASE_URL}?mode=research`}>Research tools</a><a href={`${import.meta.env.BASE_URL}?mode=research#collaborate`}>Collaborate</a></nav>}
+        {!explore && workspace === 'Market Atlas' && <nav className="views" aria-label="Views">
           {VIEWS.map((v) => (
             <button key={v.id} className={`tab ${view === v.id ? 'active' : ''}`} aria-label={v.label} aria-pressed={view === v.id} onClick={() => setView(v.id)}>
               <span aria-hidden="true">{v.icon}</span> <span className="hide-sm">{v.label}</span>
@@ -182,12 +186,13 @@ export default function App() {
           ● {health === 'err' ? 'API down' : health ? `data to ${String(health.latest_price_date)}` : 'checking…'}
         </div>
       </header>
-      <nav className="workspace-nav" aria-label="Workspaces">
+      {!explore && <nav className="workspace-nav" aria-label="Workspaces">
+        <a className="nav-stories" href={import.meta.env.BASE_URL}>← Stories</a>
         {['Market Atlas', 'Opportunity Lab', 'Network Optimizer', 'Simulation Studio'].map((name, i) => (
           <button key={name} aria-pressed={workspace === name} onClick={() => { setWorkspace(name); useStore.getState().setPlaying(false) }}><span className="workspace-number" aria-hidden="true">0{i + 1}</span>{name}</button>
         ))}
         <button className="nav-collaborate" aria-pressed={workspace === 'Collaborate'} onClick={() => { setWorkspace('Collaborate'); useStore.getState().setPlaying(false) }}>Collaborate</button>
-      </nav>
+      </nav>}
       <div className="evidence-strip">Historical public aggregates · not live prices · latest verified observation 20 Apr 2026. No current counterparties or freight quotes.</div>
       {workspace === 'Opportunity Lab' && <main id="main" className="workspace-page"><div className="eyebrow">EVIDENCE BEFORE EXECUTION</div><h1>Opportunity Lab</h1><p className="workspace-lead">Explore the gap between a historical spread and an executable trade.</p><section className="workspace-card empty-evidence"><span className="evidence-symbol" aria-hidden="true">◇</span><h2>No commercially supported opportunities found</h2><p>Historical modal prices are public market aggregates, not executable offers. No ranked trades or invented counterparties are shown.</p><h3>Missing evidence</h3><ul><li>Current buyer bids and seller offers</li><li>Matching product, grade, quality and lot availability</li><li>Counterparty identity, payment terms and acceptance</li><li>Verified pickup and delivery locations</li><li>Current freight quote, vehicle capacity and cold-chain requirements</li><li>Loss, handling, fees, financing and settlement evidence</li></ul><button className="primary-action" onClick={() => setWorkspace('Simulation Studio')}>Build a manual scenario</button></section></main>}
       {workspace === 'Network Optimizer' && <CorridorInspector markets={markets} onUseDistance={(r) => { setScenarioRoute(r); setStudioNotice(`Attached ${r.distanceKm.toFixed(1)} km routed road distance. Freight is still your own assumption.`); setWorkspace('Simulation Studio') }} />}
@@ -206,14 +211,14 @@ export default function App() {
                 <div className="status" role="status" aria-live="polite">
                   {status}
                 </div>
-                <details className="layers">
+                {!explore && <details className="layers">
                   <summary>Layers</summary>
                   {LAYERS.map((l) => (
                     <label key={l.id}>
                       <input type="checkbox" checked={layers[l.id]} onChange={() => toggleLayer(l.id)} /> {l.label}
                     </label>
                   ))}
-                </details>
+                </details>}
                 <Legend />
               </div>
               {hover && (

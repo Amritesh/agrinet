@@ -36,3 +36,9 @@ A statistical anomaly is not a validated economic event. Ground-truth alert prec
 - vitest: 43/43. `tsc -b` clean; build OK (chunk >500 kB warning retained, main JS 3.55 MB / 1.04 MB gzip).
 - Playwright local desktop+mobile (workspaces, agrinet, journey, date-race): 64/64. OSRM/Supabase mocked in workspaces tests.
 - Production baseline before deploy: 18/18 real e2e.
+
+## 4.0 Stories — 2026-11-07 (local, worktree `agrinet-stories`)
+- `pytest tests/test_stories.py`: 17 passed (RED first). Full `pytest tests`: 159 passed, 15 skipped, 1 failed only because the worktree has no `data/raw` (same test passes in the main checkout: 7/7).
+- `vitest`: 66 passed (stories routing/selection 7, share page 3, existing 56).
+- Playwright full suite, desktop + mobile: 86 passed (14 new stories tests).
+- Measured locally (`scripts/perf.mjs`, Chromium, Apple M5, `vite preview`): story title visible 856 ms desktop / 151 ms mobile (warm), FCP 472 ms; route animation 58–60 fps; JS heap ~10 MB stable after 24 scene jumps. Not a reference-broadband measurement.
