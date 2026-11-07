@@ -1,0 +1,157 @@
+import { test, expect, type Page } from '@playwright/test'
+
+async function open(page: Page) {
+  await page.route('**/rest/v1/**', route => route.fulfill({ json: [] }))
+  await page.route('**/rest/v1/rpc/health', route => route.fulfill({ json: { latest_price_date: '2026-04-20' } }))
+  await page.goto('?v=news')
+}
+
+test('four workspaces preserve historical atlas and disclose missing commercial evidence', async ({ page }) => {
+  await open(page)
+  const nav = page.getByRole('navigation', { name: 'Workspaces' })
+  for (const name of ['Market Atlas', 'Opportunity Lab', 'Network Optimizer', 'Simulation Studio']) await expect(nav.getByRole('button', { name, exact: true })).toBeVisible()
+  await expect(page.getByRole('navigation', { name: 'Views', exact: true })).toBeVisible()
+  await nav.getByRole('button', { name: 'Opportunity Lab', exact: true }).click()
+  await expect(page.getByRole('heading', { name: 'No commercially supported opportunities found' })).toBeVisible()
+  await expect(page.getByText('Current buyer bids and seller offers', { exact: true })).toBeVisible()
+  await nav.getByRole('button', { name: 'Market Atlas', exact: true }).click()
+  await expect(page.getByLabel('Selected date', { exact: true })).toBeVisible()
+  await expect(page.getByRole('button', { name: 'Analytics', exact: true })).toBeVisible()
+  await expect(page.getByText(/Historical public aggregates · not live prices/)).toBeVisible()
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true)
+})
+
+const MIN_STYLE = { version: 8, sources: {}, layers: [{ id: 'bg', type: 'background', paint: { 'background-color': '#16191b' } }] }
+// Five-vertex road polyline: a straight line would only have two.
+const ROAD = [[74.2300, 20.1500], [74.0000, 19.9000], [73.6000, 19.6000], [73.2000, 19.2500], [73.0000, 19.0700]]
+
+async function openWorkspace(page: Page, name: string, osrm: 'ok' | 'fail' | 'none' = 'none', query = '?v=news') {
+  await page.route('**/rest/v1/**', route => route.fulfill({ json: [] }))
+  await page.route('**/rest/v1/rpc/health', route => route.fulfill({ json: { latest_price_date: '2026-04-20' } }))
+  await page.route('**/basemaps.cartocdn.com/**', route => route.fulfill({ json: MIN_STYLE }))
+  await page.route('**/router.project-osrm.org/**', route => {
+    if (osrm === 'ok') return route.fulfill({ json: { code: 'Ok', routes: [{ distance: 212400, duration: 16560, geometry: { type: 'LineString', coordinates: ROAD } }], waypoints: [{ distance: 12 }, { distance: 30 }] } })
+    if (osrm === 'fail') return route.fulfill({ status: 503, body: 'unavailable' })
+    return route.abort()
+  })
+  await page.goto(query)
+  if (name) await page.getByRole('navigation', { name: 'Workspaces' }).getByRole('button', { name, exact: true }).click()
+}
+
+async function fillFixture(page: Page) {
+  const studio = page.getByRole('main')
+  await studio.getByLabel('Purchase price', { exact: true }).fill('18')
+  await studio.getByLabel('Expected sale price', { exact: true }).fill('26')
+  await studio.getByLabel('Quantity', { exact: true }).fill('10')
+  await studio.getByLabel('Loss %', { exact: true }).fill('5')
+  await studio.getByLabel('Freight (INR)', { exact: true }).fill('18000')
+  await studio.getByLabel('Handling (INR)', { exact: true }).fill('8000')
+}
+
+test('simulation studio reproduces the landed-cost fixture and labels it modeled', async ({ page }) => {
+  await openWorkspace(page, 'Simulation Studio')
+  await expect(page.getByText('Modeled scenario — not a verified trade', { exact: true })).toBeVisible()
+  await expect(page.getByText(/assumed nominal payload, verify with operator/i)).toBeVisible()
+  await fillFixture(page)
+  await expect(page.getByTestId('out-saleable')).toHaveText('9,500 kg')
+  await expect(page.getByTestId('out-purchase')).toHaveText('₹1,80,000')
+  await expect(page.getByTestId('out-total')).toHaveText('₹2,06,000')
+  await expect(page.getByTestId('out-margin')).toHaveText('₹41,000')
+  await expect(page.getByTestId('out-margin-kg')).toHaveText('₹4.10/kg')
+  await expect(page.getByTestId('out-margin-tonne')).toHaveText('₹4,100/t')
+  await expect(page.getByTestId('out-breakeven-kg')).toHaveText('₹21.6842/kg')
+  await expect(page.getByTestId('out-breakeven-qtl')).toHaveText('₹2,168.42/qtl')
+  await expect(page.getByTestId('out-breakeven-freight')).toHaveText('₹59,000')
+  await expect(page.getByTestId('out-breakeven-loss')).toHaveText('20.77%')
+  await expect(page.getByTestId('out-roi')).toHaveText('19.90%')
+  const table = page.getByRole('table', { name: /sensitivity/i })
+  await expect(table.getByRole('row')).toHaveCount(4)
+  await expect(table).toContainText('Baseline')
+  await expect(page.getByText(/not probabilities/i)).toBeVisible()
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true)
+})
+
+test('studio converts INR/quintal explicitly and shows inline validation without crashing', async ({ page }) => {
+  await openWorkspace(page, 'Simulation Studio')
+  await fillFixture(page)
+  await page.getByLabel('Price unit', { exact: true }).selectOption('quintal')
+  await page.getByLabel('Purchase price', { exact: true }).fill('1800')
+  await page.getByLabel('Expected sale price', { exact: true }).fill('2600')
+  await expect(page.getByText('= ₹18.00/kg', { exact: true })).toBeVisible()
+  await expect(page.getByText('= ₹26.00/kg', { exact: true })).toBeVisible()
+  await expect(page.getByTestId('out-margin')).toHaveText('₹41,000')
+  await page.getByLabel('Freight (INR)', { exact: true }).fill('')
+  await expect(page.getByText(/Freight is a mandatory manual assumption/)).toBeVisible()
+  await expect(page.getByTestId('out-margin')).toHaveText('—')
+  await page.getByLabel('Quantity', { exact: true }).fill('30')
+  await expect(page.getByText(/exceeds the assumed vehicle capacity/)).toBeVisible()
+  await expect(page.getByRole('heading', { name: 'Simulation Studio' })).toBeVisible()
+})
+
+async function confirmPoint(page: Page, role: 'Origin' | 'Destination', query: string, name: RegExp, lat: string, lon: string) {
+  const box = page.getByRole('group', { name: role })
+  await box.getByLabel(`${role} market search`).fill(query)
+  await box.getByRole('option', { name }).first().click()
+  await expect(box.getByText('District centroid', { exact: true })).toBeVisible()
+  await expect(box.getByText(/not a route point/i)).toBeVisible()
+  await box.getByLabel('Latitude').fill(lat)
+  await box.getByLabel('Longitude').fill(lon)
+  await box.getByLabel('Evidence').fill(`${role} yard gate located on OpenStreetMap`)
+  await box.getByRole('checkbox', { name: /I confirm this representative point/ }).check()
+}
+
+test('corridor inspector requires explicit points for centroids, renders road geometry and feeds the studio', async ({ page }) => {
+  await openWorkspace(page, 'Network Optimizer', 'ok')
+  await expect(page.getByText(/Solver not connected/)).toBeVisible()
+  const estimate = page.getByRole('button', { name: 'Estimate road route' })
+  await confirmPoint(page, 'Origin', 'Lasalg', /Lasalgaon/, '20.15', '74.23')
+  await expect(estimate).toBeDisabled()
+  await confirmPoint(page, 'Destination', 'Vashi', /Vashi New Mumbai/, '19.07', '73.00')
+  await estimate.click()
+  await expect(page.getByTestId('route-distance')).toHaveText('212.4 km')
+  await expect(page.getByTestId('route-duration')).toHaveText('4 h 36 min')
+  await expect(page.getByText(/OSRM public demonstration service/)).toBeVisible()
+  await expect(page.getByText(/driving profile, not truck-certified/i)).toBeVisible()
+  await expect(page.getByText(/not a freight quote/i).first()).toBeVisible()
+  await expect(page.getByTestId('route-map')).toHaveAttribute('data-route-vertices', '5')
+  await expect(page.getByTestId('route-map')).toContainText(/OpenStreetMap/)
+  await page.getByRole('button', { name: 'Use this distance in Simulation Studio' }).click()
+  await expect(page.getByRole('heading', { name: 'Simulation Studio' })).toBeVisible()
+  await expect(page.getByText(/212\.4 km road distance/)).toBeVisible()
+  await page.getByLabel('Freight rate (INR/km)', { exact: true }).fill('85')
+  await page.getByRole('button', { name: /Pre-fill freight/ }).click()
+  await expect(page.getByLabel('Freight (INR)', { exact: true })).toHaveValue('18054')
+  await expect(page.getByText('Estimate — not a quotation (rate × routed distance)', { exact: true })).toBeVisible()
+  await page.getByLabel('Freight (INR)', { exact: true }).fill('20000')
+  await expect(page.getByText('Estimate — not a quotation (rate × routed distance)', { exact: true })).toHaveCount(0)
+})
+
+test('corridor inspector shows route failure without substituting a distance', async ({ page }) => {
+  await openWorkspace(page, 'Network Optimizer', 'fail')
+  await confirmPoint(page, 'Origin', 'Lasalg', /Lasalgaon/, '20.15', '74.23')
+  await confirmPoint(page, 'Destination', 'Vashi', /Vashi New Mumbai/, '19.07', '73.00')
+  await page.getByRole('button', { name: 'Estimate road route' }).click()
+  await expect(page.getByRole('alert')).toContainText('Road routing unavailable (503)')
+  await expect(page.getByTestId('route-distance')).toHaveCount(0)
+  await expect(page.getByRole('button', { name: 'Use this distance in Simulation Studio' })).toHaveCount(0)
+})
+
+test('scenario exports versioned JSON and restores from a share link', async ({ page }) => {
+  await openWorkspace(page, 'Simulation Studio')
+  await fillFixture(page)
+  const [download] = await Promise.all([page.waitForEvent('download'), page.getByRole('button', { name: 'Download scenario JSON' }).click()])
+  const fs = await import('node:fs/promises')
+  const doc = JSON.parse(await fs.readFile(await download.path(), 'utf8'))
+  expect(doc.schemaVersion).toBe('agrinet.scenario/1')
+  expect(doc.dataCutoff).toBe('2026-04-20')
+  expect(doc.outputs.margin).toBe(41000)
+  expect(doc.inputs.freight).toBe(18000)
+  await page.getByRole('button', { name: 'Create share link' }).click()
+  const link = await page.getByLabel('Share link', { exact: true }).inputValue()
+  expect(link).toMatch(/[?&]s=[A-Za-z0-9_-]+/)
+  await page.goto(link)
+  await expect(page.getByRole('heading', { name: 'Simulation Studio' })).toBeVisible()
+  await expect(page.getByLabel('Freight (INR)', { exact: true })).toHaveValue('18000')
+  await expect(page.getByTestId('out-margin')).toHaveText('₹41,000')
+  await expect(page.getByText(/Restored from share link/)).toBeVisible()
+})

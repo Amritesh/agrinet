@@ -8,3 +8,6 @@
 - **D6 Geocoding.** Nominatim (OSM) with on-disk cache, 1 req/s, query "<market>, <district>, <state>, India"; validate inside India bbox and within ~150 km of district centroid; otherwise fall back to district centroid with confidence ≤40. Confidence stored and shown in UI.
 - **D7 Authentication.** Public read-only platform; no login required. Writes only via service role from pipeline jobs. Directive step "authenticate if required" → not required.
 - **D8 Scheduled jobs.** Daily refresh runs as GitHub Actions cron (free) rather than Cloud Scheduler/Run Jobs (needs GCP billing).
+
+- 2026-11-07 (3.0): Centroid-located markets are never routed automatically; user supplies a representative point + evidence. Routing = OSRM public demo, driving profile, labelled not truck-certified and not a freight quote. Freight is a manual assumption. Optimizer is integer kg / INR-cents min-cost flow with declared unsupported constraints; not yet wired to UI.
+- 2026-11-07 (3.0): New "APMC" market identities are not merged with old ones without evidence.

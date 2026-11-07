@@ -1,0 +1,5183 @@
+{
+  "duckdb_version": "2.0.0",
+  "raw_files": 26,
+  "raw_schema_by_file": {
+    "pilot_2001.parquet": [
+      {
+        "column_name": "State",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "District",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Market",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Commodity",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Variety",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Grade",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Arrival_Date",
+        "column_type": "DATE",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Min_Price",
+        "column_type": "DOUBLE",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Max_Price",
+        "column_type": "DOUBLE",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Modal_Price",
+        "column_type": "DOUBLE",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Commodity_Code",
+        "column_type": "BIGINT",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "source_year",
+        "column_type": "INTEGER",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "source_url",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      }
+    ],
+    "pilot_2002.parquet": [
+      {
+        "column_name": "State",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "District",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Market",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Commodity",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Variety",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Grade",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Arrival_Date",
+        "column_type": "DATE",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Min_Price",
+        "column_type": "DOUBLE",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Max_Price",
+        "column_type": "DOUBLE",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Modal_Price",
+        "column_type": "DOUBLE",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Commodity_Code",
+        "column_type": "BIGINT",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "source_year",
+        "column_type": "INTEGER",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "source_url",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      }
+    ],
+    "pilot_2003.parquet": [
+      {
+        "column_name": "State",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "District",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Market",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Commodity",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Variety",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Grade",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Arrival_Date",
+        "column_type": "DATE",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Min_Price",
+        "column_type": "DOUBLE",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Max_Price",
+        "column_type": "DOUBLE",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Modal_Price",
+        "column_type": "DOUBLE",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Commodity_Code",
+        "column_type": "BIGINT",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "source_year",
+        "column_type": "INTEGER",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "source_url",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      }
+    ],
+    "pilot_2004.parquet": [
+      {
+        "column_name": "State",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "District",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Market",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Commodity",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Variety",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Grade",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Arrival_Date",
+        "column_type": "DATE",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Min_Price",
+        "column_type": "DOUBLE",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Max_Price",
+        "column_type": "DOUBLE",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Modal_Price",
+        "column_type": "DOUBLE",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Commodity_Code",
+        "column_type": "BIGINT",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "source_year",
+        "column_type": "INTEGER",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "source_url",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      }
+    ],
+    "pilot_2005.parquet": [
+      {
+        "column_name": "State",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "District",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Market",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Commodity",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Variety",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Grade",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Arrival_Date",
+        "column_type": "DATE",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Min_Price",
+        "column_type": "DOUBLE",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Max_Price",
+        "column_type": "DOUBLE",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Modal_Price",
+        "column_type": "DOUBLE",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Commodity_Code",
+        "column_type": "BIGINT",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "source_year",
+        "column_type": "INTEGER",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "source_url",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      }
+    ],
+    "pilot_2006.parquet": [
+      {
+        "column_name": "State",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "District",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Market",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Commodity",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Variety",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Grade",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Arrival_Date",
+        "column_type": "DATE",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Min_Price",
+        "column_type": "DOUBLE",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Max_Price",
+        "column_type": "DOUBLE",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Modal_Price",
+        "column_type": "DOUBLE",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Commodity_Code",
+        "column_type": "BIGINT",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "source_year",
+        "column_type": "INTEGER",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "source_url",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      }
+    ],
+    "pilot_2007.parquet": [
+      {
+        "column_name": "State",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "District",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Market",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Commodity",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Variety",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Grade",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Arrival_Date",
+        "column_type": "DATE",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Min_Price",
+        "column_type": "DOUBLE",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Max_Price",
+        "column_type": "DOUBLE",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Modal_Price",
+        "column_type": "DOUBLE",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Commodity_Code",
+        "column_type": "BIGINT",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "source_year",
+        "column_type": "INTEGER",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "source_url",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      }
+    ],
+    "pilot_2008.parquet": [
+      {
+        "column_name": "State",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "District",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Market",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Commodity",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Variety",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Grade",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Arrival_Date",
+        "column_type": "DATE",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Min_Price",
+        "column_type": "DOUBLE",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Max_Price",
+        "column_type": "DOUBLE",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Modal_Price",
+        "column_type": "DOUBLE",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Commodity_Code",
+        "column_type": "BIGINT",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "source_year",
+        "column_type": "INTEGER",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "source_url",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      }
+    ],
+    "pilot_2009.parquet": [
+      {
+        "column_name": "State",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "District",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Market",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Commodity",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Variety",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Grade",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Arrival_Date",
+        "column_type": "DATE",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Min_Price",
+        "column_type": "DOUBLE",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Max_Price",
+        "column_type": "DOUBLE",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Modal_Price",
+        "column_type": "DOUBLE",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Commodity_Code",
+        "column_type": "BIGINT",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "source_year",
+        "column_type": "INTEGER",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "source_url",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      }
+    ],
+    "pilot_2010.parquet": [
+      {
+        "column_name": "State",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "District",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Market",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Commodity",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Variety",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Grade",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Arrival_Date",
+        "column_type": "DATE",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Min_Price",
+        "column_type": "DOUBLE",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Max_Price",
+        "column_type": "DOUBLE",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Modal_Price",
+        "column_type": "DOUBLE",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Commodity_Code",
+        "column_type": "BIGINT",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "source_year",
+        "column_type": "INTEGER",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "source_url",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      }
+    ],
+    "pilot_2011.parquet": [
+      {
+        "column_name": "State",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "District",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Market",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Commodity",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Variety",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Grade",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Arrival_Date",
+        "column_type": "DATE",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Min_Price",
+        "column_type": "DOUBLE",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Max_Price",
+        "column_type": "DOUBLE",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Modal_Price",
+        "column_type": "DOUBLE",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Commodity_Code",
+        "column_type": "BIGINT",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "source_year",
+        "column_type": "INTEGER",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "source_url",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      }
+    ],
+    "pilot_2012.parquet": [
+      {
+        "column_name": "State",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "District",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Market",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Commodity",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Variety",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Grade",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Arrival_Date",
+        "column_type": "DATE",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Min_Price",
+        "column_type": "DOUBLE",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Max_Price",
+        "column_type": "DOUBLE",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Modal_Price",
+        "column_type": "DOUBLE",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Commodity_Code",
+        "column_type": "BIGINT",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "source_year",
+        "column_type": "INTEGER",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "source_url",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      }
+    ],
+    "pilot_2013.parquet": [
+      {
+        "column_name": "State",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "District",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Market",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Commodity",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Variety",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Grade",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Arrival_Date",
+        "column_type": "DATE",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Min_Price",
+        "column_type": "DOUBLE",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Max_Price",
+        "column_type": "DOUBLE",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Modal_Price",
+        "column_type": "DOUBLE",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Commodity_Code",
+        "column_type": "BIGINT",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "source_year",
+        "column_type": "INTEGER",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "source_url",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      }
+    ],
+    "pilot_2014.parquet": [
+      {
+        "column_name": "State",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "District",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Market",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Commodity",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Variety",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Grade",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Arrival_Date",
+        "column_type": "DATE",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Min_Price",
+        "column_type": "DOUBLE",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Max_Price",
+        "column_type": "DOUBLE",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Modal_Price",
+        "column_type": "DOUBLE",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Commodity_Code",
+        "column_type": "BIGINT",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "source_year",
+        "column_type": "INTEGER",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "source_url",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      }
+    ],
+    "pilot_2015.parquet": [
+      {
+        "column_name": "State",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "District",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Market",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Commodity",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Variety",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Grade",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Arrival_Date",
+        "column_type": "DATE",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Min_Price",
+        "column_type": "DOUBLE",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Max_Price",
+        "column_type": "DOUBLE",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Modal_Price",
+        "column_type": "DOUBLE",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Commodity_Code",
+        "column_type": "BIGINT",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "source_year",
+        "column_type": "INTEGER",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "source_url",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      }
+    ],
+    "pilot_2016.parquet": [
+      {
+        "column_name": "State",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "District",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Market",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Commodity",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Variety",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Grade",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Arrival_Date",
+        "column_type": "DATE",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Min_Price",
+        "column_type": "DOUBLE",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Max_Price",
+        "column_type": "DOUBLE",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Modal_Price",
+        "column_type": "DOUBLE",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Commodity_Code",
+        "column_type": "BIGINT",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "source_year",
+        "column_type": "INTEGER",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "source_url",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      }
+    ],
+    "pilot_2017.parquet": [
+      {
+        "column_name": "State",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "District",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Market",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Commodity",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Variety",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Grade",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Arrival_Date",
+        "column_type": "DATE",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Min_Price",
+        "column_type": "DOUBLE",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Max_Price",
+        "column_type": "DOUBLE",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Modal_Price",
+        "column_type": "DOUBLE",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Commodity_Code",
+        "column_type": "BIGINT",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "source_year",
+        "column_type": "INTEGER",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "source_url",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      }
+    ],
+    "pilot_2018.parquet": [
+      {
+        "column_name": "State",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "District",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Market",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Commodity",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Variety",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Grade",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Arrival_Date",
+        "column_type": "DATE",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Min_Price",
+        "column_type": "DOUBLE",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Max_Price",
+        "column_type": "DOUBLE",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Modal_Price",
+        "column_type": "DOUBLE",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Commodity_Code",
+        "column_type": "BIGINT",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "source_year",
+        "column_type": "INTEGER",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "source_url",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      }
+    ],
+    "pilot_2019.parquet": [
+      {
+        "column_name": "State",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "District",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Market",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Commodity",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Variety",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Grade",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Arrival_Date",
+        "column_type": "DATE",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Min_Price",
+        "column_type": "DOUBLE",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Max_Price",
+        "column_type": "DOUBLE",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Modal_Price",
+        "column_type": "DOUBLE",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Commodity_Code",
+        "column_type": "BIGINT",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "source_year",
+        "column_type": "INTEGER",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "source_url",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      }
+    ],
+    "pilot_2020.parquet": [
+      {
+        "column_name": "State",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "District",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Market",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Commodity",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Variety",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Grade",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Arrival_Date",
+        "column_type": "DATE",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Min_Price",
+        "column_type": "DOUBLE",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Max_Price",
+        "column_type": "DOUBLE",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Modal_Price",
+        "column_type": "DOUBLE",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Commodity_Code",
+        "column_type": "BIGINT",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "source_year",
+        "column_type": "INTEGER",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "source_url",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      }
+    ],
+    "pilot_2021.parquet": [
+      {
+        "column_name": "State",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "District",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Market",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Commodity",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Variety",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Grade",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Arrival_Date",
+        "column_type": "DATE",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Min_Price",
+        "column_type": "DOUBLE",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Max_Price",
+        "column_type": "DOUBLE",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Modal_Price",
+        "column_type": "DOUBLE",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Commodity_Code",
+        "column_type": "BIGINT",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "source_year",
+        "column_type": "INTEGER",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "source_url",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      }
+    ],
+    "pilot_2022.parquet": [
+      {
+        "column_name": "State",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "District",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Market",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Commodity",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Variety",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Grade",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Arrival_Date",
+        "column_type": "DATE",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Min_Price",
+        "column_type": "DOUBLE",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Max_Price",
+        "column_type": "DOUBLE",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Modal_Price",
+        "column_type": "DOUBLE",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Commodity_Code",
+        "column_type": "BIGINT",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "source_year",
+        "column_type": "INTEGER",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "source_url",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      }
+    ],
+    "pilot_2023.parquet": [
+      {
+        "column_name": "State",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "District",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Market",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Commodity",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Variety",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Grade",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Arrival_Date",
+        "column_type": "DATE",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Min_Price",
+        "column_type": "DOUBLE",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Max_Price",
+        "column_type": "DOUBLE",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Modal_Price",
+        "column_type": "DOUBLE",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Commodity_Code",
+        "column_type": "BIGINT",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "source_year",
+        "column_type": "INTEGER",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "source_url",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      }
+    ],
+    "pilot_2024.parquet": [
+      {
+        "column_name": "State",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "District",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Market",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Commodity",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Variety",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Grade",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Arrival_Date",
+        "column_type": "DATE",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Min_Price",
+        "column_type": "DOUBLE",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Max_Price",
+        "column_type": "DOUBLE",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Modal_Price",
+        "column_type": "DOUBLE",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Commodity_Code",
+        "column_type": "BIGINT",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "source_year",
+        "column_type": "INTEGER",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "source_url",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      }
+    ],
+    "pilot_2025.parquet": [
+      {
+        "column_name": "State",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "District",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Market",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Commodity",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Variety",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Grade",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Arrival_Date",
+        "column_type": "DATE",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Min_Price",
+        "column_type": "DOUBLE",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Max_Price",
+        "column_type": "DOUBLE",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Modal_Price",
+        "column_type": "DOUBLE",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Commodity_Code",
+        "column_type": "BIGINT",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "source_year",
+        "column_type": "INTEGER",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "source_url",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      }
+    ],
+    "pilot_2026.parquet": [
+      {
+        "column_name": "State",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "District",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Market",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Commodity",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Variety",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Grade",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Arrival_Date",
+        "column_type": "DATE",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Min_Price",
+        "column_type": "DOUBLE",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Max_Price",
+        "column_type": "DOUBLE",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Modal_Price",
+        "column_type": "DOUBLE",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Commodity_Code",
+        "column_type": "BIGINT",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "source_year",
+        "column_type": "INTEGER",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "source_url",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      }
+    ]
+  },
+  "schemas": {
+    "r": [
+      {
+        "column_name": "State",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "District",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Market",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Commodity",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Variety",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Grade",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Arrival_Date",
+        "column_type": "DATE",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Min_Price",
+        "column_type": "DOUBLE",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Max_Price",
+        "column_type": "DOUBLE",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Modal_Price",
+        "column_type": "DOUBLE",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "Commodity_Code",
+        "column_type": "BIGINT",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "source_year",
+        "column_type": "INTEGER",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "source_url",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      }
+    ],
+    "p": [
+      {
+        "column_name": "state_norm",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "district_norm",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "market_norm",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "commodity_id",
+        "column_type": "SMALLINT",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "obs_date",
+        "column_type": "DATE",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "min_price",
+        "column_type": "INTEGER",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "max_price",
+        "column_type": "INTEGER",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "modal_price",
+        "column_type": "INTEGER",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "n_variety",
+        "column_type": "SMALLINT",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      }
+    ],
+    "m": [
+      {
+        "column_name": "id",
+        "column_type": "INTEGER",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "state_norm",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "district_norm",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "market_norm",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "state",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "district",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "market",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "n_rows",
+        "column_type": "BIGINT",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      }
+    ],
+    "g": [
+      {
+        "column_name": "state_norm",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "district_norm",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "market_norm",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "lat",
+        "column_type": "DOUBLE",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "lon",
+        "column_type": "DOUBLE",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "geocode_source",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "geocode_confidence",
+        "column_type": "SMALLINT",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "geocode_query",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      }
+    ],
+    "v": [
+      {
+        "column_name": "state_norm",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "district_norm",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "market_norm",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "commodity_id",
+        "column_type": "SMALLINT",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "obs_date",
+        "column_type": "DATE",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "variety",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "grade",
+        "column_type": "VARCHAR",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "min_price",
+        "column_type": "INTEGER",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "max_price",
+        "column_type": "INTEGER",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "modal_price",
+        "column_type": "INTEGER",
+        "null": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      }
+    ]
+  },
+  "raw_years": [
+    {
+      "source_year": 2001,
+      "rows": 1681,
+      "first_date": "2001-01-10",
+      "last_date": "2001-12-31"
+    },
+    {
+      "source_year": 2002,
+      "rows": 33206,
+      "first_date": "2002-01-01",
+      "last_date": "2002-12-31"
+    },
+    {
+      "source_year": 2003,
+      "rows": 106920,
+      "first_date": "2003-01-01",
+      "last_date": "2003-12-31"
+    },
+    {
+      "source_year": 2004,
+      "rows": 102536,
+      "first_date": "2004-01-01",
+      "last_date": "2004-12-31"
+    },
+    {
+      "source_year": 2005,
+      "rows": 127848,
+      "first_date": "2005-01-01",
+      "last_date": "2005-12-31"
+    },
+    {
+      "source_year": 2006,
+      "rows": 178420,
+      "first_date": "2006-01-01",
+      "last_date": "2006-12-31"
+    },
+    {
+      "source_year": 2007,
+      "rows": 219344,
+      "first_date": "2007-01-01",
+      "last_date": "2007-12-31"
+    },
+    {
+      "source_year": 2008,
+      "rows": 270862,
+      "first_date": "2008-01-01",
+      "last_date": "2008-12-31"
+    },
+    {
+      "source_year": 2009,
+      "rows": 294146,
+      "first_date": "2009-01-01",
+      "last_date": "2009-12-31"
+    },
+    {
+      "source_year": 2010,
+      "rows": 352866,
+      "first_date": "2010-01-01",
+      "last_date": "2010-12-31"
+    },
+    {
+      "source_year": 2011,
+      "rows": 374937,
+      "first_date": "2011-01-01",
+      "last_date": "2011-12-31"
+    },
+    {
+      "source_year": 2012,
+      "rows": 383647,
+      "first_date": "2012-01-01",
+      "last_date": "2012-12-31"
+    },
+    {
+      "source_year": 2013,
+      "rows": 398240,
+      "first_date": "2013-01-01",
+      "last_date": "2013-12-31"
+    },
+    {
+      "source_year": 2014,
+      "rows": 403200,
+      "first_date": "2014-01-01",
+      "last_date": "2014-12-31"
+    },
+    {
+      "source_year": 2015,
+      "rows": 461783,
+      "first_date": "2015-01-01",
+      "last_date": "2015-12-31"
+    },
+    {
+      "source_year": 2016,
+      "rows": 443405,
+      "first_date": "2016-01-01",
+      "last_date": "2016-12-31"
+    },
+    {
+      "source_year": 2017,
+      "rows": 493099,
+      "first_date": "2017-01-01",
+      "last_date": "2017-12-31"
+    },
+    {
+      "source_year": 2018,
+      "rows": 550790,
+      "first_date": "2018-01-01",
+      "last_date": "2018-12-31"
+    },
+    {
+      "source_year": 2019,
+      "rows": 534575,
+      "first_date": "2019-01-01",
+      "last_date": "2019-12-31"
+    },
+    {
+      "source_year": 2020,
+      "rows": 472066,
+      "first_date": "2020-01-01",
+      "last_date": "2020-12-31"
+    },
+    {
+      "source_year": 2021,
+      "rows": 505325,
+      "first_date": "2021-01-01",
+      "last_date": "2021-12-31"
+    },
+    {
+      "source_year": 2022,
+      "rows": 592958,
+      "first_date": "2022-01-01",
+      "last_date": "2022-12-31"
+    },
+    {
+      "source_year": 2023,
+      "rows": 577355,
+      "first_date": "2023-01-01",
+      "last_date": "2023-12-31"
+    },
+    {
+      "source_year": 2024,
+      "rows": 661848,
+      "first_date": "2024-01-01",
+      "last_date": "2024-12-31"
+    },
+    {
+      "source_year": 2025,
+      "rows": 637141,
+      "first_date": "2025-01-01",
+      "last_date": "2025-12-31"
+    },
+    {
+      "source_year": 2026,
+      "rows": 56653,
+      "first_date": "2026-01-01",
+      "last_date": "2026-04-20"
+    }
+  ],
+  "raw_commodities": [
+    {
+      "Commodity": "Onion",
+      "Commodity_Code": 23,
+      "rows": 3167722
+    },
+    {
+      "Commodity": "Potato",
+      "Commodity_Code": 24,
+      "rows": 3248635
+    },
+    {
+      "Commodity": "Tomato",
+      "Commodity_Code": 78,
+      "rows": 2818494
+    }
+  ],
+  "raw_fields": {
+    "rows": 9234851,
+    "first_date": "2001-01-10",
+    "last_date": "2026-04-20",
+    "null_variety": 0,
+    "null_grade": 0,
+    "varieties": 49,
+    "grades": 14
+  },
+  "raw_grades": [
+    {
+      "Grade": "FAQ",
+      "rows": 8769674
+    },
+    {
+      "Grade": "Local",
+      "rows": 270652
+    },
+    {
+      "Grade": "Medium",
+      "rows": 96695
+    },
+    {
+      "Grade": "Non-FAQ",
+      "rows": 77569
+    },
+    {
+      "Grade": "Large",
+      "rows": 10307
+    },
+    {
+      "Grade": "Small",
+      "rows": 4028
+    },
+    {
+      "Grade": "Grade A",
+      "rows": 2419
+    },
+    {
+      "Grade": "Grade B",
+      "rows": 2397
+    },
+    {
+      "Grade": "Grade C",
+      "rows": 384
+    },
+    {
+      "Grade": "Ref grade-1",
+      "rows": 351
+    },
+    {
+      "Grade": "Grade Range-1",
+      "rows": 209
+    },
+    {
+      "Grade": "Grade Range-2",
+      "rows": 97
+    },
+    {
+      "Grade": "Grade Range-3",
+      "rows": 37
+    },
+    {
+      "Grade": "Ref grade-2",
+      "rows": 32
+    }
+  ],
+  "raw_variety_examples": [
+    {
+      "Commodity": "Potato",
+      "Variety": "Other",
+      "rows": 1593951
+    },
+    {
+      "Commodity": "Onion",
+      "Variety": "Other",
+      "rows": 1525316
+    },
+    {
+      "Commodity": "Tomato",
+      "Variety": "Other",
+      "rows": 1404670
+    },
+    {
+      "Commodity": "Onion",
+      "Variety": "Red",
+      "rows": 622563
+    },
+    {
+      "Commodity": "Tomato",
+      "Variety": "Tomato",
+      "rows": 547939
+    },
+    {
+      "Commodity": "Potato",
+      "Variety": "Potato",
+      "rows": 492602
+    },
+    {
+      "Commodity": "Potato",
+      "Variety": "Desi",
+      "rows": 413110
+    },
+    {
+      "Commodity": "Tomato",
+      "Variety": "Deshi",
+      "rows": 412719
+    },
+    {
+      "Commodity": "Onion",
+      "Variety": "Onion",
+      "rows": 387394
+    },
+    {
+      "Commodity": "Tomato",
+      "Variety": "Hybrid",
+      "rows": 272969
+    },
+    {
+      "Commodity": "Potato",
+      "Variety": "Jyoti",
+      "rows": 252018
+    },
+    {
+      "Commodity": "Tomato",
+      "Variety": "Local",
+      "rows": 175667
+    },
+    {
+      "Commodity": "Potato",
+      "Variety": "Local",
+      "rows": 174306
+    },
+    {
+      "Commodity": "Potato",
+      "Variety": "(Red Nanital)",
+      "rows": 123073
+    },
+    {
+      "Commodity": "Onion",
+      "Variety": "Nasik",
+      "rows": 115920
+    }
+  ],
+  "validation": [
+    {
+      "reason": "implausible_high",
+      "rows": 17
+    },
+    {
+      "reason": "invalid_after_integer_rounding",
+      "rows": 24
+    },
+    {
+      "reason": "kept",
+      "rows": 8883073
+    },
+    {
+      "reason": "null_price",
+      "rows": 351737
+    }
+  ],
+  "daily": {
+    "rows": 8460842,
+    "first_date": "2001-01-10",
+    "last_date": "2026-04-20",
+    "markets": 3389,
+    "states": 33,
+    "retained_raw_rows": 8883073,
+    "multirow_days": 359993,
+    "max_rows_per_day": 12,
+    "null_or_blank_rows": 0,
+    "invalid_prices": 0,
+    "modal_above_uint16": 9
+  },
+  "duplicate_daily_keys": 0,
+  "commodities": [
+    {
+      "commodity_id": 23,
+      "rows": 2833967,
+      "first_date": "2001-01-10",
+      "last_date": "2026-04-20",
+      "markets": 2927
+    },
+    {
+      "commodity_id": 24,
+      "rows": 2986528,
+      "first_date": "2001-01-10",
+      "last_date": "2026-04-20",
+      "markets": 2702
+    },
+    {
+      "commodity_id": 78,
+      "rows": 2640347,
+      "first_date": "2001-02-08",
+      "last_date": "2026-04-20",
+      "markets": 2785
+    }
+  ],
+  "coverage": [
+    {
+      "commodity_id": 23,
+      "year": 2001,
+      "n_rows": 685,
+      "n_markets": 21,
+      "n_days": 254,
+      "n_states": 9
+    },
+    {
+      "commodity_id": 23,
+      "year": 2002,
+      "n_rows": 10934,
+      "n_markets": 175,
+      "n_days": 365,
+      "n_states": 20
+    },
+    {
+      "commodity_id": 23,
+      "year": 2003,
+      "n_rows": 36056,
+      "n_markets": 333,
+      "n_days": 365,
+      "n_states": 25
+    },
+    {
+      "commodity_id": 23,
+      "year": 2004,
+      "n_rows": 36469,
+      "n_markets": 354,
+      "n_days": 366,
+      "n_states": 26
+    },
+    {
+      "commodity_id": 23,
+      "year": 2005,
+      "n_rows": 46205,
+      "n_markets": 529,
+      "n_days": 365,
+      "n_states": 26
+    },
+    {
+      "commodity_id": 23,
+      "year": 2006,
+      "n_rows": 62932,
+      "n_markets": 699,
+      "n_days": 365,
+      "n_states": 28
+    },
+    {
+      "commodity_id": 23,
+      "year": 2007,
+      "n_rows": 78158,
+      "n_markets": 693,
+      "n_days": 365,
+      "n_states": 26
+    },
+    {
+      "commodity_id": 23,
+      "year": 2008,
+      "n_rows": 87284,
+      "n_markets": 741,
+      "n_days": 366,
+      "n_states": 25
+    },
+    {
+      "commodity_id": 23,
+      "year": 2009,
+      "n_rows": 92336,
+      "n_markets": 741,
+      "n_days": 365,
+      "n_states": 22
+    },
+    {
+      "commodity_id": 23,
+      "year": 2010,
+      "n_rows": 100712,
+      "n_markets": 740,
+      "n_days": 365,
+      "n_states": 25
+    },
+    {
+      "commodity_id": 23,
+      "year": 2011,
+      "n_rows": 105335,
+      "n_markets": 741,
+      "n_days": 365,
+      "n_states": 25
+    },
+    {
+      "commodity_id": 23,
+      "year": 2012,
+      "n_rows": 113531,
+      "n_markets": 769,
+      "n_days": 366,
+      "n_states": 26
+    },
+    {
+      "commodity_id": 23,
+      "year": 2013,
+      "n_rows": 112854,
+      "n_markets": 781,
+      "n_days": 365,
+      "n_states": 27
+    },
+    {
+      "commodity_id": 23,
+      "year": 2014,
+      "n_rows": 117886,
+      "n_markets": 879,
+      "n_days": 365,
+      "n_states": 26
+    },
+    {
+      "commodity_id": 23,
+      "year": 2015,
+      "n_rows": 138205,
+      "n_markets": 907,
+      "n_days": 365,
+      "n_states": 30
+    },
+    {
+      "commodity_id": 23,
+      "year": 2016,
+      "n_rows": 128157,
+      "n_markets": 874,
+      "n_days": 366,
+      "n_states": 30
+    },
+    {
+      "commodity_id": 23,
+      "year": 2017,
+      "n_rows": 146455,
+      "n_markets": 931,
+      "n_days": 365,
+      "n_states": 30
+    },
+    {
+      "commodity_id": 23,
+      "year": 2018,
+      "n_rows": 167135,
+      "n_markets": 915,
+      "n_days": 365,
+      "n_states": 31
+    },
+    {
+      "commodity_id": 23,
+      "year": 2019,
+      "n_rows": 153500,
+      "n_markets": 900,
+      "n_days": 365,
+      "n_states": 28
+    },
+    {
+      "commodity_id": 23,
+      "year": 2020,
+      "n_rows": 144840,
+      "n_markets": 883,
+      "n_days": 366,
+      "n_states": 22
+    },
+    {
+      "commodity_id": 23,
+      "year": 2021,
+      "n_rows": 156086,
+      "n_markets": 872,
+      "n_days": 365,
+      "n_states": 25
+    },
+    {
+      "commodity_id": 23,
+      "year": 2022,
+      "n_rows": 187558,
+      "n_markets": 987,
+      "n_days": 365,
+      "n_states": 28
+    },
+    {
+      "commodity_id": 23,
+      "year": 2023,
+      "n_rows": 182492,
+      "n_markets": 1011,
+      "n_days": 365,
+      "n_states": 28
+    },
+    {
+      "commodity_id": 23,
+      "year": 2024,
+      "n_rows": 210525,
+      "n_markets": 1169,
+      "n_days": 366,
+      "n_states": 27
+    },
+    {
+      "commodity_id": 23,
+      "year": 2025,
+      "n_rows": 198281,
+      "n_markets": 1885,
+      "n_days": 343,
+      "n_states": 28
+    },
+    {
+      "commodity_id": 23,
+      "year": 2026,
+      "n_rows": 19356,
+      "n_markets": 1125,
+      "n_days": 103,
+      "n_states": 26
+    },
+    {
+      "commodity_id": 24,
+      "year": 2001,
+      "n_rows": 625,
+      "n_markets": 19,
+      "n_days": 251,
+      "n_states": 9
+    },
+    {
+      "commodity_id": 24,
+      "year": 2002,
+      "n_rows": 10262,
+      "n_markets": 153,
+      "n_days": 365,
+      "n_states": 20
+    },
+    {
+      "commodity_id": 24,
+      "year": 2003,
+      "n_rows": 37319,
+      "n_markets": 315,
+      "n_days": 365,
+      "n_states": 25
+    },
+    {
+      "commodity_id": 24,
+      "year": 2004,
+      "n_rows": 38758,
+      "n_markets": 324,
+      "n_days": 366,
+      "n_states": 27
+    },
+    {
+      "commodity_id": 24,
+      "year": 2005,
+      "n_rows": 49830,
+      "n_markets": 492,
+      "n_days": 365,
+      "n_states": 28
+    },
+    {
+      "commodity_id": 24,
+      "year": 2006,
+      "n_rows": 68341,
+      "n_markets": 564,
+      "n_days": 365,
+      "n_states": 27
+    },
+    {
+      "commodity_id": 24,
+      "year": 2007,
+      "n_rows": 73340,
+      "n_markets": 597,
+      "n_days": 365,
+      "n_states": 28
+    },
+    {
+      "commodity_id": 24,
+      "year": 2008,
+      "n_rows": 88687,
+      "n_markets": 617,
+      "n_days": 366,
+      "n_states": 26
+    },
+    {
+      "commodity_id": 24,
+      "year": 2009,
+      "n_rows": 90796,
+      "n_markets": 654,
+      "n_days": 365,
+      "n_states": 25
+    },
+    {
+      "commodity_id": 24,
+      "year": 2010,
+      "n_rows": 104116,
+      "n_markets": 713,
+      "n_days": 365,
+      "n_states": 28
+    },
+    {
+      "commodity_id": 24,
+      "year": 2011,
+      "n_rows": 112962,
+      "n_markets": 731,
+      "n_days": 365,
+      "n_states": 25
+    },
+    {
+      "commodity_id": 24,
+      "year": 2012,
+      "n_rows": 120379,
+      "n_markets": 761,
+      "n_days": 366,
+      "n_states": 27
+    },
+    {
+      "commodity_id": 24,
+      "year": 2013,
+      "n_rows": 125215,
+      "n_markets": 761,
+      "n_days": 365,
+      "n_states": 27
+    },
+    {
+      "commodity_id": 24,
+      "year": 2014,
+      "n_rows": 127942,
+      "n_markets": 876,
+      "n_days": 365,
+      "n_states": 28
+    },
+    {
+      "commodity_id": 24,
+      "year": 2015,
+      "n_rows": 146125,
+      "n_markets": 911,
+      "n_days": 365,
+      "n_states": 30
+    },
+    {
+      "commodity_id": 24,
+      "year": 2016,
+      "n_rows": 136691,
+      "n_markets": 853,
+      "n_days": 366,
+      "n_states": 29
+    },
+    {
+      "commodity_id": 24,
+      "year": 2017,
+      "n_rows": 163257,
+      "n_markets": 935,
+      "n_days": 365,
+      "n_states": 30
+    },
+    {
+      "commodity_id": 24,
+      "year": 2018,
+      "n_rows": 183768,
+      "n_markets": 929,
+      "n_days": 365,
+      "n_states": 30
+    },
+    {
+      "commodity_id": 24,
+      "year": 2019,
+      "n_rows": 180255,
+      "n_markets": 893,
+      "n_days": 365,
+      "n_states": 28
+    },
+    {
+      "commodity_id": 24,
+      "year": 2020,
+      "n_rows": 156101,
+      "n_markets": 879,
+      "n_days": 366,
+      "n_states": 23
+    },
+    {
+      "commodity_id": 24,
+      "year": 2021,
+      "n_rows": 165772,
+      "n_markets": 871,
+      "n_days": 365,
+      "n_states": 24
+    },
+    {
+      "commodity_id": 24,
+      "year": 2022,
+      "n_rows": 193284,
+      "n_markets": 961,
+      "n_days": 365,
+      "n_states": 28
+    },
+    {
+      "commodity_id": 24,
+      "year": 2023,
+      "n_rows": 191349,
+      "n_markets": 977,
+      "n_days": 365,
+      "n_states": 28
+    },
+    {
+      "commodity_id": 24,
+      "year": 2024,
+      "n_rows": 213351,
+      "n_markets": 1119,
+      "n_days": 366,
+      "n_states": 28
+    },
+    {
+      "commodity_id": 24,
+      "year": 2025,
+      "n_rows": 189893,
+      "n_markets": 1820,
+      "n_days": 343,
+      "n_states": 28
+    },
+    {
+      "commodity_id": 24,
+      "year": 2026,
+      "n_rows": 18110,
+      "n_markets": 1114,
+      "n_days": 101,
+      "n_states": 27
+    },
+    {
+      "commodity_id": 78,
+      "year": 2001,
+      "n_rows": 345,
+      "n_markets": 9,
+      "n_days": 229,
+      "n_states": 5
+    },
+    {
+      "commodity_id": 78,
+      "year": 2002,
+      "n_rows": 5697,
+      "n_markets": 84,
+      "n_days": 363,
+      "n_states": 12
+    },
+    {
+      "commodity_id": 78,
+      "year": 2003,
+      "n_rows": 19933,
+      "n_markets": 207,
+      "n_days": 365,
+      "n_states": 21
+    },
+    {
+      "commodity_id": 78,
+      "year": 2004,
+      "n_rows": 19501,
+      "n_markets": 215,
+      "n_days": 366,
+      "n_states": 23
+    },
+    {
+      "commodity_id": 78,
+      "year": 2005,
+      "n_rows": 28106,
+      "n_markets": 358,
+      "n_days": 365,
+      "n_states": 25
+    },
+    {
+      "commodity_id": 78,
+      "year": 2006,
+      "n_rows": 39304,
+      "n_markets": 408,
+      "n_days": 365,
+      "n_states": 25
+    },
+    {
+      "commodity_id": 78,
+      "year": 2007,
+      "n_rows": 50953,
+      "n_markets": 467,
+      "n_days": 365,
+      "n_states": 23
+    },
+    {
+      "commodity_id": 78,
+      "year": 2008,
+      "n_rows": 66143,
+      "n_markets": 492,
+      "n_days": 366,
+      "n_states": 24
+    },
+    {
+      "commodity_id": 78,
+      "year": 2009,
+      "n_rows": 76036,
+      "n_markets": 566,
+      "n_days": 365,
+      "n_states": 24
+    },
+    {
+      "commodity_id": 78,
+      "year": 2010,
+      "n_rows": 88793,
+      "n_markets": 625,
+      "n_days": 365,
+      "n_states": 27
+    },
+    {
+      "commodity_id": 78,
+      "year": 2011,
+      "n_rows": 94017,
+      "n_markets": 636,
+      "n_days": 365,
+      "n_states": 25
+    },
+    {
+      "commodity_id": 78,
+      "year": 2012,
+      "n_rows": 107544,
+      "n_markets": 662,
+      "n_days": 366,
+      "n_states": 25
+    },
+    {
+      "commodity_id": 78,
+      "year": 2013,
+      "n_rows": 110123,
+      "n_markets": 679,
+      "n_days": 365,
+      "n_states": 26
+    },
+    {
+      "commodity_id": 78,
+      "year": 2014,
+      "n_rows": 109644,
+      "n_markets": 760,
+      "n_days": 365,
+      "n_states": 23
+    },
+    {
+      "commodity_id": 78,
+      "year": 2015,
+      "n_rows": 126946,
+      "n_markets": 795,
+      "n_days": 365,
+      "n_states": 27
+    },
+    {
+      "commodity_id": 78,
+      "year": 2016,
+      "n_rows": 123054,
+      "n_markets": 774,
+      "n_days": 366,
+      "n_states": 27
+    },
+    {
+      "commodity_id": 78,
+      "year": 2017,
+      "n_rows": 141752,
+      "n_markets": 856,
+      "n_days": 365,
+      "n_states": 28
+    },
+    {
+      "commodity_id": 78,
+      "year": 2018,
+      "n_rows": 167150,
+      "n_markets": 888,
+      "n_days": 365,
+      "n_states": 27
+    },
+    {
+      "commodity_id": 78,
+      "year": 2019,
+      "n_rows": 169954,
+      "n_markets": 882,
+      "n_days": 365,
+      "n_states": 26
+    },
+    {
+      "commodity_id": 78,
+      "year": 2020,
+      "n_rows": 151324,
+      "n_markets": 872,
+      "n_days": 366,
+      "n_states": 22
+    },
+    {
+      "commodity_id": 78,
+      "year": 2021,
+      "n_rows": 159745,
+      "n_markets": 860,
+      "n_days": 365,
+      "n_states": 23
+    },
+    {
+      "commodity_id": 78,
+      "year": 2022,
+      "n_rows": 183218,
+      "n_markets": 969,
+      "n_days": 365,
+      "n_states": 26
+    },
+    {
+      "commodity_id": 78,
+      "year": 2023,
+      "n_rows": 175532,
+      "n_markets": 996,
+      "n_days": 365,
+      "n_states": 27
+    },
+    {
+      "commodity_id": 78,
+      "year": 2024,
+      "n_rows": 209111,
+      "n_markets": 1190,
+      "n_days": 366,
+      "n_states": 25
+    },
+    {
+      "commodity_id": 78,
+      "year": 2025,
+      "n_rows": 198397,
+      "n_markets": 1887,
+      "n_days": 342,
+      "n_states": 25
+    },
+    {
+      "commodity_id": 78,
+      "year": 2026,
+      "n_rows": 18025,
+      "n_markets": 1150,
+      "n_days": 102,
+      "n_states": 25
+    }
+  ],
+  "varieties": {
+    "rows": 5892036,
+    "first_date": "2015-01-01",
+    "last_date": "2026-04-20",
+    "varieties": 47,
+    "grades": 14
+  },
+  "identities": {
+    "rows": 3389,
+    "ids": 3389,
+    "keys": 3389
+  },
+  "geolocation": [
+    {
+      "geocode_source": "district_centroid",
+      "geocode_confidence": 40,
+      "markets": 1985,
+      "coordinate_pairs": 370
+    },
+    {
+      "geocode_source": "nominatim",
+      "geocode_confidence": 90,
+      "markets": 437,
+      "coordinate_pairs": 436
+    },
+    {
+      "geocode_source": "nominatim_near",
+      "geocode_confidence": 70,
+      "markets": 9,
+      "coordinate_pairs": 9
+    },
+    {
+      "geocode_source": "nominatim_state",
+      "geocode_confidence": 50,
+      "markets": 45,
+      "coordinate_pairs": 45
+    },
+    {
+      "geocode_source": "state_centroid",
+      "geocode_confidence": 20,
+      "markets": 913,
+      "coordinate_pairs": 26
+    }
+  ],
+  "geo_totals": {
+    "rows": 3389,
+    "keys": 3389,
+    "coordinate_pairs": 886,
+    "invalid_coordinates": 0
+  },
+  "onion_candidates": [
+    {
+      "id": 1689,
+      "state": "NCT of Delhi",
+      "district": "Delhi",
+      "market": "Azadpur",
+      "market_norm": "azadpur",
+      "rows": 5489,
+      "first_date": "2005-04-11",
+      "last_date": "2025-11-04",
+      "lat": 28.615162325006366,
+      "lon": 77.22451964267361,
+      "geocode_source": "district_centroid",
+      "geocode_confidence": 40,
+      "geocode_query": null
+    },
+    {
+      "id": 1512,
+      "state": "Maharashtra",
+      "district": "Nashik",
+      "market": "Lasalgaon",
+      "market_norm": "lasalgaon",
+      "rows": 5168,
+      "first_date": "2002-08-06",
+      "last_date": "2025-11-03",
+      "lat": 20.221410581423868,
+      "lon": 74.10766498821806,
+      "geocode_source": "district_centroid",
+      "geocode_confidence": 40,
+      "geocode_query": null
+    },
+    {
+      "id": 1527,
+      "state": "Maharashtra",
+      "district": "Nashik",
+      "market": "Pimpalgaon",
+      "market_norm": "pimpalgaon",
+      "rows": 4161,
+      "first_date": "2002-08-19",
+      "last_date": "2025-11-03",
+      "lat": 20.221410581423868,
+      "lon": 74.10766498821806,
+      "geocode_source": "district_centroid",
+      "geocode_confidence": 40,
+      "geocode_query": null
+    },
+    {
+      "id": 1485,
+      "state": "Maharashtra",
+      "district": "Mumbai",
+      "market": "Vashi New Mumbai",
+      "market_norm": "vashi new mumbai",
+      "rows": 3705,
+      "first_date": "2009-01-17",
+      "last_date": "2025-11-04",
+      "lat": 18.953462488345988,
+      "lon": 72.85167815172437,
+      "geocode_source": "district_centroid",
+      "geocode_confidence": 40,
+      "geocode_query": null
+    },
+    {
+      "id": 1529,
+      "state": "Maharashtra",
+      "district": "Nashik",
+      "market": "Pimpalgaon Baswant (Saykheda)",
+      "market_norm": "pimpalgaon baswant",
+      "rows": 3474,
+      "first_date": "2006-04-10",
+      "last_date": "2025-11-04",
+      "lat": 20.221410581423868,
+      "lon": 74.10766498821806,
+      "geocode_source": "district_centroid",
+      "geocode_confidence": 40,
+      "geocode_query": null
+    },
+    {
+      "id": 1513,
+      "state": "Maharashtra",
+      "district": "Nashik",
+      "market": "Lasalgaon (Vinchur) APMC",
+      "market_norm": "lasalgaon apmc",
+      "rows": 68,
+      "first_date": "2025-12-03",
+      "last_date": "2026-04-17",
+      "lat": 20.221410581423868,
+      "lon": 74.10766498821806,
+      "geocode_source": "district_centroid",
+      "geocode_confidence": 40,
+      "geocode_query": null
+    },
+    {
+      "id": 1528,
+      "state": "Maharashtra",
+      "district": "Nashik",
+      "market": "Pimpalgaon APMC",
+      "market_norm": "pimpalgaon apmc",
+      "rows": 43,
+      "first_date": "2025-12-03",
+      "last_date": "2026-04-17",
+      "lat": 20.221410581423868,
+      "lon": 74.10766498821806,
+      "geocode_source": "district_centroid",
+      "geocode_confidence": 40,
+      "geocode_query": null
+    },
+    {
+      "id": 1690,
+      "state": "NCT of Delhi",
+      "district": "Delhi",
+      "market": "Azadpur APMC",
+      "market_norm": "azadpur apmc",
+      "rows": 36,
+      "first_date": "2025-12-04",
+      "last_date": "2026-04-18",
+      "lat": 28.615162325006366,
+      "lon": 77.22451964267361,
+      "geocode_source": "district_centroid",
+      "geocode_confidence": 40,
+      "geocode_query": null
+    },
+    {
+      "id": 1530,
+      "state": "Maharashtra",
+      "district": "Nashik",
+      "market": "Pimpalgaon Baswant (Saykheda) APMC",
+      "market_norm": "pimpalgaon baswant apmc",
+      "rows": 28,
+      "first_date": "2025-12-05",
+      "last_date": "2026-04-18",
+      "lat": 20.221410581423868,
+      "lon": 74.10766498821806,
+      "geocode_source": "district_centroid",
+      "geocode_confidence": 40,
+      "geocode_query": null
+    },
+    {
+      "id": 1486,
+      "state": "Maharashtra",
+      "district": "Mumbai",
+      "market": "Vashi New Mumbai APMC",
+      "market_norm": "vashi new mumbai apmc",
+      "rows": 24,
+      "first_date": "2025-12-09",
+      "last_date": "2026-04-15",
+      "lat": 18.953462488345988,
+      "lon": 72.85167815172437,
+      "geocode_source": "district_centroid",
+      "geocode_confidence": 40,
+      "geocode_query": null
+    }
+  ],
+  "candidate_raw_names": [
+    {
+      "State": "NCT of Delhi",
+      "District": "Delhi",
+      "Market": "Azadpur",
+      "Variety": "Onion",
+      "Grade": "FAQ",
+      "Commodity_Code": 23,
+      "rows": 4744,
+      "first_date": "2005-06-27",
+      "last_date": "2025-11-04"
+    },
+    {
+      "State": "Maharashtra",
+      "District": "Nashik",
+      "Market": "Lasalgaon",
+      "Variety": "Other",
+      "Grade": "FAQ",
+      "Commodity_Code": 23,
+      "rows": 3563,
+      "first_date": "2002-08-06",
+      "last_date": "2024-12-17"
+    },
+    {
+      "State": "Maharashtra",
+      "District": "Mumbai",
+      "Market": "Vashi New Mumbai",
+      "Variety": "Other",
+      "Grade": "FAQ",
+      "Commodity_Code": 23,
+      "rows": 3502,
+      "first_date": "2009-01-17",
+      "last_date": "2025-01-24"
+    },
+    {
+      "State": "Maharashtra",
+      "District": "Nashik",
+      "Market": "Pimpalgaon",
+      "Variety": "Other",
+      "Grade": "FAQ",
+      "Commodity_Code": 23,
+      "rows": 3323,
+      "first_date": "2002-10-25",
+      "last_date": "2024-12-12"
+    },
+    {
+      "State": "Maharashtra",
+      "District": "Nashik",
+      "Market": "Pimpalgaon Baswant (Saykheda)",
+      "Variety": "Other",
+      "Grade": "FAQ",
+      "Commodity_Code": 23,
+      "rows": 2617,
+      "first_date": "2006-04-10",
+      "last_date": "2024-11-27"
+    },
+    {
+      "State": "Maharashtra",
+      "District": "Nashik",
+      "Market": "Lasalgaon (Niphad)",
+      "Variety": "Other",
+      "Grade": "FAQ",
+      "Commodity_Code": 23,
+      "rows": 2526,
+      "first_date": "2006-08-03",
+      "last_date": "2024-12-10"
+    },
+    {
+      "State": "Maharashtra",
+      "District": "Nashik",
+      "Market": "Lasalgaon",
+      "Variety": "Red",
+      "Grade": "FAQ",
+      "Commodity_Code": 23,
+      "rows": 2006,
+      "first_date": "2003-10-07",
+      "last_date": "2025-01-25"
+    },
+    {
+      "State": "Maharashtra",
+      "District": "Nashik",
+      "Market": "Lasalgaon (Niphad)",
+      "Variety": "Red",
+      "Grade": "FAQ",
+      "Commodity_Code": 23,
+      "rows": 1205,
+      "first_date": "2006-01-02",
+      "last_date": "2025-04-09"
+    },
+    {
+      "State": "Maharashtra",
+      "District": "Nashik",
+      "Market": "Pimpalgaon",
+      "Variety": "Pole",
+      "Grade": "FAQ",
+      "Commodity_Code": 23,
+      "rows": 1149,
+      "first_date": "2015-09-04",
+      "last_date": "2025-01-25"
+    },
+    {
+      "State": "Maharashtra",
+      "District": "Nashik",
+      "Market": "Pimpalgaon Baswant (Saykheda)",
+      "Variety": "Red",
+      "Grade": "FAQ",
+      "Commodity_Code": 23,
+      "rows": 1101,
+      "first_date": "2007-01-16",
+      "last_date": "2025-01-25"
+    },
+    {
+      "State": "Maharashtra",
+      "District": "Nashik",
+      "Market": "Lasalgaon (Vinchur)",
+      "Variety": "Other",
+      "Grade": "FAQ",
+      "Commodity_Code": 23,
+      "rows": 958,
+      "first_date": "2020-05-15",
+      "last_date": "2024-11-23"
+    },
+    {
+      "State": "NCT of Delhi",
+      "District": "Delhi",
+      "Market": "Azadpur",
+      "Variety": "Other",
+      "Grade": "FAQ",
+      "Commodity_Code": 23,
+      "rows": 820,
+      "first_date": "2005-04-11",
+      "last_date": "2023-10-11"
+    },
+    {
+      "State": "Maharashtra",
+      "District": "Nashik",
+      "Market": "Lasalgaon (Vinchur)",
+      "Variety": "Red",
+      "Grade": "FAQ",
+      "Commodity_Code": 23,
+      "rows": 465,
+      "first_date": "2020-12-19",
+      "last_date": "2025-01-25"
+    },
+    {
+      "State": "Maharashtra",
+      "District": "Mumbai",
+      "Market": "Vashi New Mumbai",
+      "Variety": "Other",
+      "Grade": "Local",
+      "Commodity_Code": 23,
+      "rows": 203,
+      "first_date": "2025-01-25",
+      "last_date": "2025-11-04"
+    },
+    {
+      "State": "Maharashtra",
+      "District": "Nashik",
+      "Market": "Pimpalgaon",
+      "Variety": "Other",
+      "Grade": "Local",
+      "Commodity_Code": 23,
+      "rows": 182,
+      "first_date": "2025-03-01",
+      "last_date": "2025-11-03"
+    },
+    {
+      "State": "Maharashtra",
+      "District": "Nashik",
+      "Market": "Lasalgaon (Niphad)",
+      "Variety": "Other",
+      "Grade": "Local",
+      "Commodity_Code": 23,
+      "rows": 179,
+      "first_date": "2025-02-17",
+      "last_date": "2025-11-01"
+    },
+    {
+      "State": "Maharashtra",
+      "District": "Nashik",
+      "Market": "Lasalgaon",
+      "Variety": "Other",
+      "Grade": "Local",
+      "Commodity_Code": 23,
+      "rows": 176,
+      "first_date": "2025-02-14",
+      "last_date": "2025-11-03"
+    },
+    {
+      "State": "Maharashtra",
+      "District": "Nashik",
+      "Market": "Pimpalgaon Baswant (Saykheda)",
+      "Variety": "Other",
+      "Grade": "Local",
+      "Commodity_Code": 23,
+      "rows": 173,
+      "first_date": "2025-03-04",
+      "last_date": "2025-11-04"
+    },
+    {
+      "State": "Maharashtra",
+      "District": "Nashik",
+      "Market": "Lasalgaon (Vinchur)",
+      "Variety": "Other",
+      "Grade": "Local",
+      "Commodity_Code": 23,
+      "rows": 168,
+      "first_date": "2025-02-18",
+      "last_date": "2025-11-01"
+    },
+    {
+      "State": "Maharashtra",
+      "District": "Nashik",
+      "Market": "Pimpalgaon",
+      "Variety": "Red",
+      "Grade": "FAQ",
+      "Commodity_Code": 23,
+      "rows": 106,
+      "first_date": "2003-11-13",
+      "last_date": "2009-03-16"
+    },
+    {
+      "State": "NCT of Delhi",
+      "District": "Delhi",
+      "Market": "Azadpur",
+      "Variety": "1st Sort",
+      "Grade": "FAQ",
+      "Commodity_Code": 23,
+      "rows": 77,
+      "first_date": "2006-05-31",
+      "last_date": "2006-09-07"
+    },
+    {
+      "State": "Maharashtra",
+      "District": "Nashik",
+      "Market": "Pimpalgaon",
+      "Variety": "Pole",
+      "Grade": "Local",
+      "Commodity_Code": 23,
+      "rows": 60,
+      "first_date": "2025-01-25",
+      "last_date": "2025-04-15"
+    },
+    {
+      "State": "Maharashtra",
+      "District": "Nashik",
+      "Market": "Lasalgaon (Niphad)",
+      "Variety": "Red",
+      "Grade": "Local",
+      "Commodity_Code": 23,
+      "rows": 55,
+      "first_date": "2025-01-27",
+      "last_date": "2025-04-15"
+    },
+    {
+      "State": "Maharashtra",
+      "District": "Nashik",
+      "Market": "Lasalgaon",
+      "Variety": "Red",
+      "Grade": "Local",
+      "Commodity_Code": 23,
+      "rows": 54,
+      "first_date": "2025-01-27",
+      "last_date": "2025-09-13"
+    },
+    {
+      "State": "Maharashtra",
+      "District": "Nashik",
+      "Market": "Lasalgaon (Vinchur)",
+      "Variety": "Red",
+      "Grade": "Local",
+      "Commodity_Code": 23,
+      "rows": 52,
+      "first_date": "2025-01-27",
+      "last_date": "2025-04-12"
+    },
+    {
+      "State": "NCT of Delhi",
+      "District": "Delhi",
+      "Market": "Azadpur",
+      "Variety": "Nasik",
+      "Grade": "FAQ",
+      "Commodity_Code": 23,
+      "rows": 43,
+      "first_date": "2005-04-11",
+      "last_date": "2005-06-04"
+    },
+    {
+      "State": "Maharashtra",
+      "District": "Nashik",
+      "Market": "Pimpalgaon Baswant (Saykheda)",
+      "Variety": "Red",
+      "Grade": "Local",
+      "Commodity_Code": 23,
+      "rows": 42,
+      "first_date": "2025-01-25",
+      "last_date": "2025-07-15"
+    },
+    {
+      "State": "NCT of Delhi",
+      "District": "Delhi",
+      "Market": "Azadpur APMC",
+      "Variety": "Onion",
+      "Grade": "FAQ",
+      "Commodity_Code": 23,
+      "rows": 36,
+      "first_date": "2025-12-04",
+      "last_date": "2026-04-18"
+    },
+    {
+      "State": "Maharashtra",
+      "District": "Nashik",
+      "Market": "Pimpalgaon",
+      "Variety": "Onion",
+      "Grade": "FAQ",
+      "Commodity_Code": 23,
+      "rows": 34,
+      "first_date": "2002-08-19",
+      "last_date": "2002-10-24"
+    },
+    {
+      "State": "Maharashtra",
+      "District": "Nashik",
+      "Market": "Lasalgaon (Vinchur) APMC",
+      "Variety": "Red",
+      "Grade": "Local",
+      "Commodity_Code": 23,
+      "rows": 32,
+      "first_date": "2025-12-10",
+      "last_date": "2026-04-17"
+    },
+    {
+      "State": "Maharashtra",
+      "District": "Nashik",
+      "Market": "Lasalgaon (Niphad) APMC",
+      "Variety": "Red",
+      "Grade": "Local",
+      "Commodity_Code": 23,
+      "rows": 28,
+      "first_date": "2025-12-19",
+      "last_date": "2026-04-15"
+    },
+    {
+      "State": "Maharashtra",
+      "District": "Nashik",
+      "Market": "Pimpalgaon APMC",
+      "Variety": "Pole",
+      "Grade": "Local",
+      "Commodity_Code": 23,
+      "rows": 28,
+      "first_date": "2025-12-03",
+      "last_date": "2026-04-14"
+    },
+    {
+      "State": "Maharashtra",
+      "District": "Mumbai",
+      "Market": "Vashi New Mumbai APMC",
+      "Variety": "Other",
+      "Grade": "Local",
+      "Commodity_Code": 23,
+      "rows": 24,
+      "first_date": "2025-12-09",
+      "last_date": "2026-04-15"
+    },
+    {
+      "State": "Maharashtra",
+      "District": "Nashik",
+      "Market": "Pimpalgaon Baswant (Saykheda) APMC",
+      "Variety": "Red",
+      "Grade": "Local",
+      "Commodity_Code": 23,
+      "rows": 21,
+      "first_date": "2025-12-22",
+      "last_date": "2026-03-16"
+    },
+    {
+      "State": "Maharashtra",
+      "District": "Nashik",
+      "Market": "Lasalgaon (Vinchur) APMC",
+      "Variety": "Other",
+      "Grade": "Local",
+      "Commodity_Code": 23,
+      "rows": 20,
+      "first_date": "2025-12-04",
+      "last_date": "2026-04-17"
+    },
+    {
+      "State": "Maharashtra",
+      "District": "Nashik",
+      "Market": "Pimpalgaon APMC",
+      "Variety": "Other",
+      "Grade": "Local",
+      "Commodity_Code": 23,
+      "rows": 19,
+      "first_date": "2025-12-03",
+      "last_date": "2026-04-17"
+    },
+    {
+      "State": "Maharashtra",
+      "District": "Nashik",
+      "Market": "Lasalgaon APMC",
+      "Variety": "Other",
+      "Grade": "Local",
+      "Commodity_Code": 23,
+      "rows": 16,
+      "first_date": "2025-12-03",
+      "last_date": "2026-04-17"
+    },
+    {
+      "State": "Maharashtra",
+      "District": "Nashik",
+      "Market": "Lasalgaon APMC",
+      "Variety": "Red",
+      "Grade": "Local",
+      "Commodity_Code": 23,
+      "rows": 14,
+      "first_date": "2025-12-05",
+      "last_date": "2026-04-15"
+    },
+    {
+      "State": "Maharashtra",
+      "District": "Nashik",
+      "Market": "Lasalgaon (Niphad) APMC",
+      "Variety": "Other",
+      "Grade": "Local",
+      "Commodity_Code": 23,
+      "rows": 13,
+      "first_date": "2025-12-05",
+      "last_date": "2026-04-17"
+    },
+    {
+      "State": "Maharashtra",
+      "District": "Nashik",
+      "Market": "Pimpalgaon Baswant (Saykheda) APMC",
+      "Variety": "Other",
+      "Grade": "Local",
+      "Commodity_Code": 23,
+      "rows": 7,
+      "first_date": "2025-12-05",
+      "last_date": "2026-04-18"
+    }
+  ],
+  "corridor_overlap": [
+    {
+      "source_id": 1512,
+      "destination_id": 1689,
+      "shared_days": 4051,
+      "first_date": "2005-04-12",
+      "last_date": "2025-11-01"
+    },
+    {
+      "source_id": 1512,
+      "destination_id": 1485,
+      "shared_days": 3250,
+      "first_date": "2009-01-17",
+      "last_date": "2025-11-03"
+    },
+    {
+      "source_id": 1527,
+      "destination_id": 1689,
+      "shared_days": 3068,
+      "first_date": "2005-04-11",
+      "last_date": "2025-10-30"
+    },
+    {
+      "source_id": 1527,
+      "destination_id": 1485,
+      "shared_days": 2702,
+      "first_date": "2009-01-27",
+      "last_date": "2025-11-03"
+    },
+    {
+      "source_id": 1513,
+      "destination_id": 1690,
+      "shared_days": 24,
+      "first_date": "2025-12-04",
+      "last_date": "2026-04-17"
+    },
+    {
+      "source_id": 1513,
+      "destination_id": 1486,
+      "shared_days": 19,
+      "first_date": "2025-12-09",
+      "last_date": "2026-04-15"
+    },
+    {
+      "source_id": 1528,
+      "destination_id": 1690,
+      "shared_days": 17,
+      "first_date": "2025-12-05",
+      "last_date": "2026-04-17"
+    },
+    {
+      "source_id": 1528,
+      "destination_id": 1486,
+      "shared_days": 13,
+      "first_date": "2025-12-09",
+      "last_date": "2026-04-10"
+    }
+  ],
+  "normalization_collisions": [
+    {
+      "s": "himachal pradesh",
+      "d": "solan",
+      "m": "solan",
+      "raw_names": [
+        "Solan",
+        "Solan (Banalgi)",
+        "Solan (ChakkikaMor)",
+        "Solan (Nalagarh)",
+        "Solan (Parwanoo)",
+        "Solan (Rajgarh)"
+      ],
+      "spellings": 6
+    },
+    {
+      "s": "himachal pradesh",
+      "d": "kangra",
+      "m": "kangra",
+      "raw_names": [
+        "Kangra",
+        "Kangra (Baijnath)",
+        "Kangra (Jaisinghpur)",
+        "Kangra (Jassour)",
+        "Kangra (Nagrota Bagwan)"
+      ],
+      "spellings": 5
+    },
+    {
+      "s": "maharashtra",
+      "d": "pune",
+      "m": "pune",
+      "raw_names": [
+        "Pune",
+        "Pune (Khadiki)",
+        "Pune (Manjri)",
+        "Pune (Moshi)",
+        "Pune (Pimpri)"
+      ],
+      "spellings": 5
+    },
+    {
+      "s": "maharashtra",
+      "d": "pune",
+      "m": "pune apmc",
+      "raw_names": [
+        "Pune (Khadiki) APMC",
+        "Pune (Manjri) APMC",
+        "Pune (Moshi) APMC",
+        "Pune (Pimpri) APMC",
+        "Pune APMC"
+      ],
+      "spellings": 5
+    },
+    {
+      "s": "maharashtra",
+      "d": "pune",
+      "m": "junnar",
+      "raw_names": [
+        "Junnar",
+        "Junnar (Alephata)",
+        "Junnar (Narayangaon)",
+        "Junnar (Otur)"
+      ],
+      "spellings": 4
+    },
+    {
+      "s": "maharashtra",
+      "d": "pune",
+      "m": "junnar apmc",
+      "raw_names": [
+        "Junnar (Alephata) APMC",
+        "Junnar (Narayangaon) APMC",
+        "Junnar (Otur) APMC",
+        "Junnar APMC"
+      ],
+      "spellings": 4
+    },
+    {
+      "s": "gujarat",
+      "d": "ahmedabad",
+      "m": "dholka",
+      "raw_names": [
+        "Dholka",
+        "Dholka (Koth)",
+        "Dholka (Market Yard Veg)"
+      ],
+      "spellings": 3
+    },
+    {
+      "s": "gujarat",
+      "d": "mehsana",
+      "m": "mehsana",
+      "raw_names": [
+        "Mehsana",
+        "Mehsana (Jornang)",
+        "Mehsana (Mehsana Veg)"
+      ],
+      "spellings": 3
+    },
+    {
+      "s": "himachal pradesh",
+      "d": "kullu",
+      "m": "kullu",
+      "raw_names": [
+        "Kullu",
+        "Kullu (Chauri Bihal)",
+        "Kullu (Patli Kuhal)"
+      ],
+      "spellings": 3
+    },
+    {
+      "s": "himachal pradesh",
+      "d": "shimla",
+      "m": "shimla and kinnaur",
+      "raw_names": [
+        "Shimla and Kinnaur (Nerwa)",
+        "Shimla and Kinnaur (Rampur)",
+        "Shimla and Kinnaur (Theog)"
+      ],
+      "spellings": 3
+    },
+    {
+      "s": "maharashtra",
+      "d": "ahmednagar",
+      "m": "rahuri",
+      "raw_names": [
+        "Rahuri",
+        "Rahuri (Songaon)",
+        "Rahuri (Vambori)"
+      ],
+      "spellings": 3
+    },
+    {
+      "s": "maharashtra",
+      "d": "kolhapur",
+      "m": "kolhapur",
+      "raw_names": [
+        "Kolhapur",
+        "Kolhapur (Laxmipuri)",
+        "Kolhapur (Malkapur)"
+      ],
+      "spellings": 3
+    },
+    {
+      "s": "maharashtra",
+      "d": "nashik",
+      "m": "lasalgaon",
+      "raw_names": [
+        "Lasalgaon",
+        "Lasalgaon (Niphad)",
+        "Lasalgaon (Vinchur)"
+      ],
+      "spellings": 3
+    },
+    {
+      "s": "maharashtra",
+      "d": "nashik",
+      "m": "lasalgaon apmc",
+      "raw_names": [
+        "Lasalgaon (Niphad) APMC",
+        "Lasalgaon (Vinchur) APMC",
+        "Lasalgaon APMC"
+      ],
+      "spellings": 3
+    },
+    {
+      "s": "odisha",
+      "d": "angul",
+      "m": "angul",
+      "raw_names": [
+        "Angul",
+        "Angul (Atthamallick)",
+        "Angul (Jarapada)"
+      ],
+      "spellings": 3
+    },
+    {
+      "s": "odisha",
+      "d": "keonjhar",
+      "m": "keonjhar",
+      "raw_names": [
+        "Keonjhar",
+        "Keonjhar (Dhekikote)",
+        "Keonjhar (Jhumpura)"
+      ],
+      "spellings": 3
+    },
+    {
+      "s": "punjab",
+      "d": "jalandhar",
+      "m": "jalandhar city",
+      "raw_names": [
+        "Jalandhar City",
+        "Jalandhar City (Faintan Ganj)",
+        "Jalandhar City (Jalandhar)"
+      ],
+      "spellings": 3
+    },
+    {
+      "s": "punjab",
+      "d": "kapurthala",
+      "m": "bhulath",
+      "raw_names": [
+        "Bhulath",
+        "Bhulath (Ibrahimaaaaval)",
+        "Bhulath (Nadala)"
+      ],
+      "spellings": 3
+    },
+    {
+      "s": "punjab",
+      "d": "nawanshahr",
+      "m": "nawan shahar",
+      "raw_names": [
+        "Nawan Shahar (Mandi Aur)",
+        "Nawan Shahar (MandiRaho)",
+        "Nawan Shahar (Subzi Mandi)"
+      ],
+      "spellings": 3
+    },
+    {
+      "s": "andhra pradesh",
+      "d": "kurnool",
+      "m": "kurnool",
+      "raw_names": [
+        "Kurnool",
+        "Kurnool (Rythu Bazar)"
+      ],
+      "spellings": 2
+    }
+  ],
+  "quality_claim": {
+    "raw_rows": 9234851,
+    "kept_rows": 8883073,
+    "rejected": {
+      "invalid_after_integer_rounding": 24,
+      "null_price": 351737,
+      "implausible_high": 17
+    },
+    "markets": 3389,
+    "daily_rows": 8460842,
+    "seconds": 3.9
+  },
+  "raw_manifest_rows": 9234851,
+  "raw_manifest_years": [
+    "2001",
+    "2002",
+    "2003",
+    "2004",
+    "2005",
+    "2006",
+    "2007",
+    "2008",
+    "2009",
+    "2010",
+    "2011",
+    "2012",
+    "2013",
+    "2014",
+    "2015",
+    "2016",
+    "2017",
+    "2018",
+    "2019",
+    "2020",
+    "2021",
+    "2022",
+    "2023",
+    "2024",
+    "2025",
+    "2026"
+  ],
+  "raw_manifest_fetch_range": [
+    "2026-11-07T13:52:26.815509+00:00",
+    "2026-11-07T13:57:43.016056+00:00"
+  ],
+  "static_snapshots": {
+    "onion": {
+      "commodity_id": 23,
+      "files": 26,
+      "rows": 2833967,
+      "first_date": "2001-01-10",
+      "last_date": "2026-04-20"
+    },
+    "potato": {
+      "commodity_id": 24,
+      "files": 26,
+      "rows": 2986528,
+      "first_date": "2001-01-10",
+      "last_date": "2026-04-20"
+    },
+    "tomato": {
+      "commodity_id": 78,
+      "files": 26,
+      "rows": 2640347,
+      "first_date": "2001-02-08",
+      "last_date": "2026-04-20"
+    }
+  },
+  "static_series": {
+    "files": 3389,
+    "rows": 8460842
+  },
+  "checks": {
+    "raw_schemas_consistent": true,
+    "daily_market_keys_resolve": true,
+    "quality_raw": true,
+    "quality_kept": true,
+    "quality_rejected": true,
+    "quality_daily": true,
+    "manifest_year_rows": true,
+    "daily_keys_unique": true,
+    "daily_prices_valid": true,
+    "daily_fields_present": true,
+    "identity_counts": true,
+    "coordinates_valid_bounds": true,
+    "static_market_records": true,
+    "static_series_market_ids": true,
+    "static_series_rows": true,
+    "coverage_manifests": true,
+    "static_snapshot_counts_dates": true
+  }
+}

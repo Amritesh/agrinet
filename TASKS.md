@@ -18,3 +18,9 @@
 - [ ] T16 Validated satellite crop data and calibrated forecasting; not simulated
 
 Detailed constraints: BLOCKERS.md. User authorization covers this dedicated build/deployment and completion message, not paid services, source registration/terms acceptance or unrelated production systems.
+
+## 3.0 next
+- [ ] Wire transport optimizer to Network Optimizer UI (API or WASM-free TS port with parity tests).
+- [ ] Variety/grade comparable price table; evidence-backed APMC identity links.
+- [ ] Surveyed/verified coordinates for top onion markets.
+- [ ] Code-split bundle (3.5 MB main chunk).

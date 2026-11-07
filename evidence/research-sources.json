@@ -1,0 +1,449 @@
+{
+  "version": 1,
+  "sources": [
+    {
+      "id": 1,
+      "url": "https://www.rbi.org.in/Scripts/PublicationsView.aspx?id=22723",
+      "title": "RBI Working Paper: Price Dynamics of Tomato, Onion and Potato (TOP)",
+      "accessed": "2026-11-07",
+      "quotes": [
+        {
+          "text": "The farmers’ share in the consumer rupee is estimated at around 33 per cent for tomato, 36 per cent for onion and 37 per cent for potato.",
+          "added": "2026-11-07"
+        },
+        {
+          "text": "tomato farmers on an average receive 33.5 per cent of the consumer’s price in Delhi",
+          "added": "2026-11-07"
+        },
+        {
+          "text": "farmers on an average receive 36.2 per cent of the consumers’ rupee which includes cultivation and overhead costs.",
+          "added": "2026-11-07"
+        },
+        {
+          "text": "farmers receive a share of 36.7 per cent of the consumer rupee (Chart 20).",
+          "added": "2026-11-07"
+        },
+        {
+          "text": "Cold storages are the most important selling point for farmers in the potato belt of western Uttar Pradesh.",
+          "added": "2026-11-07"
+        },
+        {
+          "text": "Potato farmers generally sell their produce to village level aggregators or traders.",
+          "added": "2026-11-07"
+        },
+        {
+          "text": "who pay the mandi fees (1 per cent), commission charges (4 per cent) and loading/unloading charges (₹ 9.02 per quintal).",
+          "added": "2026-11-07"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "url": "https://data.gov.in/catalog/current-daily-price-various-commodities-various-markets-mandi",
+      "title": "OGD India: Current daily price of various commodities from various markets (Mandi)",
+      "accessed": "2026-11-07",
+      "quotes": [
+        {
+          "text": "It has the wholesale maximum price, minimum price and modal price on daily basis.",
+          "added": "2026-11-07"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "url": "http://www.agritech.tnau.ac.in/ta/amis_ta/pdf/rs/Manual_Agricultural_Prices_Marketing.pdf",
+      "title": "Draft Manual on Agricultural Prices and Marketing (TNAU Agritech copy)",
+      "accessed": "2026-11-07",
+      "quotes": [
+        {
+          "text": "the price at which the majo rity of the day's transactions take place",
+          "added": "2026-11-07"
+        },
+        {
+          "text": "not prices asked for, or offered, in advance of the transactions being completed",
+          "added": "2026-11-07"
+        },
+        {
+          "text": "FAO recommends that the concept of \"Fair Average Quality\" should be used as the basis for price reporting.",
+          "added": "2026-11-07"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2251543",
+      "title": "PIB: e-NAM progress and features (2026)",
+      "accessed": "2026-11-07",
+      "quotes": [
+        {
+          "text": "1,656 mandis integrated across 23 States and 4 Union Territories by March 2026.",
+          "added": "2026-11-07"
+        },
+        {
+          "text": "including logistics, warehousing, quality assurance, grading and packaging",
+          "added": "2026-11-07"
+        },
+        {
+          "text": "The platform integrates multiple digital payment modes, including NEFT, RTGS, internet banking, and UPI",
+          "added": "2026-11-07"
+        },
+        {
+          "text": "the Electronic Negotiable Warehouse Receipt (e-NWR) system has been integrated with e-NAM",
+          "added": "2026-11-07"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "url": "https://pib.gov.in/PressReleasePage.aspx?PRID=1622906",
+      "title": "PIB: e-NAM FPO, Logistics and eNWR modules (May 2020)",
+      "accessed": "2026-11-07",
+      "quotes": [
+        {
+          "text": "FPO trade module, Logistics module and eNWR based Warehouse module were launched by the Union Agriculture Minister on 2nd April 2020.",
+          "added": "2026-11-07"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "url": "https://agriwelfare.gov.in/sites/default/files/Revised_eNAM_guidelines_Oct2023.pdf",
+      "title": "Revised e-NAM Operational Guidelines (Oct 2023)",
+      "accessed": "2026-11-07",
+      "quotes": [
+        {
+          "text": "to focus on Warehouses Based Sale (WBS) and eNWR trade through e-NAM;",
+          "added": "2026-11-07"
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "url": "https://enam.gov.in/resources/registration-guideline",
+      "title": "e-NAM Registration Guidelines",
+      "accessed": "2026-11-07",
+      "quotes": [
+        {
+          "text": "Once approved by APMC, you will receive eNAM Farmer Permanent Login ID",
+          "added": "2026-11-07"
+        },
+        {
+          "text": "visit your respective Mandi/APMC and verify your License Number.",
+          "added": "2026-11-07"
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "url": "https://enam.gov.in",
+      "title": "e-NAM home",
+      "accessed": "2026-11-07",
+      "quotes": [
+        {
+          "text": "National Agriculture Market (eNAM) is a pan-India electronic trading portal which networks the existing APMC mandis to create a unified national market for agricultural commodities.",
+          "added": "2026-11-07"
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "url": "https://dfpd.gov.in/WriteReadData/NotificationUploadDocuments/1_360_1_WDandRA_Electronic_Negotiable_Warehouse_Receipts_Regulations_2017.pdf",
+      "title": "WDRA (Electronic Negotiable Warehouse Receipts) Regulations, 2017",
+      "accessed": "2026-11-07",
+      "quotes": [
+        {
+          "text": "shall issue electronic negotiable warehouse receipts only through a repository.",
+          "added": "2026-11-07"
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "url": "https://website.wdra.gov.in/documents/20143/141296131/eNWR+%26+eNAM+process+.pdf/e17528f5-d089-9ec3-158c-78e020b7fa70",
+      "title": "WDRA Model SOP: Deposit, Pledge and Delivery of eNWRs and eNAM",
+      "accessed": "2026-11-07",
+      "quotes": [
+        {
+          "text": "The single source of information for the eNWR will be the Repository;",
+          "added": "2026-11-07"
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "url": "https://nccd.gov.in/uploads/ENGINEERING_GUIDELINES_and_MINIMUM_SYSTEM_STANDARDS_FOR_IMPLEMENTATION_IN_COLD_CHAIN_COMPONENTS_2025_3a1cfb0b0a.pdf",
+      "title": "NCCD Engineering Guidelines & Minimum System Standards for Cold Chain Components (2025)",
+      "accessed": "2026-11-07",
+      "quotes": [
+        {
+          "text": "21 Onion 1-3°C 60-65% 4-6 months",
+          "added": "2026-11-07"
+        },
+        {
+          "text": "1 Potato (late) 4-12°C 90-95% 5-10 Months",
+          "added": "2026-11-07"
+        },
+        {
+          "text": "Initially cold stores were majorly used for storing potatoes",
+          "added": "2026-11-07"
+        },
+        {
+          "text": "Definition: Cold Storage type –I -Onion (CS-1- Onion) are cold storages designed for single",
+          "added": "2026-11-07"
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "url": "https://www.nhb.gov.in/guidelines/cold-storage-guidelines.html",
+      "title": "NHB cold storage guidelines index",
+      "accessed": "2026-11-07",
+      "quotes": [
+        {
+          "text": "Technical Standards for Cold Storages for Fruits and Vegetables (Uploaded on 9.1.2010)",
+          "added": "2026-11-07"
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "url": "https://nhb.gov.in/pdf/vegetable/potato/pot009.pdf",
+      "title": "NHB: Potato storage",
+      "accessed": "2026-11-07",
+      "quotes": [
+        {
+          "text": "Potatoes in the cold storage are spread over the shelf to a thickness of not more than 30 cm.",
+          "added": "2026-11-07"
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "url": "https://www.ams.usda.gov/mnreports/fvdfob.pdf",
+      "title": "USDA AMS National FOB Review (FVDFOB)",
+      "accessed": "2026-11-07",
+      "quotes": [
+        {
+          "text": "Prices represent open (spot) market sales by first handlers on",
+          "added": "2026-11-07"
+        },
+        {
+          "text": "Delivered Sales, Shipping Point Basis excludes all charges for freight.",
+          "added": "2026-11-07"
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "url": "https://www.ams.usda.gov/market-news/fruit-and-vegetable-shipping-point-market-price-reports",
+      "title": "USDA AMS Specialty Crops Shipping Point Market Price Reports",
+      "accessed": "2026-11-07",
+      "quotes": [
+        {
+          "text": "Prices are differentiated by the commodities’ growing origin, variety, size, package and grade.",
+          "added": "2026-11-07"
+        }
+      ]
+    },
+    {
+      "id": 16,
+      "url": "https://www.ams.usda.gov/mnreports/as_fv020.pdf",
+      "title": "USDA AMS Asheville Terminal Market Vegetables Prices",
+      "accessed": "2026-11-07",
+      "quotes": [
+        {
+          "text": "Asheville, NC Terminal Market Vegetables Prices (AS_FV020)",
+          "added": "2026-11-07"
+        }
+      ]
+    },
+    {
+      "id": 17,
+      "url": "https://www.fao.org/giews/food-prices/price-tool/en",
+      "title": "FAO GIEWS: About FPMA Tool",
+      "accessed": "2026-11-07",
+      "quotes": [
+        {
+          "text": "The FPMA Tool is available to countries and regional organizations.",
+          "added": "2026-11-07"
+        }
+      ]
+    },
+    {
+      "id": 18,
+      "url": "https://www.fao.org/giews/food-prices/home/en",
+      "title": "FAO GIEWS FPMA home",
+      "accessed": "2026-11-07",
+      "quotes": [
+        {
+          "text": "It provides early warning on high food prices at country level",
+          "added": "2026-11-07"
+        }
+      ]
+    },
+    {
+      "id": 19,
+      "url": "https://github.com/Project-OSRM/osrm-backend/wiki/API-Usage-Policy",
+      "title": "OSRM API Usage Policy",
+      "accessed": "2026-11-07",
+      "quotes": [
+        {
+          "text": "Excessive use is not allowed. If your requests are impacting the service stability, we will block you.",
+          "added": "2026-11-07"
+        },
+        {
+          "text": "Clearly display appropriate data license attribution (ODbL) and the source of your routes (OSRM).",
+          "added": "2026-11-07"
+        },
+        {
+          "text": "We don't give any quality guarantees. The Demo Sever is supplied on best effort basis.",
+          "added": "2026-11-07"
+        }
+      ]
+    },
+    {
+      "id": 20,
+      "url": "https://github.com/Project-OSRM/osrm-backend/wiki/Demo-server",
+      "title": "OSRM Demo server",
+      "accessed": "2026-11-07",
+      "quotes": [
+        {
+          "text": "FOSSGIS kindly sponsors an OSRM demo server running worldwide car, foot and bike profiles.",
+          "added": "2026-11-07"
+        },
+        {
+          "text": "Do not exceed 1 request per second.",
+          "added": "2026-11-07"
+        }
+      ]
+    },
+    {
+      "id": 21,
+      "url": "https://valhalla.github.io/valhalla/api/route/api-reference",
+      "title": "Valhalla Route API reference",
+      "accessed": "2026-11-07",
+      "quotes": [
+        {
+          "text": "Truck costing inherits the auto costing behaviors, but checks for truck access, width and height restrictions, and weight limits on the roads.",
+          "added": "2026-11-07"
+        },
+        {
+          "text": "Values smaller than 0.5 attempt to avoid tolls and values greater than 0.5 will slightly favor them.",
+          "added": "2026-11-07"
+        }
+      ]
+    },
+    {
+      "id": 22,
+      "url": "https://developers.google.com/maps/documentation/routes/lvr",
+      "title": "Google Routes API: Large vehicle routing",
+      "accessed": "2026-11-07",
+      "quotes": [
+        {
+          "text": "Large vehicle routing is available",
+          "added": "2026-11-07"
+        },
+        {
+          "text": "Truck toll prices",
+          "added": "2026-11-07"
+        },
+        {
+          "text": "Unsupported features: Large vehicle routing does not support the",
+          "added": "2026-11-07"
+        }
+      ]
+    },
+    {
+      "id": 23,
+      "url": "https://developers.google.com/maps/documentation/routes/calculate_toll_fees",
+      "title": "Google Routes API: Calculate toll fees",
+      "accessed": "2026-11-07",
+      "quotes": [
+        {
+          "text": "Requests calculating tolls are billed at a higher rate, and the returned estimatedPrice applies to non-commercial vehicles, potentially differing for commercial ones.",
+          "added": "2026-11-07"
+        }
+      ]
+    },
+    {
+      "id": 24,
+      "url": "https://developers.google.com/maps/billing-and-pricing/pricing",
+      "title": "Google Maps Platform pricing",
+      "accessed": "2026-11-07",
+      "quotes": [
+        {
+          "text": "Routes: Compute Routes Essentials",
+          "added": "2026-11-07"
+        },
+        {
+          "text": "Routes: Compute Routes Enterprise",
+          "added": "2026-11-07"
+        },
+        {
+          "text": "Costs - per 1000 events",
+          "added": "2026-11-07"
+        }
+      ]
+    },
+    {
+      "id": 25,
+      "url": "https://developers.google.com/maps/documentation/routes/coverage",
+      "title": "Google Routes API coverage",
+      "accessed": "2026-11-07",
+      "quotes": [
+        {
+          "text": "Coverage details for the Routes API are provided on a country-by-country basis, including specifics for two-wheeled vehicles and toll calculations.",
+          "added": "2026-11-07"
+        }
+      ]
+    },
+    {
+      "id": 26,
+      "url": "https://aws.amazon.com/blogs/startups/blackbuck-builds-future-ready-digital-freight-marketplace-using-aws",
+      "title": "AWS Startups blog: BlackBuck digital freight marketplace",
+      "accessed": "2026-11-07",
+      "quotes": [
+        {
+          "text": "is a digital freight marketplace for shippers and truckers to conveniently discover each other",
+          "added": "2026-11-07"
+        }
+      ]
+    },
+    {
+      "id": 27,
+      "url": "https://docs.here.com/routing/docs/routing-v8-truck-routing",
+      "title": "HERE Routing API v8: Truck routing",
+      "accessed": "2026-11-07",
+      "quotes": [
+        {
+          "text": "Truck routing is enabled by setting transportMode=truck",
+          "added": "2026-11-07"
+        }
+      ]
+    },
+    {
+      "id": 28,
+      "url": "https://apeda.gov.in/hortinet-static",
+      "title": "APEDA HortiNet",
+      "accessed": "2026-11-07",
+      "quotes": [
+        {
+          "text": "HortiNet collects, stores and reports – forward and backward traces and quality assurance data entered by the stakeholders",
+          "added": "2026-11-07"
+        }
+      ]
+    },
+    {
+      "id": 29,
+      "url": "https://www.fao.org/4/w3240e/W3240E12.htm",
+      "title": "FAO: Agricultural and Food Marketing Management, Ch.12 Marketing Costs and Margins",
+      "accessed": "2026-11-07",
+      "quotes": [
+        {
+          "text": "the farmer's/grower's share of the retail price paid by the end user or consumer",
+          "added": "2026-11-07"
+        }
+      ]
+    }
+  ]
+}

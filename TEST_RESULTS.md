@@ -30,3 +30,9 @@ A statistical anomaly is not a validated economic event. Ground-truth alert prec
 - Date-range initialization race fixed and tested with both response orders, health failure, empty/error coverage, deep links, user changes while loading, and StrictMode stale completion.
 - Final database backup: 9 tables / 1,207,097 rows, 14,941,063 compressed bytes; gzip, SHA-256, sizes and isolated-schema restore counts all verified. Local data-only recovery, not PITR or off-device disaster recovery.
 - Current shock set: 375,849 signals; superseded IDs retained and excluded from current APIs.
+
+## AGRINET 3.0 cycle 1 (2026-11-07, local, before deploy)
+- pytest: 149 passed, 9 skipped (live checks) — includes 38 transport, economics, audit tests.
+- vitest: 43/43. `tsc -b` clean; build OK (chunk >500 kB warning retained, main JS 3.55 MB / 1.04 MB gzip).
+- Playwright local desktop+mobile (workspaces, agrinet, journey, date-race): 64/64. OSRM/Supabase mocked in workspaces tests.
+- Production baseline before deploy: 18/18 real e2e.

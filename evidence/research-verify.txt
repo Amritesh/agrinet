@@ -1,0 +1,4 @@
+Sat Nov  7 21:58:49 IST 2026
+info: stats: 154 prose sentence(s), 62 with declared provenance (40%) — 55 cited, 7 marked [unverified] (a sentence may be both); 29 distinct source(s) cited, 29 in ledger (29 with evidence quotes)
+citations OK
+exit=0

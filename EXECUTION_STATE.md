@@ -24,3 +24,7 @@ Project root: `~/Projects/agrinet`. Python: `uv run`; frontend: `web/`, npm.
 
 ## Detailed evidence / limitations
 See DEPLOYMENT.md, TEST_RESULTS.md, BLOCKERS.md, logs/backend-verification.md and logs/frontend-verification.md. Original production scope is not fully satisfied: current-price gap, research validation, privileged scheduled ingestion, managed recovery and satellite pipeline remain explicit limitations. Do not describe a verified historical pilot as a complete production service.
+## AGRINET 3.0 — cycle 1 (2026-11-07)
+Four workspaces: Market Atlas (unchanged), Opportunity Lab (honest empty state + missing evidence), Network Optimizer (corridor inspector: explicit representative points for centroid markets, OSRM driving geometry, never straight lines; multi-node solver shown as not connected in UI), Simulation Studio (landed-cost scenario, sensitivity, versioned JSON export, `?s=` share link).
+Backend: `analytics/economics.py` (Decimal), `analytics/transport.py` (networkx min-cost flow, independent feasibility check, greedy baseline). Audit: `pipeline/audit_v3.py` -> DATA_QUALITY.md. Research: RESEARCH.md (29 fetched sources, ledger in `evidence/research-sources.json`). Evidence copies in `evidence/`.
+Key data finding: Lasalgaon/Pimpalgaon/Vashi/Azadpur were re-reported under new "APMC" identities from Dec 2025; old identities stop Nov 2025. Not merged.
