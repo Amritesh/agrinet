@@ -20,7 +20,7 @@ Project root: `~/Projects/agrinet`. Python: `uv run`; frontend: `web/`, npm.
 - Deployed desktop/mobile acceptance: 52 passed (18 real deployment checks; 34 mocked initialization/date-order regressions).
 - Corrected shock load verified: 375,849 current signals; 76,800 superseded rows excluded, IDs retained.
 - Database backup: 9 tables / 1,207,097 rows; SHA-256, gzip, sizes and isolated-schema restoration checked. Local data-only, not PITR/off-device recovery.
-- Final code/monitor promotion and requested WhatsApp completion message in progress.
+- Final code deployment 42388591411 and monitor 42388600108 succeeded. All 52 deployed browser checks passed. Requested WhatsApp completion link sent (message 3EB055289B909B139B3EF1).
 
 ## Detailed evidence / limitations
 See DEPLOYMENT.md, TEST_RESULTS.md, BLOCKERS.md, logs/backend-verification.md and logs/frontend-verification.md. Original production scope is not fully satisfied: current-price gap, research validation, privileged scheduled ingestion, managed recovery and satellite pipeline remain explicit limitations. Do not describe a verified historical pilot as a complete production service.

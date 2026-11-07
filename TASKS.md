@@ -10,8 +10,8 @@
 - [x] T8 Actual RSS news ingestion and source/link provenance; PIB blocked, partial status recorded
 - [x] T9 Map, time machine, shock investigation, news and analytics frontend; local browser acceptance passed
 - [x] T10 Final combined backend/live suites (47 passed) and independent review
-- [ ] T11 Final GitHub Pages promotion and hourly public health monitor verification
-- [ ] T12 Actual deployed desktop/mobile acceptance, completion report and WhatsApp link
+- [x] T11 Final GitHub Pages promotion and hourly public health monitor verification
+- [x] T12 Actual deployed desktop/mobile acceptance (52 passed), completion report and WhatsApp link sent
 - [ ] T13 Current-price gap from 2026-04-21; official API probes timed out, own registration not authorized
 - [ ] T14 Per-variety/grade investigation histories; original records retained, public aggregate only
 - [ ] T15 Managed PITR/off-device DB recovery, privileged scheduled ingestion and formal incident paging
