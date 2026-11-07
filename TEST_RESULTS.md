@@ -42,3 +42,17 @@ A statistical anomaly is not a validated economic event. Ground-truth alert prec
 - `vitest`: 66 passed (stories routing/selection 7, share page 3, existing 56).
 - Playwright full suite, desktop + mobile: 86 passed (14 new stories tests).
 - Measured locally (`scripts/perf.mjs`, Chromium, Apple M5, `vite preview`): story title visible 856 ms desktop / 151 ms mobile (warm), FCP 472 ms; route animation 58–60 fps; JS heap ~10 MB stable after 24 scene jumps. Not a reference-broadband measurement.
+
+### 4.0 production verification (https://amritesh.github.io/agrinet/, deploy run 42399605866, merge 0d58c4e)
+- Deploy: build success, deploy success. `/`, `stories/catalog.json`, `stories/onion/2023.json`, `s/<id>/` and `s/<id>/og.png` all return 200; the share page serves story-specific `og:title`, `og:description` and `og:image`.
+- Playwright against production, desktop + mobile: 52/52.
+  - This includes the 14 Stories tests. The four that failed on the first run were caused by the tests' own blocked analytics-beacon console message; the filter was fixed and they re-ran green.
+  - `date-race.spec.ts` (34 tests) is excluded: it asserts React StrictMode's double effect replay, which happens only on the dev server.
+- Production perf (`scripts/perf.mjs`, local Chromium on Apple M5, home broadband):
+
+  | | story title visible | first contentful paint | route animation | JS heap |
+  |---|---|---|---|---|
+  | desktop | 504 ms | 400 ms | 60 fps | ~10 MB |
+  | mobile viewport | 342 ms | 224 ms | 60 fps | ~14 MB |
+
+- Screenshots: `docs/screens/4.0/prod-corridor-*.png`.

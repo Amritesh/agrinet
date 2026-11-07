@@ -6,7 +6,7 @@ const FEATURED = 'onion-2023-02-gap-lasalgaon-azadpur'
 async function guard(page: Page) {
   const errors: string[] = []
   page.on('pageerror', (e) => errors.push(String(e)))
-  page.on('console', (m) => { if (m.type() === 'error' && !/cloudflareinsights|Failed to load resource.*(rest|rpc)/i.test(m.text())) errors.push(m.text()) })
+  page.on('console', (m) => { if (m.type() === 'error' && !/cloudflareinsights|ERR_BLOCKED_BY_CLIENT|Failed to load resource.*(rest|rpc)/i.test(m.text())) errors.push(m.text()) })
   await page.route('**/static.cloudflareinsights.com/**', (r) => r.abort('blockedbyclient'))
   return errors
 }
