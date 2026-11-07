@@ -56,3 +56,22 @@ A statistical anomaly is not a validated economic event. Ground-truth alert prec
   | mobile viewport | 342 ms | 224 ms | 60 fps | ~14 MB |
 
 - Screenshots: `docs/screens/4.0/prod-corridor-*.png`.
+
+### 4.0 mobile pass (fix/mobile-stories)
+- **New `tests/e2e/stories-mobile.spec.ts`** covers:
+  - phone portrait at 360×740, 390×844 and 430×932;
+  - phone landscape at 844×390;
+  - Explore at 390×844.
+- **Checks in each test:**
+  - nothing is wider than the screen;
+  - the title, the pinned map (≥220 px tall) and the bottom player bar are on screen at load;
+  - the page scrolls to the footer while the map stays pinned;
+  - every header, scene-dot and player control is at least 40 px (most are 44 px);
+  - after tapping Next, the new caption starts below the map;
+  - landscape shows map and story side by side with no page scroll;
+  - in Explore, controls are finger-sized and map attribution folds into its (i) button.
+- **Bugs found and fixed:**
+  - On phones, the story page could not scroll at all: the 3.0 app locks body scrolling, so the provenance, More stories and footer were unreachable.
+  - At 360 px the header was 10 px too wide, which made phones zoom out.
+- **Local run:** full Playwright 102/102 (desktop + mobile projects); vitest 66/66.
+- **Audit:** `node web/scripts/mobile-audit.mjs <url> <outdir>`. Before/after screenshots are in `evidence/mobile-before|after/` (kept local).

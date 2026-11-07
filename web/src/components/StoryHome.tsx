@@ -54,8 +54,31 @@ export default function StoryHome() {
     return () => { cancelled = true }
   }, [open])
 
+  useEffect(() => {
+    document.body.classList.add('stories-body')
+    return () => document.body.classList.remove('stories-body')
+  }, [])
+
   const scene = story?.scenes[idx] ?? null
   const last = story ? idx >= story.scenes.length - 1 : true
+
+  // Phones: the map is pinned at the top, so after a scene change bring the new caption
+  // up to just below the map instead of leaving the reader mid-way through the old chart.
+  const sceneRef = useRef<HTMLDivElement | null>(null)
+  const seen = useRef<{ id: string; idx: number } | null>(null)
+  useEffect(() => {
+    if (!story) return
+    const prev = seen.current
+    seen.current = { id: story.id, idx }
+    if (!prev || prev.id !== story.id || prev.idx === idx) return
+    if (!matchMedia('(max-width: 900px) and (orientation: portrait)').matches) return
+    const el = sceneRef.current, stage = document.querySelector('.st-stage')
+    if (!el || !stage) return
+    const top = el.getBoundingClientRect().top, below = stage.getBoundingClientRect().bottom
+    if (top < below || top > innerHeight * 0.75) {
+      window.scrollBy({ top: top - below - 8, behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' })
+    }
+  }, [story, idx])
 
   useEffect(() => {
     if (timer.current) window.clearTimeout(timer.current)
@@ -119,12 +142,12 @@ export default function StoryHome() {
           </label>
         </nav>
         <nav className="st-links" aria-label="More">
-          <a href={`${BASE}?mode=explore`}>Explore map</a>
-          <a href={`${BASE}?mode=research`} className="st-quiet">Research tools</a>
+          <a href={`${BASE}?mode=explore`} aria-label="Explore map">Explore<span className="st-long"> map</span></a>
+          <a href={`${BASE}?mode=research`} className="st-quiet" aria-label="Research tools">Research<span className="st-long"> tools</span></a>
           <a href={`${BASE}?mode=research#collaborate`} className="st-quiet">Collaborate</a>
         </nav>
       </header>
-      <div className="st-age" role="note">Historical data, not live prices{catalog ? ` · latest observation ${new Date(catalog.latest_observation + 'T00:00:00').toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}` : ''} · reported mandi modal prices, not trade offers · trades shown are modeled, never claimed</div>
+      <div className="st-age" role="note">Historical data, not live prices{catalog ? ` · latest observation ${new Date(catalog.latest_observation + 'T00:00:00').toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}` : ''} · mandi modal prices, not trade offers · trades shown are modeled, never claimed</div>
 
       <main className="st-main">
         <section className="st-stage" aria-label="Story map">
@@ -138,7 +161,7 @@ export default function StoryHome() {
             <>
               <div className="st-meta">
                 <span className={`st-chip k-${story.kind}`}>{KIND_LABEL[story.kind]}</span>
-                <span className="st-chip">{monthLabel(story.period)}</span>
+                <span className="st-chip st-when">{monthLabel(story.period)}</span>
                 <span className={`st-chip lvl-${story.evidence.level}`}>{LEVEL_LABEL[story.evidence.level] ?? story.evidence.level}</span>
               </div>
               <h1 className="st-title">{story.title}</h1>
@@ -148,7 +171,7 @@ export default function StoryHome() {
                   <li key={i}><button aria-label={`Scene ${i + 1}: ${s.headline}`} aria-current={i === idx ? 'step' : undefined} className={i <= idx ? 'on' : ''} onClick={() => { setIdx(i); setPlaying(false) }} /></li>
                 ))}
               </ol>
-              <div className="st-scene" key={`${story.id}-${idx}`}>
+              <div className="st-scene" key={`${story.id}-${idx}`} ref={sceneRef}>
                 <div className="st-step">Scene {idx + 1} of {story.scenes.length}</div>
                 <h2 className="st-headline">{scene.headline}</h2>
                 <p className="st-caption">{scene.caption}</p>
@@ -157,14 +180,15 @@ export default function StoryHome() {
               </div>
               <div className="st-controls" role="group" aria-label="Story controls">
                 {idx === 0 && !playing ? (
-                  <button className="st-play" onClick={() => { setPlaying(true); if (last) setIdx(0) }}>▶ Watch the story</button>
+                  <button className="st-play" aria-label="Watch the story" onClick={() => setPlaying(true)}>▶ Watch<span className="st-long"> the story</span></button>
+                ) : last && !playing ? (
+                  <button className="st-play" aria-label="Replay" onClick={() => { setIdx(0); setPlaying(true) }}>↺ Replay</button>
                 ) : (
-                  <button className="st-play" aria-label={playing ? 'Pause' : 'Play'} onClick={() => setPlaying((p) => !p)} disabled={last && !playing}>{playing ? '❚❚ Pause' : '▶ Play'}</button>
+                  <button className="st-play" aria-label={playing ? 'Pause' : 'Play'} onClick={() => setPlaying((p) => !p)}>{playing ? '❚❚ Pause' : '▶ Play'}</button>
                 )}
                 <button aria-label="Previous scene" onClick={() => { setIdx((i) => Math.max(0, i - 1)); setPlaying(false) }} disabled={idx === 0}>‹</button>
                 <button aria-label="Next scene" onClick={() => { setIdx((i) => Math.min(story.scenes.length - 1, i + 1)); setPlaying(false) }} disabled={last}>›</button>
-                <button aria-label="Skip to conclusion" onClick={() => { setIdx(story.scenes.length - 1); setPlaying(false) }} disabled={last}>Skip ⇥</button>
-                <button aria-label="Replay" onClick={() => { setIdx(0); setPlaying(true) }}>↺</button>
+                <button aria-label="Skip to conclusion" onClick={() => { setIdx(story.scenes.length - 1); setPlaying(false) }} disabled={last}><span className="st-long">Skip </span>⇥</button>
                 <button aria-label="Share this story" onClick={share}>Share</button>
               </div>
               {shareMsg && <div className="st-share-msg" role="status">{shareMsg}</div>}
