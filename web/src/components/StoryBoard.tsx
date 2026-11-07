@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
+import { collapseAttributionOnSmallMap } from '../lib/mapUi'
 import * as maplibregl from 'maplibre-gl'
 import maplibreWorkerUrl from 'maplibre-gl/dist/maplibre-gl-worker.mjs?url'
 import 'maplibre-gl/dist/maplibre-gl.css'
@@ -84,8 +85,7 @@ export default function StoryBoard({ story, scene, reducedMotion }: { story: Sto
         map.addLayer({ id: 'board', type: 'fill', source: 'states', paint: { 'fill-color': '#f3ead4' } })
         map.addLayer({ id: 'board-lines', type: 'line', source: 'states', paint: { 'line-color': '#3b4f60', 'line-opacity': 0.45, 'line-width': 0.7 } })
       } catch { /* board stays plain; markets and routes still render */ }
-      // Keep attribution collapsed on small screens so it never covers the board.
-      if ((ref.current?.clientWidth ?? 800) < 640) ref.current?.querySelector('.maplibregl-ctrl-attrib')?.classList.remove('maplibregl-compact-show')
+      collapseAttributionOnSmallMap(ref.current)
       setReady(true)
     })
     map.on('move', () => setTick((t) => t + 1))
@@ -110,13 +110,16 @@ export default function StoryBoard({ story, scene, reducedMotion }: { story: Sto
     const byId = new Map(story.markets.map((m) => [m.id, m]))
     const pts = scene.focus.map((id) => byId.get(id)).filter(Boolean).map((m) => [m!.lon, m!.lat] as [number, number])
     const dur = reducedMotion ? 0 : 1800
-    const narrow = (ref.current?.clientWidth ?? 800) < 640
-    const pad = narrow ? 36 : 80
+    const w = ref.current?.clientWidth ?? 800, h = ref.current?.clientHeight ?? 600
+    const narrow = Math.min(w, h) < 420
+    // Padding scales with the board so short phone/landscape maps still frame the corridor.
+    const pad = Math.round(Math.min(80, Math.max(20, Math.min(w, h) * 0.12)))
     if (scene.camera === 'india' || !pts.length) map.fitBounds(INDIA, { padding: narrow ? 8 : 24, pitch: 0, bearing: 0, duration: dur })
     else if (scene.camera === 'focus' && pts.length === 1) map.flyTo({ center: pts[0], zoom: narrow ? 6 : 6.6, pitch: 40, bearing: -10, duration: dur, essential: true })
     else {
       const all = route ? [...pts, ...route.path] : pts
-      map.fitBounds(bounds(all), { padding: pad, pitch: 35, bearing: -8, duration: dur, maxZoom: 7.5 })
+      // Small boards: keep the bottom strip (attribution / legend) clear of the market tokens.
+      map.fitBounds(bounds(all), { padding: narrow ? { top: pad, left: pad, right: pad, bottom: pad + 34 } : pad, pitch: 35, bearing: -8, duration: dur, maxZoom: 7.5 })
     }
   }, [ready, story, scene, route, reducedMotion])
 
@@ -198,3 +201,4 @@ export default function StoryBoard({ story, scene, reducedMotion }: { story: Sto
     </div>
   )
 }
+

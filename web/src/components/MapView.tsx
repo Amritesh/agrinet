@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
+import { collapseAttributionOnSmallMap } from '../lib/mapUi'
 import * as maplibregl from 'maplibre-gl'
 import maplibreWorkerUrl from 'maplibre-gl/dist/maplibre-gl-worker.mjs?url'
 maplibregl.setWorkerUrl(maplibreWorkerUrl)
@@ -67,7 +68,7 @@ export default function MapView({ onHover, onStatus }: { onHover: (h: HoverInfo 
     map.addControl(overlay as unknown as maplibregl.IControl)
     mapRef.current = map
     overlayRef.current = overlay
-    map.on('load', () => setReady(true))
+    map.on('load', () => { collapseAttributionOnSmallMap(ref.current); setReady(true) })
     fetch(`${BASE}/geo/india_states.geojson`).then((r) => r.json()).then(setStates)
     fetch(`${BASE}/geo/india_districts.geojson`).then((r) => r.json()).then(setDistricts)
     return () => {

@@ -97,3 +97,25 @@ button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-
 .explore-links { display: flex; gap: 14px; font-size: 13px; margin-left: auto; }
 .explore-links a { color: inherit; opacity: .85; text-decoration: none; border-bottom: 1px solid #b87333; }
 @media(max-width: 700px) { .nav-stories { grid-column: 1 / -1; text-align: center; } .explore-links { gap: 10px; font-size: 12px; } }
+
+/* ---------- Phones: finger-sized controls for Explore and Research (layout unchanged on desktop) ---------- */
+@media (max-width: 700px) {
+  .topbar { height: auto; min-height: var(--topbar); }
+  .brand-home { display: inline-flex; align-items: center; min-height: 44px; }
+  .commodities .tab { min-height: 44px; min-width: 44px; }
+  .search-box input { min-height: 44px; font-size: 16px; }
+  .explore-links { gap: 2px; font-size: 13px; }
+  .explore-links a { display: inline-flex; align-items: center; min-height: 44px; padding: 0 6px; border-bottom: 0; text-decoration: underline; text-decoration-color: #b87333; text-underline-offset: 4px; }
+  .views .tab { min-height: 44px; min-width: 44px; }
+  .timeline { height: auto; padding: 6px 8px calc(4px + env(safe-area-inset-bottom)); }
+  .tl-controls { gap: 6px; row-gap: 4px; }
+  .timeline .btn { min-height: 44px; min-width: 44px; }
+  .timeline select, .timeline input[type='date'] { min-height: 44px; font-size: 16px; }
+  .maplibregl-ctrl-group button { width: 44px; height: 44px; }
+  .map-overlay-top { max-width: calc(100% - 70px); font-size: 13px; }
+  .workspace-nav button, .workspace-nav a { min-height: 44px; }
+}
+@media (pointer: coarse) {
+  .maplibregl-ctrl-attrib-button { width: 36px; height: 36px; background-size: 24px; }
+  .maplibregl-ctrl-attrib.maplibregl-compact { min-height: 36px; }
+}
