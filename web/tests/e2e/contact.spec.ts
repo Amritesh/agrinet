@@ -1,6 +1,6 @@
 import { test, expect, type Page } from '@playwright/test'
 
-async function open(page: Page, path = '?c=onion') {
+async function open(page: Page, path = '?mode=research&c=onion') {
   const errors: string[] = []
   page.on('console', (m) => { if (m.type() === 'error') errors.push(m.text()) })
   page.on('pageerror', (e) => errors.push(String(e)))
@@ -45,7 +45,7 @@ test('#collaborate deep link and footer link reach the section; atlas deep links
   await page.getByRole('navigation', { name: 'Workspaces' }).getByRole('button', { name: 'Simulation Studio', exact: true }).click()
   await page.getByRole('contentinfo').getByRole('button', { name: /collaborate/i }).click()
   await expect(page.getByRole('heading', { name: 'Build the Future of Agricultural Intelligence With Us' })).toBeVisible()
-  await open(page, '?c=potato&d=2024-01-16')
+  await open(page, '?mode=research&c=potato&d=2024-01-16')
   await expect(page.getByLabel('Selected date', { exact: true })).toHaveValue('2024-01-16')
 })
 

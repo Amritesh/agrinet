@@ -1,0 +1,162 @@
+{
+ "requested": "2026-11-07T17:32:08Z",
+ "provider": "nominatim.openstreetmap.org",
+ "queries": {
+  "lasalgaon": "Lasalgaon, Niphad, Nashik, Maharashtra",
+  "pimpalgaon baswant": "Pimpalgaon Baswant, Nashik, Maharashtra",
+  "azadpur": "Azadpur Mandi, Delhi",
+  "vashi new mumbai": "APMC Market, Vashi, Navi Mumbai",
+  "agra": "Agra, Uttar Pradesh",
+  "bangalore": "Yeshwanthpur, Bengaluru",
+  "kolar": "Kolar, Karnataka"
+ },
+ "results": {
+  "lasalgaon": {
+   "place_id": 245941823,
+   "licence": "Data \u00a9 OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "node",
+   "osm_id": 245687316,
+   "lat": "20.1426837",
+   "lon": "74.2377507",
+   "category": "place",
+   "type": "village",
+   "place_rank": 19,
+   "importance": 0.14670416800183103,
+   "addresstype": "village",
+   "name": "Lasalgaon",
+   "display_name": "Lasalgaon, Niphad Taluka, Nashik, Maharashtra, 422306, India",
+   "boundingbox": [
+    "20.1226837",
+    "20.1626837",
+    "74.2177507",
+    "74.2577507"
+   ]
+  },
+  "pimpalgaon baswant": {
+   "place_id": 247433861,
+   "licence": "Data \u00a9 OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "node",
+   "osm_id": 7802616245,
+   "lat": "20.1633720",
+   "lon": "73.9850591",
+   "category": "healthcare",
+   "type": "centre",
+   "place_rank": 30,
+   "importance": 3.750133516437045e-05,
+   "addresstype": "healthcare",
+   "name": "SubCentre, Pimpalgaon Baswant",
+   "display_name": "SubCentre, Pimpalgaon Baswant, Umberkhed road, Pimpalgaon Basvant, Niphad Taluka, Nashik, Maharashtra, 422209, India",
+   "boundingbox": [
+    "20.1633220",
+    "20.1634220",
+    "73.9850091",
+    "73.9851091"
+   ]
+  },
+  "azadpur": {
+   "place_id": 244902098,
+   "licence": "Data \u00a9 OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "node",
+   "osm_id": 13146724916,
+   "lat": "28.7218928",
+   "lon": "77.1649222",
+   "category": "office",
+   "type": "government",
+   "place_rank": 30,
+   "importance": 4.900053406572087e-05,
+   "addresstype": "office",
+   "name": "Azadpur Mandi Office",
+   "display_name": "Azadpur Mandi Office, Mall Road Extension, Jahangir Puri, Civil Lines, Delhi, North Delhi, Delhi, 110033, India",
+   "boundingbox": [
+    "28.7218428",
+    "28.7219428",
+    "77.1648722",
+    "77.1649722"
+   ]
+  },
+  "vashi new mumbai": {
+   "place_id": 248088764,
+   "licence": "Data \u00a9 OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "node",
+   "osm_id": 4663032789,
+   "lat": "19.0734509",
+   "lon": "73.0106205",
+   "category": "highway",
+   "type": "bus_stop",
+   "place_rank": 30,
+   "importance": 5.7064927138124935e-05,
+   "addresstype": "highway",
+   "name": "APMC Market",
+   "display_name": "APMC Market, Vashi - Turbhe Link Road, Turbhe, Navi Mumbai, Thane Subdistrict, Thane, Maharashtra, 400705, India",
+   "boundingbox": [
+    "19.0734009",
+    "19.0735009",
+    "73.0105705",
+    "73.0106705"
+   ]
+  },
+  "agra": {
+   "place_id": 247583717,
+   "licence": "Data \u00a9 OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "node",
+   "osm_id": 567267943,
+   "lat": "27.1752554",
+   "lon": "78.0098161",
+   "category": "place",
+   "type": "city",
+   "place_rank": 16,
+   "importance": 0.6149610439729052,
+   "addresstype": "city",
+   "name": "Agra",
+   "display_name": "Agra, Uttar Pradesh, 280001, India",
+   "boundingbox": [
+    "27.0152554",
+    "27.3352554",
+    "77.8498161",
+    "78.1698161"
+   ]
+  },
+  "bangalore": {
+   "place_id": 252054439,
+   "licence": "Data \u00a9 OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "way",
+   "osm_id": 1238794971,
+   "lat": "13.0176937",
+   "lon": "77.5555009",
+   "category": "landuse",
+   "type": "industrial",
+   "place_rank": 24,
+   "importance": 0.08007094453345538,
+   "addresstype": "industrial",
+   "name": "BMTC Depot 8 (Yeshwanthpura)",
+   "display_name": "BMTC Depot 8 (Yeshwanthpura), Subedarpalya, Bengaluru West City Corporation, Bengaluru, Bangalore North, Bengaluru Urban, Karnataka, India",
+   "boundingbox": [
+    "13.0170631",
+    "13.0184738",
+    "77.5548873",
+    "77.5559781"
+   ]
+  },
+  "kolar": {
+   "place_id": 249457643,
+   "licence": "Data \u00a9 OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "relation",
+   "osm_id": 2020590,
+   "lat": "13.1805066",
+   "lon": "78.2669329",
+   "category": "boundary",
+   "type": "administrative",
+   "place_rank": 10,
+   "importance": 0.5322487216034872,
+   "addresstype": "state_district",
+   "name": "Kolar",
+   "display_name": "Kolar, Karnataka, India",
+   "boundingbox": [
+    "12.7621184",
+    "13.5988452",
+    "77.8395431",
+    "78.5875761"
+   ]
+  }
+ }
+}

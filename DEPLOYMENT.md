@@ -38,3 +38,6 @@ Revert a bad code commit with `git revert <commit>` and push to main; CI redeplo
 
 ## Configuration separation
 Browser build uses public `VITE_SUPABASE_URL`/`VITE_SUPABASE_KEY`. Database writer uses local `.env` `DATABASE_URL`; never commit it, embed it into Vite, or include it in artifacts. Development uses Vite locally; production is the Pages base path `/agrinet/` and the published immutable snapshot.
+
+## 4.0
+Static story JSON (`web/public/stories/`) and share pages (`web/public/s/`) ship with the repo; the deploy workflow is unchanged. Rollback = redeploy the previous main commit (`6dbf9ba` before 4.0).

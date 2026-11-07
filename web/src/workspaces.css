@@ -91,3 +91,9 @@ button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-
 .secondary-action:focus-visible, .link-action:focus-visible, .endpoint-results button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 @media(max-width: 900px) { .studio-grid, .corridor-ends { grid-template-columns: minmax(0, 1fr); } }
 @media(max-width: 520px) { .field-row, .field-row.three { grid-template-columns: minmax(0, 1fr); } .metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); } .metric dd { font-size: 16px; } .route-map-canvas { height: 220px; } }
+
+.nav-stories { align-self: center; color: var(--fg, #e8e6df); text-decoration: none; padding: 10px 14px; border-radius: 7px; border: 1px solid #b87333; margin-right: 6px; font-size: 13px; }
+.brand-home { color: inherit; text-decoration: none; }
+.explore-links { display: flex; gap: 14px; font-size: 13px; margin-left: auto; }
+.explore-links a { color: inherit; opacity: .85; text-decoration: none; border-bottom: 1px solid #b87333; }
+@media(max-width: 700px) { .nav-stories { grid-column: 1 / -1; text-align: center; } .explore-links { gap: 10px; font-size: 12px; } }

@@ -16,7 +16,7 @@ test('deep link preserves commodity/date/view and real analytics', async ({ page
 })
 
 test('mobile and desktop navigation and timeline remain accessible in viewport', async ({ page }) => {
-  await page.goto('./')
+  await page.goto('?mode=research')
   for (const name of ['Map', 'Shocks', 'News', 'Analytics']) {
     const button = view(page, name)
     await expect(button).toBeInViewport()
@@ -32,7 +32,7 @@ test('mobile and desktop navigation and timeline remain accessible in viewport',
 test('all three actual commodity snapshots, comparison, and playback controls', async ({ page }) => {
   const failures: string[] = []
   page.on('response', r => { if (r.status() >= 400 && /\/(data|geo)\//.test(r.url()) && !/2027\.bin/.test(r.url())) failures.push(`${r.status()} ${r.url()}`) })
-  await page.goto('./')
+  await page.goto('?mode=research')
   await page.getByLabel('Selected date', { exact: true }).fill('2024-01-15')
   for (const name of ['Onion', 'Potato', 'Tomato']) {
     await page.getByRole('navigation', { name: 'Commodity', exact: true }).getByRole('button', { name, exact: true }).click()
@@ -59,7 +59,7 @@ test('all three actual commodity snapshots, comparison, and playback controls', 
 })
 
 test('real shock filtering opens market investigation with real history', async ({ page }) => {
-  await page.goto('./')
+  await page.goto('?mode=research')
   await page.getByLabel('Selected date', { exact: true }).fill('2026-04-20')
   await view(page, 'Shocks').click()
   await page.getByRole('combobox', { name: 'Window', exact: true }).selectOption('365')
@@ -80,7 +80,7 @@ test('real shock filtering opens market investigation with real history', async 
 })
 
 test('news filters show authentic links or an explicit honest empty state', async ({ page }) => {
-  await page.goto('./')
+  await page.goto('?mode=research')
   await view(page, 'News').click()
   await page.getByRole('combobox', { name: 'Window', exact: true }).selectOption('365')
   await page.getByRole('checkbox', { name: 'only Onion' }).uncheck()
@@ -118,7 +118,7 @@ test('actual national analytics match independently decoded stored binary', asyn
   prices.sort((a, b) => a - b)
   const h = Math.floor(prices.length / 2)
   const median = prices.length % 2 ? prices[h] : (prices[h - 1] + prices[h]) / 2
-  await page.goto('./')
+  await page.goto('?mode=research')
   await page.getByLabel('Selected date', { exact: true }).fill('2024-01-15')
   await view(page, 'Analytics').click()
   const card = page.locator('.kpi-card').filter({ hasText: 'Onion' })

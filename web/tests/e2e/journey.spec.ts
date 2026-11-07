@@ -11,7 +11,7 @@ for (const name of ['Onion', 'Tomato', 'Potato']) {
     page.on('pageerror', e => errors.push(e.message))
     const view = (label: string) => page.getByRole('navigation', { name: 'Views', exact: true }).getByRole('button', { name: label, exact: true })
     const t = Date.now()
-    await page.goto(`?c=${name.toLowerCase()}&d=2024-01-15&v=map`)
+    await page.goto(`?mode=research&c=${name.toLowerCase()}&d=2024-01-15&v=map`)
     const status = page.getByRole('status')
     await expect(status).toContainText(new RegExp(`[1-9][0-9]* mandis reporting ${name} on 2024-01-15`))
     await expect(page.locator('.map canvas')).toHaveCount(2)
