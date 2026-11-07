@@ -118,8 +118,9 @@ test('share link reproduces the exact story; month selector never fabricates', a
   await p2.goto(url)
   await expect(p2.getByRole('heading', { level: 1 })).toHaveText('The month onion prices jumped across India')
   await p2.goto('?story=onion-1999-01-shock')
+  await expect(p2.getByRole('heading', { level: 1 })).toHaveText("The onion trade that looked profitable but wasn't")
+  // The note must survive the fallback load, not flash and vanish.
   await expect(p2.locator('.st-note.bad')).toContainText('was not found')
-  await expect(p2.getByRole('heading', { level: 1 })).toBeVisible()
 })
 
 test('Explore is a clean map; research tools and collaborate stay reachable', async ({ page }) => {
