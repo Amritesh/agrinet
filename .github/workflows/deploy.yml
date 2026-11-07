@@ -40,6 +40,10 @@ jobs:
         env:
           VITE_SUPABASE_URL: https://fltrrikxuvsgnmoulqjd.supabase.co
           VITE_SUPABASE_KEY: sb_publishable_bjH4is7RfBhJUZB9U9YiPA_t7MWSiMK
+          # Optional, owner-approved public values (repository Variables); empty = feature off.
+          VITE_CF_WEB_ANALYTICS_TOKEN: ${{ vars.CF_WEB_ANALYTICS_TOKEN }}
+          VITE_PUBLIC_CONTACT_EMAIL: ${{ vars.PUBLIC_CONTACT_EMAIL }}
+          VITE_PUBLIC_LINKEDIN_URL: ${{ vars.PUBLIC_LINKEDIN_URL }}
         run: npm run build -- --base=/agrinet/
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3

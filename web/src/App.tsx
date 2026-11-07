@@ -12,6 +12,7 @@ import { useSearch } from './lib/useSearch'
 import SimulationStudio from './components/SimulationStudio'
 import CorridorInspector from './components/CorridorInspector'
 import { DEFAULT_SCENARIO, decodeShare, type ScenarioRoute, type ScenarioState } from './lib/scenario'
+import ProjectContact from './components/ProjectContact'
 
 const VIEWS: { id: View; label: string; icon: string }[] = [
   { id: 'map', label: 'Map', icon: '◉' },
@@ -32,7 +33,7 @@ const LAYERS: { id: Layer; label: string }[] = [
 export default function App() {
   // A ?s= share link restores a modeled scenario once, before URL sync rewrites the query.
   const [shared] = useState(() => { const t = new URLSearchParams(location.search).get('s'); return t ? decodeShare(t) : null })
-  const [workspace, setWorkspace] = useState(shared ? 'Simulation Studio' : 'Market Atlas')
+  const [workspace, setWorkspace] = useState(shared ? 'Simulation Studio' : location.hash === '#collaborate' ? 'Collaborate' : 'Market Atlas')
   const [scenario, setScenario] = useState<ScenarioState>(shared?.ok ? shared.state : DEFAULT_SCENARIO)
   const [scenarioRoute, setScenarioRoute] = useState<ScenarioRoute | null>(shared?.ok ? shared.route : null)
   const [studioNotice, setStudioNotice] = useState<string | null>(shared ? (shared.ok ? 'Restored from share link. This is still a modeled scenario.' : `Share link could not be restored: ${shared.error}`) : null)
@@ -185,11 +186,14 @@ export default function App() {
         {['Market Atlas', 'Opportunity Lab', 'Network Optimizer', 'Simulation Studio'].map((name, i) => (
           <button key={name} aria-pressed={workspace === name} onClick={() => { setWorkspace(name); useStore.getState().setPlaying(false) }}><span className="workspace-number" aria-hidden="true">0{i + 1}</span>{name}</button>
         ))}
+        <button className="nav-collaborate" aria-pressed={workspace === 'Collaborate'} onClick={() => { setWorkspace('Collaborate'); useStore.getState().setPlaying(false) }}>Collaborate</button>
       </nav>
       <div className="evidence-strip">Historical public aggregates · not live prices · latest verified observation 20 Apr 2026. No current counterparties or freight quotes.</div>
       {workspace === 'Opportunity Lab' && <main id="main" className="workspace-page"><div className="eyebrow">EVIDENCE BEFORE EXECUTION</div><h1>Opportunity Lab</h1><p className="workspace-lead">Explore the gap between a historical spread and an executable trade.</p><section className="workspace-card empty-evidence"><span className="evidence-symbol" aria-hidden="true">◇</span><h2>No commercially supported opportunities found</h2><p>Historical modal prices are public market aggregates, not executable offers. No ranked trades or invented counterparties are shown.</p><h3>Missing evidence</h3><ul><li>Current buyer bids and seller offers</li><li>Matching product, grade, quality and lot availability</li><li>Counterparty identity, payment terms and acceptance</li><li>Verified pickup and delivery locations</li><li>Current freight quote, vehicle capacity and cold-chain requirements</li><li>Loss, handling, fees, financing and settlement evidence</li></ul><button className="primary-action" onClick={() => setWorkspace('Simulation Studio')}>Build a manual scenario</button></section></main>}
       {workspace === 'Network Optimizer' && <CorridorInspector markets={markets} onUseDistance={(r) => { setScenarioRoute(r); setStudioNotice(`Attached ${r.distanceKm.toFixed(1)} km routed road distance. Freight is still your own assumption.`); setWorkspace('Simulation Studio') }} />}
       {workspace === 'Simulation Studio' && <SimulationStudio state={scenario} onChange={setScenario} route={scenarioRoute} onClearRoute={() => setScenarioRoute(null)} notice={studioNotice} />}
+      {workspace === 'Collaborate' && <ProjectContact />}
+      {workspace !== 'Market Atlas' && <footer className="site-footer"><span>AGRINET · independent research prototype</span><button onClick={() => setWorkspace('Collaborate')}>Collaborate with AGRINET</button></footer>}
 
       {loadErr && <div className="error banner">{loadErr}</div>}
 
