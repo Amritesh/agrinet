@@ -173,6 +173,8 @@ body.stories-body { overflow: auto; }
 }
 /* Touch screens anywhere: comfortable targets in the header and player. */
 @media (pointer: coarse) {
+  .stories-app .maplibregl-ctrl-attrib-button { width: 36px; height: 36px; background-size: 24px; }
+  .stories-app .maplibregl-ctrl-attrib.maplibregl-compact { min-height: 36px; }
   .st-coms button { min-height: 40px; }
   .st-controls button { min-height: 44px; }
 }

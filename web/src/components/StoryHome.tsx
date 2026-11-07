@@ -30,13 +30,13 @@ export default function StoryHome() {
   const latest = useRef(0)
   const [want, setWant] = useState<{ c: string; ym: string } | null>(null)
 
-  const open = useCallback(async (id: string, note: string | null = null) => {
+  const open = useCallback(async (id: string, note: string | null = null, keepErr = false) => {
     const token = ++latest.current
     const s = await loadStory(id)
     if (token !== latest.current) return true // a newer choice superseded this load
     if (!s) { setErr(`Story “${id}” was not found. Showing the featured story instead.`); return false }
     setWant({ c: s.commodity, ym: s.period })
-    setStory(s); setIdx(0); setPlaying(false); setNotice(note); setErr(null)
+    setStory(s); setIdx(0); setPlaying(false); setNotice(note); if (!keepErr) setErr(null)
     history.replaceState(null, '', storyUrl(BASE, id))
     document.title = `${s.title} · ${monthLabel(s.period)} · AGRINET`
     return true
@@ -49,7 +49,8 @@ export default function StoryHome() {
       setCatalog(c)
       const linked = new URLSearchParams(location.search).get('story')
       if (linked && (await open(linked))) return
-      if (c.featured[0]) await open(c.featured[0].id)
+      // Keep the "link not found" message visible while falling back to the featured story.
+      if (c.featured[0]) await open(c.featured[0].id, null, Boolean(linked))
     }).catch((e) => setErr(`Stories failed to load (${e}).`))
     return () => { cancelled = true }
   }, [open])
