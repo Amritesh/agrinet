@@ -1,0 +1,25 @@
+.project-contact h1 { max-width: 920px; }
+.project-contact .workspace-lead { max-width: 760px; }
+.pc-status { display: grid; gap: 10px; background: var(--bg2); border: 1px solid var(--border); border-radius: 12px; padding: 18px 20px; margin-bottom: 24px; color: var(--fg); font-size: 14px; line-height: 1.55; }
+.pc-tag { display: inline-block; font-size: 11px; letter-spacing: .04em; text-transform: uppercase; padding: 2px 8px; border-radius: 999px; margin-right: 8px; }
+.pc-live { border: 1px solid #586d46; color: #d7efb9; background: #29322a; }
+.pc-dev { border: 1px dashed var(--muted); color: var(--muted); }
+.pc-note { color: var(--muted); font-size: 13px; margin: 0; }
+.pc-grid { list-style: none; margin: 0 0 24px; padding: 0; display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
+.pc-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 12px; padding: 18px 20px; display: flex; flex-direction: column; gap: 8px; }
+.pc-card h2 { font-size: 15px; font-weight: 600; margin: 0; }
+.pc-card p { color: var(--muted); font-size: 13px; margin: 0; flex: 1; }
+.pc-card a, .pc-link { color: #d7efb9; text-decoration: none; font-size: 13px; }
+.pc-card a:hover, .pc-link:hover { text-decoration: underline; }
+.pc-card a:focus-visible, .pc-link:focus-visible, .pc-actions .primary-action:focus-visible, .site-footer button:focus-visible { outline: 2px solid #d7efb9; outline-offset: 3px; border-radius: 4px; }
+.pc-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 18px; margin-bottom: 12px; }
+.pc-actions .primary-action { text-decoration: none; display: inline-block; }
+.pc-privacy { color: var(--muted); font-size: 12px; max-width: 760px; }
+.workspace-nav .nav-collaborate { margin-left: auto; font-size: 13px; padding: 8px 14px; }
+.site-footer { flex-shrink: 0; display: flex; justify-content: flex-end; gap: 14px; padding: 6px 20px; border-top: 1px solid var(--border); background: var(--bg2); color: var(--muted); font-size: 12px; }
+.site-footer button { background: none; border: 0; padding: 0; color: var(--muted); font: inherit; cursor: pointer; text-decoration: underline; text-underline-offset: 2px; }
+.site-footer button:hover { color: var(--fg); }
+@media (max-width: 700px) {
+  .pc-grid { grid-template-columns: 1fr; }
+  .workspace-nav .nav-collaborate { margin-left: 0; grid-column: 1 / -1; padding: 4px 6px; font-size: 12px; text-align: center; }
+}
