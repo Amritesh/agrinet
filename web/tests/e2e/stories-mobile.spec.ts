@@ -1,7 +1,10 @@
 import { test, expect, type Page } from '@playwright/test'
 
 // Phone layouts for the Stories home. These run in every project but set their own viewport.
-const FEATURED = 'onion-2023-02-gap-lasalgaon-azadpur'
+async function featured(page: Page) {
+  const c = await (await page.request.get('stories/catalog.json')).json()
+  return c.featured[0].id as string
+}
 const inView = (page: Page, sel: string) => page.evaluate((s) => {
   const r = document.querySelector(s)!.getBoundingClientRect()
   return r.top >= 0 && r.bottom <= innerHeight + 1 && r.height > 0
@@ -16,7 +19,7 @@ for (const vp of [{ width: 360, height: 740 }, { width: 390, height: 844 }, { wi
     test.use({ viewport: vp, hasTouch: true, isMobile: true })
 
     test('player bar, title and map are on screen at first load; page scrolls; no sideways overflow', async ({ page }) => {
-      await page.goto(`?story=${FEATURED}`)
+      await page.goto(`?story=${await featured(page)}`)
       await expect(page.getByRole('heading', { level: 1 })).toBeVisible()
       expect(await inView(page, '.st-controls')).toBe(true)
       expect(await inView(page, '.st-title')).toBe(true)
@@ -29,13 +32,13 @@ for (const vp of [{ width: 360, height: 740 }, { width: 390, height: 844 }, { wi
       await expect.poll(() => page.evaluate(() => scrollY)).toBeGreaterThan(100)
       expect(Math.round((await page.locator('.st-stage').boundingBox())!.y)).toBe(0)
       // The rest of the story (more stories, footer) must be reachable by scrolling.
-      const foot = page.getByRole('contentinfo').getByRole('link', { name: 'Collaborate with AGRINET' })
+      const foot = page.getByRole('contentinfo').getByRole('link', { name: 'Collaborate' })
       await foot.scrollIntoViewIfNeeded()
       await expect(foot).toBeInViewport()
     })
 
     test('tap targets are finger-sized and scene changes keep the caption readable', async ({ page }) => {
-      await page.goto(`?story=${FEATURED}`)
+      await page.goto(`?story=${await featured(page)}`)
       await expect(page.getByRole('heading', { level: 1 })).toBeVisible()
       expect(await smallTargets(page, '.st-top a, .st-top button, .st-top select, .st-dots button, .st-controls button')).toEqual([])
       for (let i = 0; i < 4; i++) await page.getByRole('button', { name: 'Next scene' }).tap()
@@ -52,7 +55,7 @@ for (const vp of [{ width: 360, height: 740 }, { width: 390, height: 844 }, { wi
 test.describe('phone landscape 844×390', () => {
   test.use({ viewport: { width: 844, height: 390 }, hasTouch: true, isMobile: true })
   test('map and story sit side by side with the player reachable and the corridor framed', async ({ page }) => {
-    await page.goto(`?story=${FEATURED}`)
+    await page.goto(`?story=${await featured(page)}`)
     await expect(page.getByRole('heading', { level: 1 })).toBeVisible()
     const [map, panel] = await Promise.all([page.locator('.st-stage').boundingBox(), page.locator('.st-panel').boundingBox()])
     expect(map!.width).toBeGreaterThan(300)

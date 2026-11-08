@@ -10,6 +10,7 @@ data/backups/
 web/node_modules/
 web/dist/
 web/public/data/
+web/public/month-api/
 web/.env
 data/derived/
 logs/

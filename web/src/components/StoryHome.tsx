@@ -1,16 +1,11 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import StoryBoard from './StoryBoard'
-import { inr, loadCatalog, loadStory, monthLabel, pickForMonth, sharePageUrl, storyUrl, type Catalog, type Scene, type Story, type Waterfall } from '../lib/stories'
+import { availableMonths, defaultStoryId, inr, loadCatalog, loadStory, monthLabel, pickForMonth, productList, sharePageUrl, storyUrl, tradeEvidence, type Catalog, type Scene, type Story, type Waterfall } from '../lib/stories'
 import '../styles/stories.css'
 
-const COMS = [
-  { slug: 'onion', name: 'Onion' },
-  { slug: 'tomato', name: 'Tomato' },
-  { slug: 'potato', name: 'Potato' },
-]
 const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 const BASE = import.meta.env.BASE_URL
-const KIND_LABEL: Record<string, string> = { shock: 'Price shock', corridor: 'Hypothetical trade', storage: 'Storage decision' }
+const KIND_LABEL: Record<string, string> = { shock: 'Price shock', corridor: 'Modeled trade', storage: 'Storage decision' }
 const LEVEL_LABEL: Record<string, string> = { strong: 'Strong evidence', moderate: 'Moderate evidence', limited: 'Limited evidence' }
 
 function sceneMs(s: Scene) {
@@ -22,6 +17,7 @@ export default function StoryHome() {
   const [catalog, setCatalog] = useState<Catalog | null>(null)
   const [story, setStory] = useState<Story | null>(null)
   const [err, setErr] = useState<string | null>(null)
+  const [loading, setLoading] = useState(true)
   const [idx, setIdx] = useState(0)
   const [playing, setPlaying] = useState(false)
   const [notice, setNotice] = useState<string | null>(null)
@@ -32,9 +28,11 @@ export default function StoryHome() {
 
   const open = useCallback(async (id: string, note: string | null = null, keepErr = false) => {
     const token = ++latest.current
+    setLoading(true)
     const s = await loadStory(id)
     if (token !== latest.current) return true // a newer choice superseded this load
-    if (!s) { setErr(`Story “${id}” was not found. Showing the featured story instead.`); return false }
+    setLoading(false)
+    if (!s) { setErr(`Story “${id}” was not found. Showing another available story, if there is one.`); return false }
     setWant({ c: s.commodity, ym: s.period })
     setStory(s); setIdx(0); setPlaying(false); setNotice(note); if (!keepErr) setErr(null)
     history.replaceState(null, '', storyUrl(BASE, id))
@@ -50,8 +48,10 @@ export default function StoryHome() {
       const linked = new URLSearchParams(location.search).get('story')
       if (linked && (await open(linked))) return
       // Keep the "link not found" message visible while falling back to the featured story.
-      if (c.featured[0]) await open(c.featured[0].id, null, Boolean(linked))
-    }).catch((e) => setErr(`Stories failed to load (${e}).`))
+      const first = defaultStoryId(c)
+      if (first) await open(first, null, Boolean(linked))
+      else setLoading(false)
+    }).catch((e) => { setLoading(false); setErr(`Stories failed to load (${e}).`) })
     return () => { cancelled = true }
   }, [open])
 
@@ -89,24 +89,34 @@ export default function StoryHome() {
     return () => { if (timer.current) window.clearTimeout(timer.current) }
   }, [playing, scene, last])
 
-  const commodity = want?.c ?? story?.commodity ?? 'onion'
-  const month = want?.ym ?? story?.period ?? '2023-02'
+  const products = useMemo(() => (catalog ? productList(catalog) : []), [catalog])
+  const commodity = want?.c ?? story?.commodity ?? products[0]?.slug ?? ''
+  const month = want?.ym ?? story?.period ?? (catalog && commodity ? availableMonths(catalog, commodity).at(-1) : null) ?? '2023-02'
+  const productName = (slug: string) => products.find((p) => p.slug === slug)?.name ?? slug
   const years = useMemo(() => {
-    const ms = Object.keys(catalog?.commodities[commodity]?.months ?? {})
+    const ms = catalog ? availableMonths(catalog, commodity).length ? availableMonths(catalog, commodity) : Object.values(catalog.commodities).flatMap((v) => Object.keys(v.months)) : []
     return [...new Set(ms.map((m) => m.slice(0, 4)))].sort()
   }, [catalog, commodity])
+  const evidence = story ? tradeEvidence(story) : null
 
   const choose = (c: string, ym: string) => {
     if (!catalog) return
     const pick = pickForMonth(catalog, c, ym)
     setWant({ c, ym })
-    if (!pick) { setNotice(`No ${c} story is available yet.`); return }
-    open(pick.id, pick.substituted ? `No well-supported ${c} story for ${monthLabel(ym)}. Showing the nearest month with one: ${monthLabel(pick.month)}.` : null)
+    const n = productName(c)
+    if (!pick) {
+      ++latest.current
+      setStory(null); setPlaying(false); setNotice(null); setErr(null); setLoading(false)
+      history.replaceState(null, '', BASE)
+      document.title = `${n} trade stories · AGRINET`
+      return
+    }
+    open(pick.id, pick.substituted ? `No ${n} trade story for ${monthLabel(ym)}. Showing the nearest available month: ${monthLabel(pick.month)}.` : null)
   }
 
   const share = async () => {
     if (!story) return
-    const hasPage = !!catalog?.featured.some((f) => f.id === story.id) || (catalog as unknown as { pages?: string[] })?.pages?.includes(story.id)
+    const hasPage = !!catalog?.featured.some((f) => f.id === story.id) || !!catalog?.pages?.includes(story.id)
     const url = sharePageUrl(location.origin, BASE, story.id, !!hasPage)
     const text = `${story.title} — ${monthLabel(story.period)} (historical data, AGRINET)`
     try {
@@ -126,11 +136,12 @@ export default function StoryHome() {
           <div><div className="st-name">AGRINET</div><div className="st-tag">India’s agricultural economy, brought to life</div></div>
         </div>
         <nav className="st-pick" aria-label="Choose a story">
-          <div className="st-coms" role="group" aria-label="Commodity">
-            {COMS.map((c) => (
-              <button key={c.slug} aria-pressed={commodity === c.slug} onClick={() => choose(c.slug, month)}>{c.name}</button>
-            ))}
-          </div>
+          <a className="st-lab-link" href={`${BASE}?mode=lab&product=${encodeURIComponent(commodity)}&month=${encodeURIComponent(month)}`}>✦ Open Month Lab</a>
+          <label className="st-sel st-prod"><span className="sr">Product</span>
+            <select aria-label="Product" value={commodity} onChange={(e) => choose(e.target.value, month)}>
+              {products.map((p) => <option key={p.slug} value={p.slug}>{p.name} ({p.stories})</option>)}
+            </select>
+          </label>
           <label className="st-sel"><span className="sr">Month</span>
             <select aria-label="Month" value={month.slice(5, 7)} onChange={(e) => choose(commodity, `${month.slice(0, 4)}-${e.target.value}`)}>
               {MONTHS.map((m, i) => <option key={m} value={String(i + 1).padStart(2, '0')}>{m}</option>)}
@@ -142,13 +153,12 @@ export default function StoryHome() {
             </select>
           </label>
         </nav>
-        <nav className="st-links" aria-label="More">
-          <a href={`${BASE}?mode=explore`} aria-label="Explore map">Explore<span className="st-long"> map</span></a>
-          <a href={`${BASE}?mode=research`} className="st-quiet" aria-label="Research tools">Research<span className="st-long"> tools</span></a>
-          <a href={`${BASE}?mode=research#collaborate`} className="st-quiet">Collaborate</a>
-        </nav>
       </header>
-      <div className="st-age" role="note">Historical data, not live prices{catalog ? ` · latest observation ${new Date(catalog.latest_observation + 'T00:00:00').toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}` : ''} · mandi modal prices, not trade offers · trades shown are modeled, never claimed</div>
+      <div className="st-overview">
+        <div><strong>Trade stories, not trade tips.</strong> Historical routes screened for positive modeled margins after costs.</div>
+        {catalog && <div className="st-coverage"><strong>{catalog.story_count.toLocaleString('en-IN')}</strong> qualifying stories · <strong>{products.length.toLocaleString('en-IN')}</strong> products indexed{commodity && <> · {productName(commodity)}: <strong>{products.find((p) => p.slug === commodity)?.stories ?? 0}</strong></>}</div>}
+      </div>
+      <div className="st-age" role="note">Historical modeled margin, not verified profit · mandi modal prices are not offers · no shipments or freight quotes verified{catalog?.latest_observation ? ` · latest observation ${new Date(catalog.latest_observation + 'T00:00:00').toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}` : ''}</div>
 
       <main className="st-main">
         <section className="st-stage" aria-label="Story map">
@@ -157,15 +167,22 @@ export default function StoryHome() {
         <aside id="story-panel" className="st-panel" aria-live="polite">
           {err && <div className="st-note bad">{err}</div>}
           {notice && <div className="st-note">{notice}</div>}
-          {!story && !err && <div className="st-loading">Loading a story…</div>}
+          {!story && !err && loading && <div className="st-loading">Loading trade stories…</div>}
+          {!story && !loading && catalog && <div className="st-empty"><h1>No trade story available</h1><p>{commodity ? `No candidate for ${productName(commodity)} cleared the available-data checks and modeled costs within this run's route budget.` : 'No qualifying historical trades are in this catalog yet.'} This does not mean a trade cannot be profitable.</p><p>Choose another product to see available stories.</p></div>}
           {story && scene && (
             <>
               <div className="st-meta">
-                <span className={`st-chip k-${story.kind}`}>{KIND_LABEL[story.kind]}</span>
+                <span className={`st-chip k-${story.kind}`}>{story.verdict === 'positive_modeled_surplus' || story.verdict === 'profitable' ? 'Modeled positive margin' : KIND_LABEL[story.kind]}</span>
                 <span className="st-chip st-when">{monthLabel(story.period)}</span>
                 <span className={`st-chip lvl-${story.evidence.level}`}>{LEVEL_LABEL[story.evidence.level] ?? story.evidence.level}</span>
               </div>
               <h1 className="st-title">{story.title}</h1>
+              {evidence && <div className="st-evidence" aria-label="Historical trade evidence">
+                <div><span>Typical day after costs</span><strong>{inr(evidence.typicalMargin)}/qtl</strong></div>
+                <div><span>Under adverse costs</span><strong>{inr(evidence.stressMargin)}/qtl</strong></div>
+                <div><span>Informed-rule average</span><strong>{inr(evidence.informedMargin)}/qtl</strong></div>
+                <p>{evidence.matchedDays} matched days · {evidence.payingPct}% of days positive · {evidence.informedShipDays} days selected by the historical rule · {evidence.checkedPairs.toLocaleString('en-IN')} same-variety pairs screened. Modeled outcomes, not realized trades.</p>
+              </div>}
               {idx === 0 && <p className="st-why">{story.why_selected}</p>}
               <ol className="st-dots" aria-label="Scenes">
                 {story.scenes.map((s, i) => (
@@ -201,7 +218,7 @@ export default function StoryHome() {
                 <div className="st-more">
                   <div className="st-more-h">More stories</div>
                   {catalog.featured.filter((f) => f.id !== story.id).map((f) => (
-                    <button key={f.id} onClick={() => open(f.id)}><span className="sm-k">{KIND_LABEL[f.kind]} · {monthLabel(f.period)}</span>{f.title}</button>
+                    <button key={f.id} onClick={() => open(f.id)}><span className="sm-k">{productName(f.commodity)} · {monthLabel(f.period)}</span>{f.title}</button>
                   ))}
                 </div>
               )}
@@ -210,8 +227,8 @@ export default function StoryHome() {
         </aside>
       </main>
       <footer className="st-foot">
-        <span>AGRINET · independent research prototype · {catalog ? `${catalog.story_count} generated stories` : ''}</span>
-        <a href={`${BASE}?mode=research#collaborate`}>Collaborate with AGRINET</a>
+        <span>AGRINET · independent research prototype · historical models, not verified profit</span>
+        <nav aria-label="Other AGRINET pages"><a href={`${BASE}?mode=explore`}>Explore map</a><a href={`${BASE}?mode=research`}>Research tools</a><a href={`${BASE}?mode=research#collaborate`}>Collaborate</a></nav>
       </footer>
     </div>
   )
@@ -225,7 +242,7 @@ function Provenance({ story }: { story: Story }) {
   return (
     <div className="prov">
       <p><b>Observations:</b> {story.evidence.observations}.</p>
-      <p><b>Market locations:</b> {story.markets.slice(0, 4).map((m) => `${m.name} — ${m.precision}`).join('; ')}{story.markets.length > 4 ? `; plus ${story.markets.length - 4} more (most are approximate district centres)` : ''}.</p>
+      <p><b>Market locations:</b> {story.markets.slice(0, 4).map((m) => `${m.name} — ${m.precision}`).join('; ')}{story.markets.length > 4 ? `; plus ${story.markets.length - 4} more` : ''}.</p>
       {story.routes.map((r) => <p key={r.slug}><b>Route:</b> {r.km.toLocaleString('en-IN')} km, {r.provider} ({r.profile}), retrieved {r.requested.slice(0, 10)}. Car routing; not a verified truck route.</p>)}
       {story.assumptions.length > 0 && (
         <table className="prov-t"><tbody>
@@ -289,7 +306,7 @@ function WaterfallChart({ wf, label }: { wf: Waterfall; label: string }) {
           </div>
         )
       })}
-      <div className={`wf-row wf-net ${wf.net >= 0 ? 'good' : 'bad'}`}><span className="wf-k">Modeled net</span><span className="wf-track" /><span className="wf-v">{inr(wf.net)}</span></div>
+      <div className={`wf-row wf-net ${wf.net >= 0 ? 'good' : 'bad'}`}><span className="wf-k">Left after costs</span><span className="wf-track" /><span className="wf-v">{inr(wf.net)}</span></div>
     </figure>
   )
 }
@@ -314,7 +331,7 @@ function StrategyChart({ story }: { story: Story }) {
           )
         })}
       </svg>
-      <figcaption><span className="key pos" />day cleared costs (hindsight) <span className="key neg" />day lost <span className="key ship" />informed trader shipped</figcaption>
+      <figcaption><span className="key pos" />day paid after costs <span className="key neg" />day lost <span className="key ship" />shipped on the morning's report</figcaption>
     </figure>
   )
 }

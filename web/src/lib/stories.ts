@@ -1,6 +1,6 @@
 /** AGRINET 4.0 stories: data contracts, URL routing and story selection. Pure functions, unit-tested. */
 
-export type Mode = 'stories' | 'explore' | 'research'
+export type Mode = 'stories' | 'explore' | 'research' | 'lab'
 
 export interface CatalogEntry { id: string; kind: string; title: string; score: number }
 export interface Featured { id: string; title: string; commodity: string; period: string; kind: string; teaser: string }
@@ -11,9 +11,13 @@ export interface Catalog {
   story_count: number
   featured: Featured[]
   commodities: Record<string, { months: Record<string, CatalogEntry[]> }>
+  /** Display name and story count per product slug (engine 2+). */
+  products?: Record<string, { name: string; stories: number; best: number }>
+  coverage?: { source_products?: number; eligible_products?: number; screened_pairs?: number; evaluated_pairs?: number; tested_pairs?: number; routed_pairs?: number; route_budget_hit?: boolean }
+  pages?: string[]
 }
 
-export interface StoryMarket { id: number; name: string; state: string; lat: number; lon: number; precision: string; pct?: number; price?: number; prev?: number }
+export interface StoryMarket { id: number; name: string; state: string; district?: string; lat: number; lon: number; precision: string; pct?: number; price?: number; prev?: number }
 export interface StoryRoute { slug: string; path: [number, number][]; km: number; hours: number; provider: string; profile: string; truck_suitable: boolean; requested: string }
 export interface Scene {
   kind: string
@@ -35,6 +39,7 @@ export interface Story {
   kind: 'shock' | 'corridor' | 'storage'
   verdict?: string
   commodity: string
+  commodity_name?: string
   period: string
   engine: string
   title: string
@@ -56,6 +61,7 @@ const RESEARCH_VIEWS = new Set(['shocks', 'news', 'analytics'])
 
 export function resolveMode(search: string, hash: string): Mode {
   const p = new URLSearchParams(search)
+  if (p.get('mode') === 'lab') return 'lab'
   if (p.get('story')) return 'stories'
   const mode = p.get('mode')
   if (mode === 'research' || mode === 'explore' || mode === 'stories') return mode
@@ -65,7 +71,8 @@ export function resolveMode(search: string, hash: string): Mode {
   return 'stories'
 }
 
-const ID_RE = /^(onion|potato|tomato)-(\d{4})-(\d{2})(-[a-z0-9-]+)?$/
+// <product slug>-<YYYY>-<MM>[-<kind and route>]; product slugs use underscores, never hyphens.
+const ID_RE = /^([a-z0-9]+(?:_[a-z0-9]+)*)-(\d{4})-(\d{2})(-[a-z0-9-]+)?$/
 
 export function storyFile(id: string): string | null {
   const m = ID_RE.exec(id)
@@ -120,4 +127,46 @@ export async function loadStory(id: string): Promise<Story | null> {
   return all.find((s) => s.id === id) ?? null
 }
 
+/** Load one product-year from the retained snapshot; never substitute a nearby month. */
+export async function loadMonthStories(product: string, month: string): Promise<Story[]> {
+  if (!/^[a-z0-9]+(?:_[a-z0-9]+)*$/.test(product) || !/^\d{4}-(0[1-9]|1[0-2])$/.test(month)) return []
+  const f = `stories/${product}/${month.slice(0, 4)}.json`
+  if (!cache.has(f)) cache.set(f, fetch(`${BASE}${f}`).then((r) => {
+    if (!r.ok) throw new Error(`Historical data ${r.status}`)
+    return r.json()
+  }).then((x) => { if (!Array.isArray(x)) throw new Error('Historical data was not a story list'); return x as Story[] }).catch((error) => { cache.delete(f); throw error }))
+  return (await cache.get(f)!).filter((s) => s.period === month)
+}
+
 export const inr = (v: number) => (v < 0 ? `−₹${Math.abs(Math.round(v)).toLocaleString('en-IN')}` : `₹${Math.round(v).toLocaleString('en-IN')}`)
+
+/** Products for the picker: most stories first, then name. */
+export function productList(cat: Catalog): { slug: string; name: string; stories: number }[] {
+  const p = cat.products ?? Object.fromEntries(Object.keys(cat.commodities).map((k) => [k, { name: k[0].toUpperCase() + k.slice(1).replace(/_/g, ' '), stories: Object.values(cat.commodities[k].months).flat().length, best: 0 }]))
+  return Object.entries(p).map(([slug, v]) => ({ slug, name: v.name, stories: v.stories })).sort((a, b) => b.stories - a.stories || a.name.localeCompare(b.name))
+}
+
+/** Months with a real story, not gaps in the calendar. */
+export function availableMonths(cat: Catalog, product: string): string[] {
+  return Object.entries(cat.commodities[product]?.months ?? {}).filter(([, entries]) => entries.length > 0).map(([month]) => month).sort()
+}
+
+export function defaultStoryId(cat: Catalog): string | null {
+  if (cat.featured[0]) return cat.featured[0].id
+  const entries = Object.values(cat.commodities).flatMap((c) => Object.values(c.months).flat())
+  return entries.sort((a, b) => b.score - a.score || a.id.localeCompare(b.id))[0]?.id ?? null
+}
+
+/** Snapshot of the modeled, historical trade evidence; never an actual profit claim. */
+export function tradeEvidence(story: Story) {
+  if (story.verdict !== 'positive_modeled_surplus' && story.verdict !== 'profitable') return null
+  const f = story.facts
+  const keys = ['n', 'n_checked', 'net_baseline', 'net_adverse', 'inf_mean', 'paying_pct', 'inf_shipped']
+  if (!keys.every((key) => typeof f[key] === 'number' && Number.isFinite(f[key]))) return null
+  return {
+    matchedDays: f.n as number, checkedPairs: f.n_checked as number,
+    typicalMargin: f.net_baseline as number, stressMargin: f.net_adverse as number,
+    informedMargin: f.inf_mean as number, payingPct: f.paying_pct as number,
+    informedShipDays: f.inf_shipped as number,
+  }
+}

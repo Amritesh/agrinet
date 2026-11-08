@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { resolveMode, storyFile, pickForMonth, storyUrl, sharePageUrl, monthLabel, type Catalog } from '../src/lib/stories'
+import { resolveMode, storyFile, pickForMonth, storyUrl, sharePageUrl, monthLabel, productList, availableMonths, defaultStoryId, tradeEvidence, type Catalog, type Story } from '../src/lib/stories'
 
 describe('resolveMode', () => {
   it('opens Stories by default and for ?story=', () => {
@@ -50,5 +50,35 @@ describe('pickForMonth', () => {
     expect(pickForMonth(cat, 'onion', '2014-01')).toEqual({ id: 'onion-2013-08-shock', month: '2013-08', substituted: true })
     expect(pickForMonth(cat, 'onion', '2026-04')).toEqual({ id: 'onion-2023-02-gap-x', month: '2023-02', substituted: true })
     expect(pickForMonth(cat, 'tomato', '2023-02')).toBeNull()
+  })
+})
+
+describe('trade dashboard selection', () => {
+  it('includes catalog products with no stories while keeping best-covered products first', () => {
+    const products: Catalog = { ...cat, products: {
+      lentil: { name: 'Lentil', stories: 0, best: 0 },
+      onion: { name: 'Onion', stories: 2, best: 70 },
+      potato: { name: 'Potato', stories: 1, best: 60 },
+    } }
+    expect(productList(products)).toEqual([
+      { slug: 'onion', name: 'Onion', stories: 2 },
+      { slug: 'potato', name: 'Potato', stories: 1 },
+      { slug: 'lentil', name: 'Lentil', stories: 0 },
+    ])
+    expect(availableMonths(products, 'lentil')).toEqual([])
+    expect(availableMonths(products, 'onion')).toEqual(['2013-08', '2023-02'])
+  })
+
+  it('derives only reported modeled outcomes and counts from a profitable story', () => {
+    const story = { verdict: 'profitable', facts: { n: 22, n_checked: 410, net_baseline: 350, net_adverse: 120, inf_mean: 270, paying_pct: 82, inf_shipped: 12 } } as unknown as Story
+    expect(tradeEvidence(story)).toEqual({ matchedDays: 22, checkedPairs: 410, typicalMargin: 350, stressMargin: 120, informedMargin: 270, payingPct: 82, informedShipDays: 12 })
+    expect(tradeEvidence({ ...story, verdict: 'positive_modeled_surplus' })).toEqual(tradeEvidence(story))
+    expect(tradeEvidence({ ...story, verdict: 'gross_only', facts: { net_baseline: 100 } })).toBeNull()
+    expect(tradeEvidence({ ...story, facts: { n: 20, net_baseline: Number.NaN } })).toBeNull()
+  })
+  it('opens a real catalog story when no featured story passes the feature threshold', () => {
+    expect(defaultStoryId(cat)).toBe('onion-2013-08-shock')
+    expect(defaultStoryId({ ...cat, commodities: {}, featured: [] })).toBeNull()
+    expect(defaultStoryId({ ...cat, featured: [{ id: 'featured-2023-02-trade', title: 'Featured', commodity: 'onion', period: '2023-02', kind: 'corridor', teaser: '' }] })).toBe('featured-2023-02-trade')
   })
 })

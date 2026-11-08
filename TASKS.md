@@ -25,11 +25,10 @@ Detailed constraints: BLOCKERS.md. User authorization covers this dedicated buil
 - [ ] Surveyed/verified coordinates for top onion markets.
 - [ ] Code-split bundle (3.5 MB main chunk).
 
-## 4.0
-- [x] Phase 1: Stories + Explore structure; workspaces moved behind Research tools; Collaborate link in header/footer
-- [x] Phase 2: featured onion corridor story (Lasalgaon→Azadpur, Feb 2023) with route, costs, stress test, hindsight vs informed, conclusion
-- [x] Phase 3 (first pass): automatic shock/corridor/storage candidates for every month; ranking; 580 validated stories
-- [~] Phase 4: hindsight vs informed per corridor done; time-expanded multi-market MILP not built
-- [~] Phase 5: original tokens/lorry/board styling; terrain texture and richer camera choreography pending
-- [x] Phase 6 (part): static share pages + PNG cards for featured stories; story-level analytics events pending
-- [ ] Tomato corridors; animated export
+## 4.0 — trade-story focus
+- [x] Replace the default research-style dashboard with a trade-story player; keep legacy Explore and Research accessible without making them the main UI.
+- [x] Extract and screen the full local price archive across products and varieties; rank bounded corridor candidates, evaluate road distances, costs, stress scenarios, and a pre-purchase-information shipping rule.
+- [x] Generate 1,664 historical monthly stories (74 products with qualifying examples) with day-by-day evidence, a map route and story-specific share pages for three featured stories.
+- [x] Label retrospectively selected modeled surplus as a back-test, not actual profit or an out-of-sample forecast; flag the route budget and stale latest observation.
+- [ ] Expand route coverage and use a held-out period before treating selection as predictive; no live trades or order execution.
+- [ ] Animated story exports and story-level analytics events.

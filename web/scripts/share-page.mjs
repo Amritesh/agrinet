@@ -2,14 +2,14 @@
 // GitHub Pages is static and social crawlers do not run React, so each featured story
 // gets /s/<id>/index.html with its own Open Graph tags and an original og.png card.
 // Usage (after `python -m pipeline.stories`):  node scripts/share-page.mjs
-import { readFile, writeFile, mkdir } from 'node:fs/promises'
+import { readFile, writeFile, mkdir, rm } from 'node:fs/promises'
 import { fileURLToPath } from 'node:url'
 import path from 'node:path'
 
 const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
 const monthLabel = (ym) => `${MONTHS[Number(ym.slice(5, 7)) - 1]} ${ym.slice(0, 4)}`
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;')
-const ID = /^(onion|potato|tomato)-\d{4}-\d{2}(-[a-z0-9-]+)?$/
+const ID = /^[a-z0-9]+(?:_[a-z0-9]+)*-\d{4}-\d{2}(-[a-z0-9-]+)?$/
 
 export function sharePageHtml(story, site) {
   if (!ID.test(story.id)) throw new Error(`unsafe story id ${story.id}`)
@@ -68,7 +68,7 @@ function cardHtml(story, states) {
     const fill = story.kind === 'shock' ? ((m.pct ?? 0) >= 0 ? '#b0402c' : '#2c5c8a') : '#b87333'
     return `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${r}" fill="${fill}" fill-opacity="${story.kind === 'shock' ? 0.7 : 1}" stroke="#1b2e40" stroke-width="2"/>`
   }).join('')
-  const kind = { shock: 'Price shock', corridor: 'Hypothetical trade · modeled', storage: 'Storage decision · modeled' }[story.kind]
+  const kind = { shock: 'Price shock', corridor: 'Modeled surplus · back-tested on reported prices', storage: 'Storage decision · modeled' }[story.kind]
   return `<!doctype html><html><head><meta charset="utf-8"><style>
   body{margin:0;width:1200px;height:630px;background:#faf4e6;font-family:Georgia,'Times New Roman',serif;color:#1b2e40;position:relative;overflow:hidden}
   .l{position:absolute;left:56px;top:56px;width:560px}
@@ -95,6 +95,8 @@ async function main() {
   const browser = await chromium.launch()
   const page = await browser.newPage({ viewport: { width: 1200, height: 630 } })
   const pages = []
+  // Share pages exist only for current featured stories; stale ones would point at retired stories.
+  await rm(path.join(web, 'public/s'), { recursive: true, force: true })
   for (const f of cat.featured) {
     const year = JSON.parse(await readFile(path.join(web, `public/stories/${f.commodity}/${f.period.slice(0, 4)}.json`), 'utf8'))
     const story = year.find((s) => s.id === f.id)
