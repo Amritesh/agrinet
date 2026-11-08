@@ -1,7 +1,16 @@
 """Regression checks for retrospective month screens and sequencing."""
 from datetime import date, timedelta
 
+import pytest
+
 from pipeline.month_opportunities import analyze_month, archive_catalog, best_chain
+from pipeline.trade_stories import RAW
+
+
+requires_archive = pytest.mark.skipif(
+    not any(RAW.glob('all_*.parquet')),
+    reason='retained yearly parquet is local-only, not checked into git',
+)
 
 
 def leg(origin, destination, buy, sell, net, stress=10, variety='standard'):
@@ -27,6 +36,7 @@ def test_dp_uses_settlement_market_and_positive_stressed_legs():
         assert date.fromisoformat(following['buy']) >= date.fromisoformat(previous['sell']) + timedelta(days=7)
 
 
+@requires_archive
 def test_archived_products_not_limited_to_story_finalists():
     catalog = archive_catalog()
     assert catalog['schema'] == 'agrinet-month-1'
@@ -39,6 +49,7 @@ def test_archived_products_not_limited_to_story_finalists():
     assert result['coverage']['scope'] == 'cached_named_place_roads_only'
 
 
+@requires_archive
 def test_real_screen_preserves_informed_decision_and_sequential_chain():
     result = analyze_month('tomato', '2024-08', catalog=archive_catalog())
     assert result['opportunities']
